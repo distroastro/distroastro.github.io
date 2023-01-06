@@ -5,7 +5,7 @@ This will be the new repository for Distro Astro where I plan to resume developm
 Github Page:  
 [https://distroastro.github.io](https://distroastro.github.io/)
 
-Github Repos:  
+Github Account:  
 [https://github.com/distroastro](https://github.com/distroastro/)
 
 Bamm Gabriana
