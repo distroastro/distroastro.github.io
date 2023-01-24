@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+
+	<!-- Image Formats -->
+	<mime-type type="image/x-bpg">
+		<comment>BPG image</comment>
+		<acronym>BPG</acronym>
+		<expanded-acronym>Better Portable Graphics</expanded-acronym>
+		<glob pattern="*.bpg"/>
+	</mime-type>
+	<mime-type type="image/x-cals">
+		<comment>CALS raster image</comment>
+		<acronym>CALS</acronym>
+		<expanded-acronym>Continuous Acquisition and Life-cycle Support</expanded-acronym>
+		<glob pattern="*.cal"/>
+		<glob pattern="*.cals"/>
+	</mime-type>
+	<mime-type type="image/x-ecw">
+		<comment>ECW image</comment>
+		<acronym>ECW</acronym>
+		<expanded-acronym>Enhanced Compression Wavelet</expanded-acronym>
+		<glob pattern="*.ecw"/>
+	</mime-type>
+	<mime-type type="image/x-gem">
+		<comment>GEM Paint raster image</comment>
+		<acronym>GEM</acronym>
+		<expanded-acronym>Graphical Environment Manager</expanded-acronym>
+		<glob weight="55" pattern="*.gem"/>
+	</mime-type>
+	<mime-type type="image/x-glcd">
+		<comment>Graphic LCD bitmap image</comment>
+		<glob pattern="*.glcd"/>
+	</mime-type>
+	<mime-type type="image/x-jpeg-ls">
+		<comment>JPEG LS image</comment>
+		<acronym>JLS</acronym>
+		<expanded-acronym>JPEG LS</expanded-acronym>
+		<glob pattern="*.jls"/>
+	</mime-type>
+	<mime-type type="image/vnd.ms-photo">
+		<comment>JPEG XR image</comment>
+		<acronym>JXR</acronym>
+		<expanded-acronym>JPEG XR</expanded-acronym>
+		<glob pattern="*.jxr"/>
+		<glob pattern="*.hdp"/>
+		<glob pattern="*.wdp"/>
+	</mime-type>
+	<mime-type type="image/x-mpo">
+		<comment>JPEG Stereo picture</comment>
+		<acronym>MPO</acronym>
+		<expanded-acronym>Multi-Picture Object</expanded-acronym>
+		<sub-class-of type="image/jpeg"/>
+		<glob pattern="*.mpo"/>
+	</mime-type>
+	<mime-type type="image/x-lazerview">
+		<comment>LazerView image</comment>
+		<acronym>LV</acronym>
+		<expanded-acronym>LazerView</expanded-acronym>
+		<glob pattern="*.lv"/>
+	</mime-type>
+	<mime-type type="image/x-macpaint">
+		<comment>MacPaint bitmap image</comment>
+		<glob pattern="*.mac"/>
+	</mime-type>
+	<mime-type type="image/x-ms-paint">
+		<comment>Microsoft Paint bitmap image</comment>
+		<glob pattern="*.msp"/>
+	</mime-type>
+	<mime-type type="image/x-micrografx">
+		<comment>Micrografx Draw image</comment>
+		<glob pattern="*.drw"/>
+	</mime-type>
+	<mime-type type="image/x-paintnet">
+		<comment>Paint.NET image</comment>
+		<acronym>PDN</acronym>
+		<expanded-acronym>Paint Dot Net</expanded-acronym>
+		<glob pattern="*.pdn"/>
+		<alias type="image/x-paintdotnet"/>
+		<alias type="image/x-pdn"/>
+	</mime-type>
+	<mime-type type="image/x-sff">
+		<comment>SFF image</comment>
+		<acronym>SFF</acronym>
+		<expanded-acronym>Standard Flowgram Format</expanded-acronym>
+		<glob pattern="*.sff"/>
+	</mime-type>
+	<mime-type type="image/x-wsq">
+		<comment>WSQ image</comment>
+		<acronym>WSQ</acronym>
+		<expanded-acronym>Wavelet Scalar Quantization</expanded-acronym>
+		<glob pattern="*.wsq"/>
+	</mime-type>
+	<mime-type type="image/x-dcx">
+		<comment>Zsoft Multipage Paintbrush image</comment>
+		<glob pattern="*.dcx"/>
+		<alias type="image/vnd.zbrush.dcx"/>
+	</mime-type>
+	<mime-type type="image/x-pcx">
+		<comment>Zsoft Paintbrush image</comment>
+		<acronym>PCX</acronym>
+		<expanded-acronym>Picture Exchange</expanded-acronym>
+		<glob weight="55" pattern="*.pcx"/>
+		<alias type="image/vnd.zbrush.pcx"/>
+	</mime-type>
+	<mime-type type="image/vnd.autofx">
+		<comment>Auto FX image</comment>
+		<acronym>AFX</acronym>
+		<expanded-acronym>Auto FX</expanded-acronym>
+		<glob pattern="*.afx"/>
+	</mime-type>
+	<mime-type type="image/vnd.sfw">
+		<comment>Seattle FilmWorks image</comment>
+		<acronym>SFW</acronym>
+		<expanded-acronym>Seattle FilmWorks</expanded-acronym>
+		<glob pattern="*.sfw"/>
+	</mime-type>
+
+	<!-- Digital Camera Raw Formats -->
+	<mime-type type="image/x-adobe-dng">
+		<comment>Adobe DNG raw image</comment>
+		<acronym>DNG</acronym>
+		<expanded-acronym>Digital Negative</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<sub-class-of type="image/tiff"/>
+		<glob pattern="*.dng"/>
+	</mime-type>
+	<mime-type type="image/x-canon-crw">
+		<comment>Canon CRW raw image</comment>
+		<acronym>CRW</acronym>
+		<expanded-acronym>Canon Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.crw"/>
+	</mime-type>
+	<mime-type type="image/x-canon-cr2">
+		<comment>Canon CR2 raw image</comment>
+		<acronym>CR2</acronym>
+		<expanded-acronym>Canon Raw v2</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.cr2"/>
+	</mime-type>
+	<mime-type type="image/x-canon-cr3">
+		<comment>Canon CR3 raw image</comment>
+		<acronym>CR3</acronym>
+		<expanded-acronym>Canon Raw v3</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.cr3"/>
+	</mime-type>
+	<mime-type type="image/x-casio-cam">
+		<comment>Casio CAM raw image</comment>
+		<acronym>CAM</acronym>
+		<expanded-acronym>Camera</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.cam"/>
+	</mime-type>
+	<mime-type type="image/x-epson-erf">
+		<comment>Epson ERF raw image</comment>
+		<acronym>ERF</acronym>
+		<expanded-acronym>Epson Raw Format</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.erf"/>
+	</mime-type>
+	<mime-type type="image/x-fuji-raf">
+		<comment>Fuji RAF raw image</comment>
+		<acronym>RAF</acronym>
+		<expanded-acronym>Fuji Raw Film</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.raf"/>
+	</mime-type>
+	<mime-type type="image/x-hasselblad-3fr">
+		<comment>Hasselblad 3FR raw image</comment>
+		<acronym>3F</acronym>
+		<expanded-acronym>Flexible File Format</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.3fr"/>
+	</mime-type>
+	<mime-type type="image/x-imacon-fff">
+		<comment>Imacon FFF raw image</comment>
+		<acronym>FFF</acronym>
+		<expanded-acronym>Flexible File Format</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.fff"/>
+	</mime-type>
+	<mime-type type="image/x-kodak-dcr">
+		<comment>Kodak DCR raw image</comment>
+		<acronym>DCR</acronym>
+		<expanded-acronym>Digital Camera Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.dcr"/>
+	</mime-type>
+	<mime-type type="image/x-leica-rwl">
+		<comment>Leica RWL raw image</comment>
+		<acronym>RWL</acronym>
+		<expanded-acronym>Raw Leica</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.rwl"/>
+	</mime-type>
+	<mime-type type="image/x-minolta-mrf">
+		<comment>Minolta MRF raw image</comment>
+		<acronym>MRF</acronym>
+		<expanded-acronym>Minolta Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.mrf"/>
+	</mime-type>
+	<mime-type type="image/x-minolta-mrw">
+		<comment>Minolta MRW raw image</comment>
+		<acronym>MRW</acronym>
+		<expanded-acronym>Minolta Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.mrw"/>
+	</mime-type>
+	<mime-type type="image/x-nikon-nef">
+		<comment>Nikon NEF raw image</comment>
+		<acronym>NEF</acronym>
+		<expanded-acronym>Nikon Electronic Format</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.nef"/>
+	</mime-type>
+	<mime-type type="image/x-nikon-nrw">
+		<comment>Nikon COOLPIX NRW raw image</comment>
+		<acronym>NRW</acronym>
+		<expanded-acronym>Nikon Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.nrw"/>
+	</mime-type>
+	<mime-type type="image/x-olympus-orf">
+		<comment>Olympus ORF raw image</comment>
+		<acronym>ORF</acronym>
+		<expanded-acronym>Olympus Raw Format</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.orf"/>
+	</mime-type>
+	<mime-type type="image/x-omnivision-ov">
+		<comment>OmniVision OV raw image</comment>
+		<acronym>OV</acronym>
+		<expanded-acronym>OmniVision</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.ov"/>
+	</mime-type>
+	<mime-type type="image/x-panasonic-rw">
+		<comment>Panasonic RAW raw image</comment>
+		<acronym>RAW</acronym>
+		<expanded-acronym>Panasonic Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.raw"/>
+	</mime-type>
+	<mime-type type="image/x-samsung-srw">
+		<comment>Samsung SRW raw image</comment>
+		<acronym>SRW</acronym>
+		<expanded-acronym>Samsung Raw</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.srw"/>
+	</mime-type>
+	<mime-type type="image/x-sony-srf">
+		<comment>Sony SRF raw image</comment>
+		<acronym>SRF</acronym>
+		<expanded-acronym>Sony Raw Format</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.srf"/>
+	</mime-type>
+	<mime-type type="image/x-sony-sr2">
+		<comment>Sony SR2 raw image</comment>
+		<acronym>SR2</acronym>
+		<expanded-acronym>Sony Raw Format v2</expanded-acronym>
+		<sub-class-of type="image/x-dcraw"/>
+		<glob pattern="*.sr2"/>
+	</mime-type>
+
+	<!-- Metadata -->
+	<mime-type type="application/xmp+xml">
+		<comment>XMP Metadata</comment>
+		<acronym>XMP</acronym>
+		<expanded-acronym>Extensible Metadata Platform</expanded-acronym>
+		<sub-class-of type="application/xml"/>
+		<glob pattern="*.xmp"/>
+		<alias type="text/xmp+xml"/>
+	</mime-type>
+
+	<!-- Fax Formats -->
+	<mime-type type="image/fax-g3">
+		<comment>CCITT G3 fax</comment>
+		<glob pattern="*.g3"/>
+		<glob pattern="*.301"/>
+		<glob pattern="*.brk"/>
+	</mime-type>
+	<mime-type type="image/fax-g4">
+		<comment>CCITT G4 fax</comment>
+		<glob pattern="*.g4"/>
+		<glob pattern="*.ncr"/>
+		<glob pattern="*.kfx"/>
+	</mime-type>
+	<mime-type type="image/vnd.ms-fax">
+		<comment>Microsoft Fax Document</comment>
+		<acronym>AWD</acronym>
+		<expanded-acronym>At Work Document</expanded-acronym>
+		<glob pattern="*.awd"/>
+	</mime-type>
+
+	<!-- Sound and Video Formats -->
+	<mime-type type="video/x-pvr">
+		<acronym>PVR</acronym>
+		<expanded-acronym>Personal Video Recorder</expanded-acronym>
+		<glob pattern="*.pvr"/>
+	</mime-type>
+
+	<!-- Microscopy -->
+	<mime-type type="image/x-ids">
+		<comment>Huygens microscopy image</comment>
+		<glob pattern="*.ids"/>
+		<glob pattern="*.ics"/>
+		<glob pattern="*.ics2"/>
+	</mime-type>
+
+	<!-- Models -->
+	<mime-type type="model/x-b3d">
+		<comment>Blitz3D entity model</comment>
+		<generic-icon name="image-x-generic"/>
+		<glob pattern="*.b3d"/>
+		<alias type="model/vnd.blitz.b3d"/>
+	</mime-type>
+
+	<!-- Game Data -->
+	<mime-type type="image/x-eff">
+		<comment>EverQuest image</comment>
+		<acronym>EFF</acronym>
+		<expanded-acronym>EverQuest Effects File</expanded-acronym>
+		<glob pattern="*.eff"/>
+	</mime-type>
+	<mime-type type="image/x-wad">
+		<comment>Half Life image</comment>
+		<acronym>WAD</acronym>
+		<expanded-acronym>Where's All the Data</expanded-acronym>
+		<glob pattern="*.wad"/>
+	</mime-type>
+
+	<!-- Computer Aided Design -->
+	<mime-type type="image/vnd.dwg">
+		<comment>AutoCAD image</comment>
+		<glob pattern="*.dwg"/>
+	</mime-type>
+	<mime-type type="image/vnd.dgn">
+		<comment>Bentley MicroStation image</comment>
+		<glob pattern="*.dgn"/>
+	</mime-type>
+	<mime-type type="image/vnd.cad">
+		<comment>Softdesk Drafix image</comment>
+		<glob pattern="*.cad"/>
+	</mime-type>
+
+	<!-- Application Formats -->
+	<mime-type type="application/x-cmx">
+		<comment>Corel Presentation Exchange</comment>
+		<generic-icon name="x-office-presentation"/>
+		<glob pattern="*.cmx"/>
+		<alias type="image/x-cmx"/>
+		<alias type="application/cmx"/>
+		<alias type="drawing/cmx"/>
+	</mime-type>
+	<mime-type type="application/x-dr-halo-bitmap">
+		<comment>Dr. Halo bitmap image</comment>
+		<generic-icon name="image-x-generic"/>
+		<glob pattern="*.cut"/>
+		<alias type="application/x-cut"/>
+		<alias type="application/cut"/>
+		<alias type="image/x-halo-cut"/>
+		<alias type="image/cut"/>
+	</mime-type>
+	<mime-type type="application/x-ms-iconlibrary">
+		<comment>Microsoft icon library</comment>
+		<sub-class-of type="application/x-msdownload"/>
+		<generic-icon name="application-x-msdownload"/>
+		<acronym>ICL</acronym>
+		<expanded-acronym>Icon Library</expanded-acronym>
+		<glob pattern="*.icl"/>
+	</mime-type>
+	<mime-type type="application/x-webshots">
+		<comment>Webshots image</comment>
+		<generic-icon name="image-x-generic"/>
+		<glob pattern="*.wbc"/>
+		<glob pattern="*.wbz"/>
+		<glob pattern="*.wbx"/>
+		<alias type="application/x-wbc"/>
+		<alias type="application/wbc"/>
+	</mime-type>
+	<mime-type type="application/x-scitec-bitmap">
+		<comment>Scitex Continuous Tone image</comment>
+		<generic-icon name="image-x-generic"/>
+		<glob pattern="*.sct"/>
+		<glob pattern="*.ct"/>
+	</mime-type>
+	<mime-type type="application/x-msclip">
+		<comment>Windows Clipboard image</comment>
+		<generic-icon name="image-x-generic"/>
+		<glob pattern="*.clp"/>
+	</mime-type>
+
+</mime-info>
+

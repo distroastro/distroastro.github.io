@@ -1,0 +1,29 @@
+test1 (1.3-1distroastro2) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 18 Oct 2014 01:03:00 +0800
+
+test1 (1.2-1distroastro2) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 18 Oct 2014 01:00:00 +0800
+
+test1 (1.1-1distroastro2) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 18 Oct 2014 00:00:00 +0800
+
+test1 (1.0-1distroastro2) unstable; urgency=low
+
+  * Minor package update.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Sep 2014 00:00:00 +0800
+
+test1 (1.0-1distroastro1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sun, 05 Jan 2014 00:00:00 +0800

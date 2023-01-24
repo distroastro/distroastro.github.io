@@ -1,0 +1,14 @@
+Source: backgrounds-clearskies
+Section: misc
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: backgrounds-clearskies
+Architecture: all
+Depends: ${misc:Depends}
+Description: Clearskies Wallpapers
+ This is a wallpaper set for distro astro showing a cloud-free daytime sky.

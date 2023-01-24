@@ -1,0 +1,189 @@
+
+/***********
+ * Desktop *
+ ***********/
+
+.caja-canvas-item {
+    border-radius: 3px;
+}
+
+.caja-desktop.caja-canvas-item {
+    color: @desktop_item_fg;
+    text-shadow: 1px 1px @desktop_item_text_shadow;
+}
+
+.caja-desktop.caja-canvas-item:selected {
+    background-color: alpha(@theme_selected_bg_color, 0.8);
+    background-image: none;
+    color: @theme_selected_fg_color;
+    text-shadow: none;
+}
+
+/********
+ * Caja *
+ ********/
+
+/* caja sidebar */
+CajaWindow FMTreeView .view,
+CajaWindow CajaNotesViewer .view,
+CajaWindow CajaPlacesSidebar .view,
+CajaWindow CajaHistorySidebar .view,
+CajaWindow CajaInformationPanel GtkVBox,
+CajaWindow CajaEmblemSidebar GtkViewport {
+    border-width: 0px;
+}
+
+.caja-side-pane notebook treeview.view,
+.caja-side-pane notebook viewport.frame,
+.caja-side-pane notebook widget .vertical {
+    background-color: @theme_bg_color;
+	background-image: linear-gradient(to right, #c8c8c8, #edeeec);
+    color: @theme_fg_color;
+}
+
+.caja-side-pane notebook treeview.view:selected,
+.caja-side-pane notebook viewport.frame:selected,
+.caja-side-pane notebook widget .vertical:selected {
+    background-color: @theme_selected_bg_color;
+	background-image: linear-gradient(to bottom, #76bf9b, #9fdabd);
+    color: @theme_selected_fg_color;
+	border-width: 1px 0px;
+	border-color: #76bf9b;
+}
+
+.caja-navigation-window notebook > header {
+    padding: 0px;
+    margin: 0px -1px -1px 0px;
+}
+
+.caja-navigation-window notebook > header > tabs > tab:checked {
+	border-bottom: 1px solid @border;
+    background-color: @theme_base_color;
+    margin-bottom: 0px;
+}
+
+/***********
+* Terminal *
+************/
+
+vte-terminal {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+/**************
+* Mate-Terminal *
+***************/
+
+window.background.mate-terminal > box.vertical > notebook:not(.frame) > stack > box,
+window.background.csd.mate-terminal > box.vertical > notebook:not(.frame) > stack > box,
+window.background.ssd.mate-terminal > box.vertical > notebook:not(.frame) > stack > box,
+window.background.solid-csd.mate-terminal > box.vertical > notebook:not(.frame) > stack > box {
+    margin: 0px;
+	border: 1px solid @border;
+}
+
+.mate-terminal notebook > header {
+    padding: 0px;
+    margin: 0px -1px -1px 0px;
+}
+
+.mate-terminal notebook > header > tabs > tab:checked {
+	border-bottom: 1px solid transparent;
+    background-color: @theme_base_color;
+    margin-bottom: 0px;
+}
+
+/****************
+ * Pluma *
+ ****************/
+
+.pluma-window notebook > header {
+    padding: 0px;
+    margin: 0px -1px -1px 0px;
+}
+
+.pluma-window notebook > header.top > tabs > tab:checked {
+	border-bottom: 1px solid transparent;
+    background-color: @theme_base_color;
+    margin-bottom: 0px;
+}
+
+/****************
+ * Mate-Panel *
+ ****************/
+
+/* General panel style */
+.mate-panel-menu-bar,
+.mate-panel-menu-bar .menubar,
+.mate-panel-menu-bar > .menuitem,
+.gnome-panel-menu-bar,
+.gnome-panel-menu-bar .menubar,
+.gnome-panel-menu-bar > .menuitem,
+PanelToplevel.background,
+#PanelPlug,
+#PanelApplet button,
+#PanelApplet-window-menu-applet-button {
+    color: @theme_fg_color;
+    background-color: alpha(@theme_bg_color, 0.6);
+    background-image: none;
+	border: 1px solid transparent;
+    border-image: none;
+    box-shadow: none;
+}
+
+/* Panel button style */
+#PanelApplet button {
+    background-color: alpha(@theme_bg_color, 0.375);
+}
+#PanelApplet button:hover {
+    border-color: alpha(@theme_bg_color, 0.375);
+    background-color: alpha(@theme_bg_color, 0.375);
+    background-image: linear-gradient(alpha(@theme_bg_color, 0.75), alpha(@theme_bg_color, 0.375));
+}
+#PanelApplet button:checked,
+#PanelApplet button:checked:hover,
+#PanelApplet button:active,
+#PanelApplet button:active:hover {
+    border-color: alpha(@theme_bg_color, 0.375);
+    background-color: alpha(@theme_bg_color, 0.75);
+    background-image: none;
+}
+
+/* Show Desktop button style */
+#PanelApplet #showdesktop-button {
+    background-color: transparent;
+}
+#PanelApplet #showdesktop-button:checked,
+#PanelApplet #showdesktop-button:checked:hover,
+#PanelApplet #showdesktop-button:active,
+#PanelApplet #showdesktop-button:active:hover {
+    background-color: alpha(@theme_bg_color, 0.75);
+}
+
+/* Separator style */
+PanelSeparator,
+MatePanelAppletFrameDBus PanelSeparator,
+MatePanelAppletFrameDBus > MatePanelAppletFrameDBus {
+    background-image: url("separator.png");
+    background-repeat: repeat-y;
+    background-position: left;
+    border-width: 0;
+    color: transparent;
+    text-shadow: none;
+}
+
+/* Menu style */
+.mate-panel-menu-bar button menu,
+.mate-panel-menu-bar menubar menu {
+    background-image: url("brushedmetalbg.png");
+}
+
+/* Mint Menu style */
+#PanelApplet box.mintmenu {
+    background-color: alpha(@theme_bg_color, 0.375);
+}
+#PanelApplet box.mintmenu:selected {
+    background-color: @theme_selected_bg_color;
+}
+

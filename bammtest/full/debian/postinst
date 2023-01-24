@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+### Post-Install commands go here ###
+# End manually added section

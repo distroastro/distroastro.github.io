@@ -1,0 +1,65 @@
+Source: astropack
+Section: science
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: astropack
+Architecture: all
+Depends: ${misc:Depends}, astropack-main, astropack-debian, astropack-imaging, astropack-indi, astropack-python
+Suggests: distropack, astropack-boinc
+Description: Astronomy Pack
+ This metapackage brings in all the goodies for astronomy enthusiasts.
+
+Package: astropack-main
+Architecture: all
+Depends: ${misc:Depends}, accut, astroclock, alw, aladin, astrocc, ephem, fftanalyzer, gravity, meteoracle, nightshade, obsman, pp3, proas, skychart, skychart-catalog-mol, skyglobe, virtualmoon, whereism13, xephem
+Suggests: astropack-debian, xorsa
+Description: Main Astronomy Pack
+ This metapackage provides selected astronomy-related packages from the
+ Distro Astro repositories.
+
+Package: astropack-imaging
+Architecture: all
+Depends: ${misc:Depends}, wxastrocapture, oacapture, registax, iris, imerge, imagej, libav-tools, v4l2ucp, dov4l, setpwc
+Suggests: astropack-indi
+Description: Imaging Astronomy Pack
+ This metapackage provides software for astronomical imaging using CCD cameras,
+ including camera control, image capturing, stacking, and processing.
+
+Package: astropack-debian
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: celestia-gnome, celestia-common-nonfree, kstars, stellarium, planets, xplanet, xplanet-images, xtide, xtide-data, xtide-coastline, starplot, gliese, yale, gcx, gpredict, openrocket, openuniverse, lightspeed, sunclock, astronomical-almanac
+Suggests: science-astronomy, education-astronomy, worldwind
+Description: Debian Astronomy Pack
+ This metapackage provides selected astronomy-related packages from the
+ Debian repositories.
+
+Package: astropack-indi
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: libindi1, indi-full, astrometry.net, atikccd
+Description: INDI Astronomy Pack
+ This metapackage provides INDI libraries and drivers for popular CCD cameras
+ used in astronomy imaging like the Apogee, SBIG, and Philips ToUCam series.
+
+Package: astropack-python
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: python-numpy, python-astropy, astropy-scripts, astropy-legacy, python-pyraf, pyraf-terminal, python-novas, python-astrolib.coords
+Suggests: python-aplpy, python-cosmolopy, python-spacepy, python-oscaar
+Description: Python Astronomy Pack
+ This metapackage provides selected Python packages used in astronomical
+ research.
+
+Package: astropack-boinc
+Architecture: all
+Depends: ${misc:Depends}, boinc-client, boinc-manager
+Recommends: boinc-app-milkyway, boinc-app-seti
+Description: BOINC Astronomy Pack
+ This metapackage provides the BOINC client, BOINC manager, and add-ons for the
+ SETI@home and Milkyway@home projects.

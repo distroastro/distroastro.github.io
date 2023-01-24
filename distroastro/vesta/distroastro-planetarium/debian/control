@@ -1,0 +1,15 @@
+Source: distroastro-planetarium
+Section: science
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-planetarium
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: distroastro-location, nightshade | stellarium
+Description: Distro Astro Planetarium Support
+ A set of tools to enable running Distro Astro as a planetarium system.

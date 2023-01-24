@@ -1,0 +1,332 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Wine Colors                                                                  #
+# Version 3.0                                                                  #
+#                                                                              #
+# A quick and dirty solution to copying theme colors into Wine.                #
+#                                                                              #
+# Version 0.1 First version. Tested in Debian Squeeze and Ubuntu Lucid.        #
+# Version 0.2 Updated for Ubuntu Natty and Mint 11 Katya.                      #
+# Version 0.3 Updated for Ubuntu Oneiric and Mint 12 Lisa.                     #
+# Version 0.4 Added support for Distro Astro.                                  #
+# Version 0.5 Added support for Mate in Mint 13 Maya.                          #
+# Version 0.6 Fixed mateconf related issues. No more warnings.                 #
+# Version 1.0 Works as planned. Ready for release.                             #
+# Version 2.0 Added support for Mate 1.6 in Mint 15 Olivia.                    #
+# Version 3.0 Added support for Cinnamon in Mint 17 Qiana.                     #
+#                                                                              #
+# Copyright (C) 2011-2014 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "3.0";
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $force, $create, $debug, $help, $version);
+my ($gtk_theme, $gtkcolorscheme);
+
+GetOptions(
+	'q|quiet'    => \$quiet,
+	'v|verbose'  => \$verbose,
+	'f|force'    => \$force,
+	'c|create'   => \$create,
+	'd|debug'    => \$debug,
+	'h|help'     => \$help,
+	'V|version'  => \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+$quiet = 0 if $verbose || $debug;
+
+sub main {
+
+if (! `which wine`) {
+	print "Wine is not installed. No need to run Winecolors.\n" if !$quiet;
+	exit 0;
+}
+
+# Check which Desktop Environment is running.
+my $gnome_desktop = $ENV{'GNOME_DESKTOP_SESSION_ID'} || `pgrep -l gnome-session`;
+my $mate_desktop = $ENV{'MATE_DESKTOP_SESSION_ID'} || `pgrep -l mate-session`;
+my $cinnamon_desktop = `pgrep -l cinnamon-sessio`;
+
+# Check which conf tools are installed.
+my $dconf = `which dconf`;
+my $gconf = `which gconftool-2`;
+my $mateconf = `which mateconftool-2`;
+
+# Read all key/value pairs from gconf/mateconf/dconf desktop interface.
+my %conf;
+my $interface;
+chomp ($interface = `gconftool-2 -a /desktop/gnome/interface`) if ($gnome_desktop && $gconf);
+chomp ($interface = `mateconftool-2 -a /desktop/mate/interface`) if ($mate_desktop && $mateconf);
+if ($interface) {
+	my @pairs;
+	@pairs = split /\n\s/, $interface;
+	foreach my $pair (@pairs) {
+		my ($name, $value) = split /=/, $pair;
+		$name =~ s/^\s+|\s+$//;
+		$name =~ s/-/_/;
+		$value =~ s/^\s+|\s+$//;
+		$conf{$name} = $value;
+	}
+}
+else {
+	if ($gnome_desktop && $dconf) {
+		chomp ($conf{gtk_theme} = `dconf read /org/gnome/desktop/interface/gtk-theme | sed "s/'//g"`);
+		chomp ($conf{gtk_color_scheme} = `dconf read /org/gnome/desktop/interface/gtk-color-scheme | sed "s/'//g"`);
+	}
+	if ($mate_desktop && $dconf) {
+		chomp ($conf{gtk_theme} = `dconf read /org/mate/desktop/interface/gtk-theme | sed "s/'//g"`);
+		chomp ($conf{gtk_color_scheme} = `dconf read /org/mate/desktop/interface/gtk-color-scheme | sed "s/'//g"`);
+	}
+	if ($cinnamon_desktop && $dconf) {
+		chomp ($conf{gtk_theme} = `dconf read /org/cinnamon/desktop/interface/gtk-theme | sed "s/'//g"`);
+		chomp ($conf{gtk_color_scheme} = `dconf read /org/cinnamon/desktop/interface/gtk-color-scheme | sed "s/'//g"`);
+	}
+}
+
+# Read the Gtk+ Theme name
+$gtk_theme = $ARGV[0] || $conf{gtk_theme} || '';
+
+# Read the Gtk+ Color Scheme
+$gtkcolorscheme = $conf{gtk_color_scheme} || '';
+$gtkcolorscheme =~ s/\(.*\)//;
+
+if (@ARGV || !$gtkcolorscheme) {
+
+	# Look for any winecolors plugin files for the specified theme
+	# Our plugins are simply REGEDIT4 files of the form $gtk_theme.reg, e.g., Clearlooks.reg
+	my $file;
+	my $plugin =
+		-f ($file = "$ENV{HOME}/.winecolors/plugins/$gtk_theme.reg") && $file ||
+		-f ($file = "/usr/share/winecolors/plugins/$gtk_theme.reg") && $file ||
+		-f ($file = "./winecolors-plugins/$gtk_theme.reg") && $file || '';
+
+	# If a plugin is found, use it and exit program
+	if ($plugin && !$force) {
+		print "Theme   : $gtk_theme\n" if $verbose || $debug;
+		print "Found   : $gtk_theme Plugin\n" if $verbose || $debug;
+		print "Path    : $plugin\n" if $debug;
+		print "Importing colors...\n" if !$quiet;
+		`regedit $plugin`;
+		print "Done.\n" if !$quiet;
+		exit;
+	}
+
+	# Find the gtkrc file
+	# Possible issue: Assumes folder name eq theme name, which I suppose is not necessarily true
+	my $gtkrc =
+		-f ($file = "$ENV{HOME}/.themes/$gtk_theme/gtk-2.0/gtkrc") && $file ||
+		-f ($file = "/usr/share/themes/$gtk_theme/gtk-2.0/gtkrc") && $file || '';
+
+	# Process the gtkrc file
+	if ( -f $gtkrc ) {
+		print "Theme   : $gtk_theme\n" if $verbose || $debug;
+		print "Found   : $gtkrc\n" if $verbose || $debug;
+
+		# Read the configuration file content
+		open FILE, $gtkrc;
+		my @lines = <FILE>;
+		close FILE;
+
+		# Get the Gtk+ color scheme
+		# Possible issue: tested on only a few theme files
+		foreach my $line (@lines) {
+			if ($gtkcolorscheme eq "\n") {
+				$gtkcolorscheme = $line;
+			}
+			if ($line =~ m/gtk.color.scheme/) {
+				$gtkcolorscheme = (split /=/, $line)[1];
+			}
+		}
+
+		$gtkcolorscheme =~ s/^(\s+|)"(.*)"(\s+|)$/$2/g;
+
+		if ($gtkcolorscheme) {
+			print "Scheme  : $gtkcolorscheme\n" if $verbose;
+		}
+		else {
+			die "$exec: error: Gtk+ Color Scheme not found.\nNo changes were made.\n";
+		}
+	}
+	else {
+		die "$exec: error: Gtk+ theme file not found.\nNo changes were made.\n";
+	}
+}
+else {
+	$gtk_theme = "Custom";
+	$gtkcolorscheme = join '\n', split /\n/, $gtkcolorscheme;
+	print "Theme   : $gtk_theme\n" if $verbose || $debug;
+	print "Found   : Custom Color Scheme\n" if $verbose || $debug;
+	print "Scheme  : $gtkcolorscheme\n" if $verbose;
+}
+
+# Extract the color values
+my %rgb;
+my @pairs = split /\\n|;/, $gtkcolorscheme;
+foreach my $pair (@pairs) {
+	my ($name, $value) = split /:/, $pair;
+	$name =~ s/^\s+|\s+$//;
+	$value =~ s/^\s+|\s+$//;
+	$rgb{$name} = $value;
+}
+
+# Define which colors from the theme file we will use
+my @elements = (
+	"base_color",         "text_color",
+	"bg_color",           "fg_color",
+	"selected_bg_color",  "selected_fg_color",
+	"menu_bg_color",      "menu_fg_color",
+	"tooltip_bg_color",   "tooltip_fg_color"
+);
+
+# In case some colors are missing, use default bg and fg
+$rgb{menu_bg_color}     ||= $rgb{bg_color};
+$rgb{menu_fg_color}     ||= $rgb{fg_color};
+$rgb{tooltip_bg_color}  ||= $rgb{bg_color};
+$rgb{tooltip_fg_color}  ||= $rgb{fg_color};
+$rgb{selected_bg_color} ||= $rgb{fg_color};
+$rgb{selected_fg_color} ||= $rgb{bg_color};
+
+# Convert them to a form understood by regedit
+my %color;
+foreach my $element (@elements) {
+	my @c =  split //, $rgb{$element};
+	$color{$element} = hex("$c[1]$c[2]") . " " .  hex("$c[5]$c[6]") . " " .  hex("$c[9]$c[10]") if (@c == 13);
+	$color{$element} = hex("$c[1]$c[2]") . " " .  hex("$c[3]$c[4]") . " " .  hex("$c[5]$c[6]") if (@c == 7);
+	$color{$element} = hex("$c[1]$c[1]") . " " .  hex("$c[2]$c[2]") . " " .  hex("$c[3]$c[3]") if (@c == 4);
+}
+
+# Theme file does not include gray color, so we make one...
+# Not perfect but works good enough for most themes
+my $bg = eval(join "+", (split " ", $color{bg_color})) / 3;
+my $fg = eval(join "+", (split " ", $color{fg_color})) / 3;
+my $gray = int(($bg * 2 + $fg) / 3 + 0.5);
+my $dkgray = int(($gray * 2 + $fg) / 3 + 0.5);
+$color{gray_color} = "$gray $gray $gray";
+$color{dkgray_color} = "$dkgray $dkgray $dkgray";
+
+# Print out colors found for debugging purposes...
+foreach my $element (@elements) {
+	print "$rgb{$element} = $color{$element} = $element\n" if $debug;
+}
+
+# Create registry import file
+my $regfile = "/tmp/$gtk_theme.reg";
+open FILE, ">$regfile";
+print FILE "REGEDIT4
+
+\[HKEY_CURRENT_USER\\Control Panel\\Colors\]
+\"ActiveBorder\"=\"\"
+\"ActiveTitle\"=\"\"
+\"AppWorkSpace\"=\"$color{gray_color}\"
+\"Background\"=\"$color{selected_bg_color}\"
+\"ButtonAlternateFace\"=\"\"
+\"ButtonDkShadow\"=\"$color{dkgray_color}\"
+\"ButtonFace\"=\"$color{bg_color}\"
+\"ButtonHilight\"=\"$color{base_color}\"
+\"ButtonLight\"=\"$color{bg_color}\"
+\"ButtonShadow\"=\"$color{gray_color}\"
+\"ButtonText\"=\"$color{fg_color}\"
+\"GradientActiveTitle\"=\"\"
+\"GradientInactiveTitle\"=\"\"
+\"GrayText\"=\"$color{gray_color}\"
+\"Hilight\"=\"$color{selected_bg_color}\"
+\"HilightText\"=\"$color{selected_fg_color}\"
+\"HotTrackingColor\"=\"\"
+\"InactiveBorder\"=\"\"
+\"InactiveTitle\"=\"\"
+\"InactiveTitleText\"=\"\"
+\"InfoBorder\"=\"\"
+\"InfoText\"=\"$color{tooltip_fg_color}\"
+\"InfoWindow\"=\"$color{tooltip_bg_color}\"
+\"Menu\"=\"$color{menu_bg_color}\"
+\"MenuBar\"=\"$color{bg_color}\"
+\"MenuHilight\"=\"$color{selected_bg_color}\"
+\"MenuText\"=\"$color{menu_fg_color}\"
+\"Scrollbar\"=\"$color{bg_color}\"
+\"TitleText\"=\"\"
+\"Window\"=\"$color{base_color}\"
+\"WindowFrame\"=\"$color{fg_color}\"
+\"WindowText\"=\"$color{text_color}\"
+";
+close FILE;
+
+# Import registry file
+print "Importing colors...\n" if !$quiet;
+`regedit "$regfile"`;
+
+# Use if you want a copy of the created reg file.
+print `cp $regfile .` if $create;
+print "Created $gtk_theme.reg\n" if $create && !$quiet;
+
+# Cleanup
+`rm "$regfile"`;
+
+# Done
+print "Done.\n" if !$quiet;
+
+}
+
+sub showhelp {print <<DOC;
+Usage: [WINEPREFIX=/path/to/prefix] $exec [OPTION]... [THEME]
+
+This is a quick and dirty solution to copying Gtk+ theme colors into Wine. It
+reads the current theme's color scheme and imports it into Wine's registry.
+
+You may specify a WINEPREFIX to import it to, or the name of a theme to import
+at the command line. It accepts plugins in the form of reg files, allowing you
+to fine-tune how a theme's colors would look in Wine.
+
+  -f, --force		use scheme even if plugin found
+  -c, --create		create a copy of reg file in current directory
+  -q, --quiet		don't display any output
+  -v, --verbose		verbose mode
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2014 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp() and exit if ($help);
+showversion() and exit if ($version);
+main();
+

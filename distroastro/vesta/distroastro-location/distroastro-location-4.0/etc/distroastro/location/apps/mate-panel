@@ -1,0 +1,118 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my ($exec, $longname) = ("mate-panel", "Mate Panel Clock");
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+$quiet = 0 if $verbose || $debug;
+$quiet = $quiet ? "-q" : "";
+$verbose = $verbose ? "-v" : "";
+$debug = $debug ? "-d" : "";
+
+exit if (! @ARGV);
+exit if (! `which $exec`);
+
+my ($LATITUDE, $LONGITUDE, $ELEVATION, $CITY, $REGION, $COUNTRY, $COUNTRYCODE, $TIMEZONE, $TZABBR, $TZOFFSET, $TZDSTOFFSET, $ICAO) = @ARGV;
+
+use LWP::Simple qw($ua get);
+$ua->agent('distroastro-tools/1.0');
+
+sub main {
+	exit if !$<;
+	&setlocation;
+}
+
+sub setlocation {
+
+	print "Configuring $longname...\n" if $verbose;
+
+	# Write down configuration data.
+
+	&setdbus;
+	my $cities = "";
+	my $dconf = `which dconf`;
+	my $mateconf = `which mateconftool-2`;
+	if ($dconf) {
+		$cities = `dconf read /org/mate/panel/objects/clock/prefs/cities | sed "s/'//g"`;
+		$cities = updatecities("$cities");
+		`dconf write /org/mate/panel/objects/clock/prefs/cities "['$cities']"`;
+	}
+	if ($mateconf) {
+		$cities = `mateconftool-2 --get "/apps/panel/applets/applet_clock/prefs/cities"`;
+		$cities = updatecities("$cities");
+		`mateconftool-2 --set "/apps/panel/applets/applet_clock/prefs/cities" --type "list" --list-type "string" "[$cities]"`;
+	}
+}
+
+sub updatecities {
+	my $cities = $_[0];
+	$cities =~ s/^\[|\]$//g and chomp $cities;
+	$ICAO ||= "-";
+	if ($cities ne "" and $cities ne "\@as [") {
+		my @citylist = split />,</, $cities;
+		$citylist[0] =~ s/^<// and $citylist[-1] =~ s/>$//;
+
+		for my $city (@citylist) {
+			chomp $city;
+			if ($city =~ /current="true"/) {
+				$city =~ s/name=\"(|.+)\" city=\"(|.+)\" timezone=\"(|.+)\" latitude=\"(|.+)\" longitude=\"(|.+)\" code=\"(|.+)\" current=\"true\"/name=\"$CITY\" city=\"\" timezone=\"$TIMEZONE\" latitude=\"$LATITUDE\" longitude=\"$LONGITUDE\" code=\"$ICAO\" current=\"true\"/g;
+			}
+			$city = "\<$city\>";
+		}
+		$cities = (join ",", @citylist);
+	}
+	else {
+		$cities = "<location name=\"$CITY\" city=\"\" timezone=\"$TIMEZONE\" latitude=\"$LATITUDE\" longitude=\"$LONGITUDE\" code=\"$ICAO\" current=\"true\"\/>";
+	}
+	$cities =~ s/\"/\\"/g;
+	return $cities;
+}
+
+sub setdbus {
+	chomp (my $DBUS = `cat ~/.dbus/session-bus/* | grep ^DBUS_SESSION_BUS_ADDRESS`);
+	$DBUS =~ s/^DBUS_SESSION_BUS_ADDRESS=//;
+	$ENV{"DBUS_SESSION_BUS_ADDRESS"} = $DBUS;
+}
+
+main;
+

@@ -1,0 +1,110 @@
+{
+   "checksum": "c0cab6ece2b391715f6682c6742b9e5d",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13059505762000000",
+            "id": "6",
+            "name": "More Software",
+            "type": "url",
+            "url": "http://www.distroastro.org/software/"
+         }, {
+            "date_added": "13059506506000000",
+            "id": "7",
+            "name": "My Location",
+            "type": "url",
+            "url": "file:///usr/share/distroastro/location/map.html"
+         }, {
+            "children": [ {
+               "date_added": "12976595742000000",
+               "id": "9",
+               "name": "Sky & Telescope ",
+               "type": "url",
+               "url": "http://www.skyandtelescope.com/"
+            }, {
+               "date_added": "12976595745000000",
+               "id": "10",
+               "name": "Astronomy.com ",
+               "type": "url",
+               "url": "http://www.astronomy.com/"
+            } ],
+            "date_added": "13076314278631658",
+            "date_modified": "0",
+            "id": "8",
+            "name": "Magazines",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13059536031000000",
+               "id": "12",
+               "name": "NASA",
+               "type": "url",
+               "url": "http://www.nasa.gov/"
+            }, {
+               "date_added": "12976595749000000",
+               "id": "13",
+               "name": "ESA ",
+               "type": "url",
+               "url": "http://www.esa.int/ESA"
+            }, {
+               "date_added": "13059711354000000",
+               "id": "14",
+               "name": "Roskosmos ",
+               "type": "url",
+               "url": "http://www.federalspace.ru/"
+            }, {
+               "date_added": "13059711358000000",
+               "id": "15",
+               "name": "JAXA ",
+               "type": "url",
+               "url": "http://global.jaxa.jp/"
+            }, {
+               "date_added": "13059711672000000",
+               "id": "16",
+               "name": "ASC | CSA",
+               "type": "url",
+               "url": "http://www.asc-csa.gc.ca/index.html"
+            }, {
+               "date_added": "13059711367000000",
+               "id": "17",
+               "name": "ISRO ",
+               "type": "url",
+               "url": "http://www.isro.org/"
+            } ],
+            "date_added": "13076314278632205",
+            "date_modified": "0",
+            "id": "11",
+            "name": "Space Agencies",
+            "type": "folder"
+         }, {
+            "date_added": "12976595751000000",
+            "id": "18",
+            "name": "APOD ",
+            "type": "url",
+            "url": "http://apod.nasa.gov/"
+         } ],
+         "date_added": "13076314262465644",
+         "date_modified": "0",
+         "id": "1",
+         "name": "Bookmarks bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13076314262465656",
+         "date_modified": "0",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13076314262465657",
+         "date_modified": "0",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

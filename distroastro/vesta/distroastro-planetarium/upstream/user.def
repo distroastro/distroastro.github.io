@@ -1,0 +1,191 @@
+[org/gnome/desktop/wm/preferences]
+theme='Clearskies'
+
+[org/mate/screensaver]
+idle-activation-enabled=false
+themes=@as []
+mode='blank-only'
+lock-enabled=false
+
+[org/mate/desktop/keybindings/custom0]
+action='xkill'
+binding='<Primary><Mod4>Delete'
+name='Force a window to close'
+
+[org/mate/desktop/keybindings/custom1]
+action='mate-system-monitor'
+binding='<Primary><Shift>Escape'
+name='View current processes and monitor system state'
+
+[org/mate/desktop/keybindings/custom2]
+action='toggle-nightvision'
+binding='<Primary>F2'
+name='Toggle nightvision mode'
+
+[org/mate/desktop/keybindings/custom3]
+action='toggle-lights'
+binding='<Primary>l'
+name='Toggle Lights'
+
+[org/mate/desktop/keybindings/custom4]
+action='toggle-grid'
+binding='<Primary>g'
+name='Toggle Grid'
+
+[org/mate/desktop/keybindings/custom5]
+action='toggle-grid color'
+binding='<Primary><Shift>g'
+name='Toggle Grid Color Wheel'
+
+[org/mate/desktop/keybindings/custom6]
+action='planetarium'
+binding='<Primary>p'
+name='Planetarium Show'
+
+[org/mate/desktop/keybindings/custom7]
+action='mvlc "//home/planetarium/.nightshade/scripts/solarsystem-tour.mp4"'
+binding='<Primary>t'
+name='Solar System Tour'
+
+[org/mate/desktop/keybindings/custom8]
+action='nautilus "Videos"'
+binding='<Primary>o'
+name='Open Media Browser'
+
+[org/mate/desktop/keybindings/custom9]
+action='system-logout --icon-name=planetarium --text="This will log out the planetarium.\\n\\nDo you wish to proceed?"'
+binding='<Primary><Shift>BackSpace'
+name='System Logout'
+
+[org/mate/desktop/keybindings/custom10]
+action='system-shutdown --icon-name=planetarium'
+binding='<Primary><Shift>q'
+name='System Shutdown'
+
+[org/mate/desktop/peripherals/keyboard]
+numlock-state='on'
+
+[org/mate/desktop/peripherals/mouse]
+cursor-size=24
+cursor-theme='Clearskies'
+
+[org/mate/desktop/background]
+color-shading-type='solid'
+primary-color='#000000000000'
+picture-options='scaled'
+picture-filename='/usr/share/backgrounds/Planetarium/grid768.png'
+secondary-color='#94949494b4b4'
+
+[org/mate/desktop/interface]
+gtk-color-scheme='fg_color:#636363636363\nbg_color:#212121212121\ntext_color:#1a1a1a1a1a1a\nbase_color:#b0b0b0b0b0b0\nselected_fg_color:#303030303030\nselected_bg_color:#949494949494\ntooltip_fg_color:#212121212121\ntooltip_bg_color:#fbfbeaeaa0a0'
+icon-theme='Clearskies'
+gtk-theme='Clearskies'
+
+[org/mate/marco/general]
+theme='Clearskies'
+
+[org/mate/caja/preferences]
+background-color='#000000'
+background-uri=''
+background-set=true
+
+[org/mate/caja/window-state]
+start-with-sidebar=false
+start-with-toolbar=false
+geometry='259x219+555+428'
+start-with-location-bar=false
+start-with-status-bar=false
+maximized=false
+
+[org/mate/caja/icon-view]
+captions=['none', 'none', 'none']
+default-zoom-level='large'
+default-use-tighter-layout=true
+labels-beside-icons=true
+
+[org/mate/caja/desktop]
+home-icon-visible=false
+computer-icon-visible=false
+volumes-visible=true
+
+[org/mate/caja/list-view]
+default-visible-columns=['name', 'size', 'type', 'date_modified']
+default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'group', 'where', 'mime_type', 'octal_permissions', 'owner', 'permissions', 'selinux_context']
+
+[org/mate/panel/toplevels/bottom]
+x=1346
+y=0
+y-bottom=-1
+orientation='right'
+auto-hide=true
+expand=true
+size=20
+screen=0
+x-right=0
+
+[org/mate/panel/toplevels/bottom/background]
+opacity=65535
+color='#b0b0b0'
+type='color'
+
+[org/mate/panel/objects/clock]
+applet-iid='ClockAppletFactory::ClockApplet'
+locked=true
+toplevel-id='bottom'
+position=0
+object-type='applet'
+panel-right-stick=true
+
+[org/mate/panel/objects/clock/prefs]
+show-seconds=true
+show-date=true
+format='24-hour'
+custom-format=''
+show-temperature=false
+expand-locations=true
+show-weather=false
+
+[org/mate/panel/objects/notification-area]
+applet-iid='NotificationAreaAppletFactory::NotificationArea'
+locked=true
+toplevel-id='bottom'
+position=2
+object-type='applet'
+panel-right-stick=true
+
+[org/mate/panel/objects/menu-bar]
+applet-iid='MintMenuAppletFactory::MintMenuApplet'
+locked=true
+toplevel-id='bottom'
+position=0
+object-type='applet'
+
+[org/mate/panel/objects/show-desktop]
+applet-iid='WnckletFactory::ShowDesktopApplet'
+locked=true
+toplevel-id='bottom'
+position=1
+object-type='applet'
+
+[org/mate/panel/objects/window-list]
+applet-iid='WnckletFactory::WindowListApplet'
+locked=true
+toplevel-id='bottom'
+position=5
+object-type='applet'
+
+[com/linuxmint/mintmenu]
+applet-icon='/usr/share/pixmaps/distroastro/start.png'
+use-custom-color=true
+custom-heading-color='#1A1A1A'
+custom-color='#212121'
+custom-border-color='#1A1A1A'
+plugins-list=['system_management']
+
+[com/linuxmint/mintmenu/plugins/system_management]
+show-software-manager=false
+show-control-center=false
+show-terminal=false
+
+[com/linuxmint/mintmenu/plugins/applications]
+last-active-tab=0

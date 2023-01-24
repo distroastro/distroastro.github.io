@@ -1,0 +1,120 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Planetarium                                                     #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2019 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version, $info, $progname);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+	'i|info'	=> \$info,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+my @proglist = @ARGV;
+@proglist = ("nightshade") if !@proglist;
+@proglist = ("nightshade","stellarium") if grep(/^all$/i, @proglist);
+@proglist = grep(/^(nightshade|stellarium)$/, @proglist);
+print STDERR "Possible values for argument are `nightshade' and `stellarium'.\n" and exit 2 if !@proglist;
+
+sub main {
+
+	# Detecting configuration data.
+
+	print "Detecting screen resolution...\n" if $verbose;
+
+	my @screen = split /x/, GetScreenRes();
+	my $ScreenW = $screen[0];
+	my $ScreenH = $screen[1];
+
+	print "Screen width: $ScreenW\n" if $info;
+	print "Screen height: $ScreenH\n" if $info;
+
+	# Write down configuration data.
+
+	print "Configuring resolution...\n" if !$quiet;
+
+	my $count;
+	for my $progname (@proglist) {
+
+		if (! `which $progname`) {
+			print STDERR "`$progname' is not installed. Try sudo apt-get install $progname.\n";
+			exit 2;
+		}
+
+		my $conffile = "$ENV{HOME}/.$progname/config.ini";
+
+		my $defconffile = "/usr/share/$progname/data/default_config.ini";
+		if (! -e $conffile) {
+			if (! -e $defconffile) {
+				print STDERR "$exec: $conffile not found.\n";
+				exit 1;
+			}
+			else {
+				system "mkdir -p $ENV{HOME}/.$progname";
+				system "cp $defconffile $conffile";
+			}
+		}
+
+		print "Writing to file: $conffile\n" if $debug;
+
+		open FILE, "$conffile";
+		my @lines = <FILE>;
+		close FILE;
+
+		for my $line (@lines) {
+			$line =~ s/^(|\s+)screen_w(\s+)=.*/${1}screen_w${2}= $ScreenW/;
+			$line =~ s/^(|\s+)screen_h(\s+)=.*/${1}screen_h${2}= $ScreenH/;
+		}
+
+		open FILE, ">$conffile";
+		print FILE @lines;
+		close FILE;
+
+		$count++;
+	}
+
+	print "Done.\n" if !$quiet;
+}
+
+sub GetScreenRes {
+	chomp (my $connected = `xrandr --current | grep -m1 " connected " | cut -d"+" -f1`);
+	(split / /, $connected)[-1];
+}
+
+main;
+

@@ -1,0 +1,7 @@
+Archive: stable
+Version: 3.1
+Component: non-free
+Origin: Tests
+Label: Tests
+Architecture: i386
+Description: Test apt repository

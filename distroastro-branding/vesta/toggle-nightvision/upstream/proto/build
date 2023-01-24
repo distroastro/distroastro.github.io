@@ -1,0 +1,11 @@
+#!/bin/sh
+clear
+rm -f toggle-nightvision_1.0.2-1_i386.deb
+echo Building DEBs...
+makemd5 toggle-nightvision_1.0.2-1_all
+makemd5 toggle-nightvision_1.0.2-1_all /etc/
+find . -exec touch -t 201307180000.00 {} \; 
+fakeroot dpkg-deb --build toggle-nightvision_1.0.2-1_all
+lintian toggle-nightvision_1.0.2-1_all.deb
+echo Done.
+touch -t 201307180000.00 *

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Stack Your Images
+Name[es]=Apila Tus Imágenes
+Name[it]=Sovrapponi le Immagini
+Name[fr]=Empiler Vos Images
+Exec=registax %f
+Icon=desktop-registax.png
+Categories=Education;Science;Astronomy
+Comment=Align, stack and process images
+Comment[es]=Alineado, apilado y procesamiento de imágenes
+Comment[it]=Allinea, sovrapponi e processa le immagini
+Comment[fr]=Aligner, empiler et traiter des images
+StartupNotify=false
+Terminal=false
+Path=
+

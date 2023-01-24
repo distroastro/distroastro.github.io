@@ -1,0 +1,1070 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\SkyMap Software]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\DataPrep]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\DataPrep\Settings]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\AltAzGrid]
+"AltInterval"=dword:0000000a
+"AzInterval"=dword:0000000a
+"LabelVisible"=dword:00000001
+"LevelHigh"=dword:00000002
+"LevelHigh2"=dword:00000005
+"LevelLow"=dword:00000001
+"LevelLow2"=dword:00000000
+"Method"=dword:00000000
+"SolidHorizonLevelHigh"=dword:00000002
+"SolidHorizonLevelLow"=dword:00000001
+"Visible"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Annotation]
+"BarlowPower"=dword:000003e8
+"EyepiecePrinter"=dword:00000000
+"EyepieceScreen"=dword:00ffffff
+"EyepieceThickness"=dword:00000000
+"FinderPrinter"=dword:00000000
+"FinderScreen"=dword:00ffffff
+"FinderThickness"=dword:00000000
+"FramePrinter"=dword:00000000
+"FrameScreen"=dword:00ffffff
+"FrameThickness"=dword:00000000
+"LineArrow"=dword:00000000
+"LinePrinter"=dword:00000000
+"LineScreen"=dword:00ffffff
+"LineThickness"=dword:00000000
+"SelectedFinder"="Optisan Leo-I 7x50 Bin"
+"SelectedFrame"="Meade DSI Pro at 762mm"
+"TextAnchor"=dword:00000000
+"TextBkPrinter"=dword:00ffffff
+"TextBkScreen"=dword:00ff0000
+"TextBorder"=dword:00000006
+"TextDevPos"=dword:00000000
+"TextFace"="SYSTEM"
+"TextFont"="16 0 0 0 0 0 0 0 0 0 0 0 0"
+"TextPrinter"=dword:00000000
+"TextScreen"=dword:00ffffff
+"TextTransparent"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\AreaMap]
+"AutoTrack"=dword:00000001
+"LightingLevelHigh"=dword:ffffffff
+"LightingLevelLow"=dword:ffffffff
+"LowerTwilight"=dword:00000006
+"MinMoonAlt"=dword:0000000a
+"MinMoonPhase"=dword:00000019
+"Moonlight"=dword:00000000
+"PrintBottomMargin"=dword:000000c4
+"PrintKey"=dword:00000001
+"PrintLeftMargin"=dword:000000c4
+"PrintMono"=dword:00000001
+"PrintRightMargin"=dword:000000c4
+"PrintScale"=dword:00000001
+"PrintStatus"=dword:00000001
+"PrintTitle"=dword:00000001
+"PrintTopMargin"=dword:000000c4
+"TimeMode"=dword:00000000
+"TimeNumber"=dword:00000001
+"TimeUnit"=dword:00000003
+"TimeUpdateInterval"=dword:0000000a
+"UpperTwilight"=dword:00000012
+"VaryLighting"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Asteroid]
+"AHigh"=dword:000026ac
+"ALow"=dword:00000000
+"Catalog"="C:\\Program Files\\SkyMap Pro 10\\Data\\mpselect.cat"
+"CatalogType"=dword:00000000
+"LabelMag"=dword:00000000
+"LabelName"=dword:00000001
+"LabelNumber"=dword:00000001
+"LevelHigh"=dword:00000004
+"LevelLow"=dword:00000000
+"MagFilter"=dword:00000002
+"MagLimit"=dword:0000041a
+"NumberLimit"=dword:00000064
+"SelectionMethod"=dword:00000001
+"Visible"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\BkImage]
+"Black"=dword:0000000a
+"Brightness"=dword:00000000
+"CacheImages"=dword:00000001
+"Contrast"=dword:00000000
+"DataSource"=dword:00000002
+"ImageCache"="C:\\Program Files\\SkyMap Pro 10\\BkImage"
+"ImageHeight"=dword:00000014
+"ImageWidth"=dword:00000014
+"Level"=dword:00000004
+"RealSkyCD"="d:\\"
+"RealSkyOverlap"=dword:00000000
+"RealSkyVolume"=dword:00000000
+"ReversePrint"=dword:00000001
+"ReverseVideo"=dword:00000000
+"ShareCD"=dword:00000001
+"Subsample"=dword:00000000
+"White"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Comet]
+"Catalog"="C:\\Program Files\\SkyMap Pro 10\\Data\\20070406.cat"
+"LabelMag"=dword:00000000
+"LabelName"=dword:00000001
+"LevelHigh"=dword:00000004
+"LevelLow"=dword:00000000
+"MagFilter"=dword:00000001
+"MagLimit"=dword:00000514
+"SelectionInterval"=dword:000000b4
+"SelectionMethod"=dword:00000001
+"Visible"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Compass]
+"LevelHigh"=dword:ffffffff
+"LevelLow"=dword:ffffffff
+"Visible"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Constellation]
+"ConBoundaryVisible"=dword:00000000
+"ConFigureVisible"=dword:00000001
+"ConNameVisible"=dword:00000001
+"ConstellationLevelAbbrev"=dword:ffffffff
+"ConstellationLevelBoundaryHigh"=dword:00000009
+"ConstellationLevelBoundaryLow"=dword:00000002
+"ConstellationLevelFigureHigh"=dword:00000004
+"ConstellationLevelFigureLow"=dword:00000000
+"ConstellationLevelNameHigh"=dword:00000003
+"ConstellationLevelNameLow"=dword:00000000
+"CornerLabel"=dword:00000c8a
+"CornerNameAbbrev"=dword:00000000
+"LevelCornerNameHigh"=dword:00000009
+"LevelCornerNameLow"=dword:00000004
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar0]
+"Bar#0"=dword:00000000
+"Bar#1"=dword:0000e806
+"Bar#2"=dword:0000e800
+"Bar#3"=dword:0000e80a
+"Bar#4"=dword:0000e80c
+"Bar#5"=dword:00000000
+"BarID"=dword:0000e81b
+"Bars"=dword:00000006
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar1]
+"Bar#0"=dword:00000000
+"Bar#1"=dword:0000e807
+"Bar#2"=dword:0000e80d
+"Bar#3"=dword:00000000
+"BarID"=dword:0000e81c
+"Bars"=dword:00000004
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar10]
+"BarID"=dword:0000e80d
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:00000144
+"MRUDockID"=dword:0000e81c
+"MRUDockLeftPos"=dword:00000000
+"MRUDockRightPos"=dword:0000001f
+"MRUDockTopPos"=dword:000000dd
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"XPos"=dword:fffffffe
+"YPos"=dword:000000dd
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar11]
+"BarID"=dword:0000e801
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar2]
+"Bar#0"=dword:00000000
+"Bar#1"=dword:0000e808
+"Bar#2"=dword:0000e809
+"Bar#3"=dword:00000000
+"BarID"=dword:0000e81d
+"Bars"=dword:00000004
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar3]
+"BarID"=dword:0000e806
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:0000001e
+"MRUDockID"=dword:0000e81b
+"MRUDockLeftPos"=dword:00000000
+"MRUDockRightPos"=dword:000000f0
+"MRUDockTopPos"=dword:00000000
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"MRUWidth"=dword:000000e1
+"XPos"=dword:fffffffe
+"YPos"=dword:fffffffe
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar4]
+"BarID"=dword:0000e800
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:0000001e
+"MRUDockID"=dword:0000e81b
+"MRUDockLeftPos"=dword:000000ec
+"MRUDockRightPos"=dword:000001e1
+"MRUDockTopPos"=dword:00000000
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"MRUWidth"=dword:000000e6
+"XPos"=dword:000000ec
+"YPos"=dword:fffffffe
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar5]
+"BarID"=dword:0000e807
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:000000e1
+"MRUDockID"=dword:0000e81c
+"MRUDockLeftPos"=dword:00000000
+"MRUDockRightPos"=dword:0000001f
+"MRUDockTopPos"=dword:00000000
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"XPos"=dword:fffffffe
+"YPos"=dword:fffffffe
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar6]
+"BarID"=dword:0000e808
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:000000eb
+"MRUDockID"=dword:0000e81d
+"MRUDockLeftPos"=dword:00000000
+"MRUDockRightPos"=dword:0000001f
+"MRUDockTopPos"=dword:00000000
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"XPos"=dword:fffffffe
+"YPos"=dword:fffffffe
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar7]
+"BarID"=dword:0000e809
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:00000164
+"MRUDockID"=dword:0000e81d
+"MRUDockLeftPos"=dword:00000000
+"MRUDockRightPos"=dword:0000001f
+"MRUDockTopPos"=dword:000000e7
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"XPos"=dword:fffffffe
+"YPos"=dword:000000e7
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar8]
+"BarID"=dword:0000e80a
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:0000001e
+"MRUDockID"=dword:0000e81b
+"MRUDockLeftPos"=dword:000001df
+"MRUDockRightPos"=dword:0000031e
+"MRUDockTopPos"=dword:00000000
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"MRUWidth"=dword:0000008a
+"XPos"=dword:000001df
+"YPos"=dword:fffffffe
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Bar9]
+"BarID"=dword:0000e80c
+"Docking"=dword:00000001
+"MRUDockBottomPos"=dword:0000001e
+"MRUDockID"=dword:0000e81b
+"MRUDockLeftPos"=dword:0000031c
+"MRUDockRightPos"=dword:0000039e
+"MRUDockTopPos"=dword:00000000
+"MRUFloatStyle"=dword:00002004
+"MRUFloatXPos"=dword:ffffffff
+"MRUFloatYPos"=dword:00000000
+"XPos"=dword:0000031c
+"YPos"=dword:fffffffe
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ControlBar-Summary]
+"Bars"=dword:0000000c
+"ScreenCX"=dword:00000500
+"ScreenCY"=dword:00000400
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Coordinates]
+"FlipHorizontal"=dword:00000001
+"FlipVertical"=dword:00000001
+"InitAlt"="90.000000"
+"InitAz"="0.000000"
+"InitField"="91.000000"
+"ZoomLocked"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\CustomColour]
+"Colour0"="225 225 0"
+"Colour1"="255 255 255"
+"Colour10"="255 255 255"
+"Colour11"="255 255 255"
+"Colour12"="255 255 255"
+"Colour13"="255 255 255"
+"Colour14"="255 255 255"
+"Colour15"="255 255 255"
+"Colour2"="255 255 255"
+"Colour3"="255 255 255"
+"Colour4"="255 255 255"
+"Colour5"="255 255 255"
+"Colour6"="255 255 255"
+"Colour7"="255 255 255"
+"Colour8"="255 255 255"
+"Colour9"="255 255 255"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\DailyEvents]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\DeepSky]
+"DeepSkyListCol0"="51 0"
+"DeepSkyListCol1"="88 1"
+"DeepSkyListCol2"="35 2"
+"DeepSkyListCol3"="69 3"
+"DeepSkyListCol4"="50 4"
+"DSMagnitude"=dword:00000001
+"DSSize"=dword:00000000
+"DSSizeLimit"=dword:00000258
+"LabelOption"=dword:00000003
+"LevelHighDeepSky"=dword:00000009
+"LevelLowDeepSky"=dword:00000002
+"MagAdjust0"=dword:00000000
+"MagAdjust1"=dword:00000000
+"MagAdjust10"=dword:00000000
+"MagAdjust11"=dword:00000000
+"MagAdjust12"=dword:00000000
+"MagAdjust2"=dword:00000000
+"MagAdjust3"=dword:00000000
+"MagAdjust4"=dword:00000000
+"MagAdjust5"=dword:00000000
+"MagAdjust6"=dword:00000000
+"MagAdjust7"=dword:00000000
+"MagAdjust8"=dword:00000000
+"MagAdjust9"=dword:00000000
+"MagLimit"=dword:000002bc
+"NameFilter"=""
+"ObjectTypes"=dword:00000001
+"Visible"=dword:00000001
+"VisLevel1"=dword:00000007
+"VisLevel10"=dword:00000007
+"VisLevel11"=dword:00000007
+"VisLevel12"=dword:00000006
+"VisLevel2"=dword:00000006
+"VisLevel3"=dword:00000004
+"VisLevel4"=dword:00000005
+"VisLevel5"=dword:00000005
+"VisLevel6"=dword:00000004
+"VisLevel7"=dword:00000004
+"VisLevel8"=dword:ffffffff
+"VisLevel9"=dword:00000006
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Download]
+"AsteroidCount"=dword:000003e8
+"AsteroidSel"=dword:00000001
+"DownloadPicture"=dword:00000001
+"URLAsteroid"="http://www.astro.cz/mpcorb/SkyMap.CAT"
+"URLBGImage"="http://archive.stsci.edu/cgi-bin/dss_search?v=poss2ukstu_red&h=10&w=10&r=<radeg>&d=<decdeg>&f=FITS"
+"URLComet"="http://cfa-www.harvard.edu/iau/Ephemerides/Comets/Soft01Cmt.txt"
+"URLImage"="http://archive.stsci.edu/cgi-bin/dss_search?v=poss2ukstu_red&h=10&w=10&r=<radeg>&d=<decdeg>&f=GIF"
+"URLSatellite"="http://www.celestrak.com/NORAD/elements/visual.txt"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\EarthSat]
+"GndTrkCol0"="116 0"
+"GndTrkCol1"="74 1"
+"GndTrkCol2"="80 2"
+"GndTrkCol3"="58 3"
+"GndTrkCol4"="49 4"
+"GndTrkCol5"="32 5"
+"GTDuration"=dword:00000000
+"GTInterval"=dword:00000001
+"GTLength"=dword:0000005a
+"PassCol0"="135 0"
+"PassCol1"="42 1"
+"PassCol2"="49 2"
+"PassCol3"="58 3"
+"PassCol4"="82 4"
+"PassCol5"="32 5"
+"PassDisplayInterval"=dword:0000003c
+"PassDisplayOption"=dword:00000000
+"PassDuration"=dword:0000000a
+"PassMinAlt"=dword:0000000a
+"PassMinAltFlag"=dword:00000001
+"PassOption"=dword:00000000
+"PassPosInterval"=dword:0000000f
+"PassVisiblePasses"=dword:00000001
+"TLEFile"="C:\\Program Files\\SkyMap Pro 10\\Data\\satellite.txt"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Eclipse]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\EclipseSearch]
+"DisplayOption"=dword:00000000
+"EndYear"=dword:000007da
+"Lunar"=dword:00000001
+"ResultCol0"="109 0"
+"ResultCol1"="88 1"
+"ResultCol2"="72 2"
+"ResultCol3"="55 3"
+"ResultCol4"="79 4"
+"ResultCol5"="79 5"
+"Solar"=dword:00000001
+"StartYear"=dword:000007d0
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\EclipticGrid]
+"LabelVisible"=dword:00000001
+"LatInterval"=dword:0000000a
+"LevelHigh"=dword:ffffffff
+"LevelHigh2"=dword:00000005
+"LevelLow"=dword:ffffffff
+"LevelLow2"=dword:00000001
+"LongInterval"=dword:0000000a
+"Method"=dword:00000000
+"Visible"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Ephemeris]
+"Entries"=dword:0000000a
+"Epoch"=dword:00000000
+"IntervalDay"=dword:00000001
+"IntervalHour"=dword:00000000
+"IntervalMin"=dword:00000000
+"IntervalSec"=dword:00000000
+"TimeBase"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\GalacticGrid]
+"LabelVisible"=dword:00000001
+"LatInterval"=dword:0000000a
+"LevelHigh"=dword:ffffffff
+"LevelHigh2"=dword:ffffffff
+"LevelLow"=dword:ffffffff
+"LevelLow2"=dword:ffffffff
+"LongInterval"=dword:0000000a
+"Method"=dword:00000000
+"Visible"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Geography]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\GeographyView]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Horizon]
+"LevelHigh"=dword:00000002
+"LevelLow"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ImageDisplay]
+"PosX"=dword:00000165
+"PosY"=dword:00000115
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\JupEvents]
+"CalcLength"=dword:00000007
+"EventGRS"=dword:00000001
+"EventSat"=dword:00000001
+"TimeBase"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\LatLongGrid]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level1]
+"DSMagLimit"=dword:000002bc
+"DSSizeLimit"=dword:00000000
+"Field"=dword:00001518
+"ScrollMode"=dword:00000000
+"StarMagBright"=dword:00000064
+"StarMagLimit"=dword:00000226
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level10]
+"DSMagLimit"=dword:00000000
+"DSSizeLimit"=dword:00000000
+"Field"=dword:00000005
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:00000384
+"StarMagLimit"=dword:00000640
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level2]
+"DSMagLimit"=dword:00000320
+"DSSizeLimit"=dword:00000000
+"Field"=dword:00000a8c
+"ScrollMode"=dword:00000000
+"StarMagBright"=dword:00000064
+"StarMagLimit"=dword:00000226
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level3]
+"DSMagLimit"=dword:00000384
+"DSSizeLimit"=dword:00000000
+"Field"=dword:000003c0
+"ScrollMode"=dword:00000000
+"StarMagBright"=dword:0000012c
+"StarMagLimit"=dword:00000320
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level4]
+"DSMagLimit"=dword:000003e8
+"DSSizeLimit"=dword:00000000
+"Field"=dword:000001e0
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:00000190
+"StarMagLimit"=dword:00000384
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level5]
+"DSMagLimit"=dword:0000047e
+"DSSizeLimit"=dword:00000000
+"Field"=dword:000000f0
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:000001f4
+"StarMagLimit"=dword:000003e8
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level6]
+"DSMagLimit"=dword:00000514
+"DSSizeLimit"=dword:00000000
+"Field"=dword:00000078
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:00000258
+"StarMagLimit"=dword:0000047e
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level7]
+"DSMagLimit"=dword:000005dc
+"DSSizeLimit"=dword:00000000
+"Field"=dword:0000003c
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:000002bc
+"StarMagLimit"=dword:00000514
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level8]
+"DSMagLimit"=dword:00000000
+"DSSizeLimit"=dword:00000000
+"Field"=dword:0000001e
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:00000320
+"StarMagLimit"=dword:000005dc
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Level9]
+"DSMagLimit"=dword:00000000
+"DSSizeLimit"=dword:00000000
+"Field"=dword:0000000f
+"ScrollMode"=dword:00000001
+"StarMagBright"=dword:00000384
+"StarMagLimit"=dword:00000640
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\MapKey]
+"WindowPos"="1 401 404 832 576 -1 -1 -1 -1"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Observer]
+"Altitude"=dword:0000000a
+"DST"=dword:00000000
+"Latitude"="14 39 10 N"
+"Longitude"="121 4 14 E"
+"Pressure"=dword:000003f5
+"Temperature"=dword:0000012d
+"TimeZone"=dword:000001e0
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ObsLog]
+"BarlowID"=dword:ffffffff
+"dbLog"="C:\\Program Files\\SkyMap Pro 10\\Database\\Log.sdb"
+"dbNotes"="C:\\Program Files\\SkyMap Pro 10\\Database\\Notes.sdb"
+"Duration"=dword:0000000a
+"EyepieceID"=dword:ffffffff
+"InstrumentID"=dword:ffffffff
+"Observer"=""
+"Seeing"=dword:00000003
+"SiteID"=dword:ffffffff
+"TimeOption"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ObsPlan]
+"AltBestFilter"=dword:00000001
+"AltCurrentFilter"=dword:00000001
+"BestCol0"="76 0"
+"BestCol1"="109 1"
+"BestCol2"="49 2"
+"BestCol3"="63 3"
+"BestCol4"="39 4"
+"BestCol5"="39 5"
+"BestCol6"="42 6"
+"BestCol7"="40 7"
+"CurrentCol0"="73 0"
+"CurrentCol1"="88 1"
+"CurrentCol2"="62 2"
+"CurrentCol3"="34 3"
+"CurrentCol4"="34 4"
+"CurrentCol5"="34 5"
+"CurrentCol6"="61 6"
+"CurrentCol7"="61 7"
+"CurrentCol8"="61 8"
+"CurrentCol9"="25 9"
+"EndHour"=dword:00000006
+"EndMin"=dword:00000000
+"EndOption"=dword:00000000
+"HideBestInvisible"=dword:00000001
+"HideCurrentInvisible"=dword:00000001
+"MinBestAlt"=dword:0000000a
+"MinCurrentAlt"=dword:0000001e
+"ShowBestUnobserved"=dword:00000000
+"ShowCurrentUnobserved"=dword:00000000
+"StandardEnd"=dword:00000000
+"StandardStart"=dword:00000000
+"StartHour"=dword:00000012
+"StartMin"=dword:00000000
+"StartOption"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Paths]
+"AsteroidCat"="C:\\Program Files\\SkyMap Pro 10\\Data\\"
+"CatFiles"="C:\\Program Files\\SkyMap Pro 10\\Data\\"
+"CometCat"="C:\\Program Files\\SkyMap Pro 10\\Data\\"
+"DataCatalog"="C:\\Program Files\\SkyMap Pro 10\\Data\\Catalogs\\MILKYWAY\\"
+"ImageFile"="C:\\Documents and Settings\\bamm\\Desktop\\"
+"MainFile"="C:\\Documents and Settings\\bamm\\Desktop\\"
+"Overlay"="C:\\Program Files\\SkyMap Pro 10\\Data\\Overlay\\"
+"QuickCat"="C:\\Program Files\\SkyMap Pro 10\\Data\\Quick\\"
+"Reports"="C:\\Documents and Settings\\Administrator\\Desktop\\"
+"SatelliteTLE"="C:\\Program Files\\SkyMap Pro 10\\Data\\"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Planet]
+"DrawFeatures"=dword:00000001
+"GRSLong"="80.000000"
+"LabelOutline"=dword:00000000
+"LabelSatellites"=dword:00000001
+"MoonDarkLimb"=dword:00000001
+"OutlineLevel"=dword:00000007
+"PlanetAbbrev"=dword:00000000
+"SatStarMagLimit"=dword:00000000
+"Visible"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Preferences]
+"CDPath"="C:\\Program Files\\SkyMap Pro 10\\"
+"ColourSetting"=dword:00000000
+"DefaultEyepiece"="Meade Super Plössl 26mm"
+"DefaultTelescope"="Meade LDX75 SN-6 AT"
+"GraphicsExtensions"="JPG;BMP;TIF;PNG"
+"ImageCache"="C:\\Program Files\\SkyMap Pro 10\\PictureCache"
+"ImageDirectory"="C:\\Program Files\\SkyMap Pro 10\\Pictures;C:\\Program Files\\SkyMap Pro 10\\PictureCache;D:\\Media\\Images\\SkyMap Pictures"
+"ImageDisplayMethod"=dword:00000001
+"ImageViewer"="C:\\Program Files\\IrfanView\\i_view32.exe"
+"ImageViewerCmd"="\"%f%\""
+"NewMap"=dword:00000000
+"PaneAltAz"=dword:00000001
+"PaneDeepSkyMagLimit"=dword:00000001
+"PaneJD"=dword:00000001
+"PaneLevel"=dword:00000001
+"PaneLMT"=dword:00000000
+"PaneLST"=dword:00000000
+"PaneLSTTime"=dword:00000001
+"PaneMagLimit"=dword:00000001
+"PaneRADec"=dword:00000000
+"PaneSeparation"=dword:00000001
+"PaneTimeDate"=dword:00000001
+"PaneUTC"=dword:00000000
+"PaneUTCTimeDate"=dword:00000001
+"PrintOrientation"=dword:00000002
+"QualityJPEG"=dword:00000100
+"ThumbnailSize"=dword:00000096
+"Version90Installed"="1"
+"WindowPos2"="3 274 170 1138 779 -1 -1 -4 1"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\PrinterColours]
+"Colour0"="255 255 255 0 0"
+"Colour1"="0 0 0 0 0"
+"Colour10"="128 0 255 0 0"
+"Colour11"="96 96 96 2 1"
+"Colour12"="192 192 192 0 1"
+"Colour13"="128 128 128 0 0"
+"Colour14"="0 0 0 0 2"
+"Colour15"="128 128 128 0 0"
+"Colour16"="128 128 128 0 0"
+"Colour17"="128 128 128 0 0"
+"Colour18"="128 128 128 0 0"
+"Colour19"="0 0 0 0 0"
+"Colour2"="0 0 0 0 0"
+"Colour20"="0 128 128 0 0"
+"Colour21"="0 128 128 0 0"
+"Colour22"="0 0 0 0 0"
+"Colour23"="0 0 0 0 0"
+"Colour24"="0 0 0 0 0"
+"Colour25"="0 0 0 0 2"
+"Colour26"="0 0 0 0 0"
+"Colour27"="0 0 0 0 0"
+"Colour28"="192 192 192 0 0"
+"Colour29"="128 128 128 0 0"
+"Colour3"="255 128 0 0 0"
+"Colour30"="128 128 128 0 0"
+"Colour31"="0 0 255 0 0"
+"Colour32"="255 0 0 0 0"
+"Colour33"="128 128 128 0 0"
+"Colour34"="128 128 128 0 0"
+"Colour35"="0 0 0 0 2"
+"Colour36"="128 128 128 0 0"
+"Colour37"="128 128 128 0 0"
+"Colour38"="128 128 128 0 2"
+"Colour39"="128 128 128 0 0"
+"Colour4"="255 128 0 0 0"
+"Colour40"="128 128 128 0 0"
+"Colour41"="192 192 192 0 0"
+"Colour42"="64 64 64 0 0"
+"Colour43"="128 128 128 0 0"
+"Colour44"="192 192 192 0 0"
+"Colour45"="255 255 255 0 0"
+"Colour46"="0 0 255 0 2"
+"Colour47"="0 0 255 0 0"
+"Colour48"="0 0 255 0 0"
+"Colour49"="255 0 0 0 0"
+"Colour5"="0 0 0 0 0"
+"Colour50"="192 192 192 0 0"
+"Colour51"="192 192 192 0 0"
+"Colour52"="0 128 0 0 0"
+"Colour53"="0 128 0 0 0"
+"Colour54"="0 255 0 2 0"
+"Colour55"="0 0 255 0 0"
+"Colour56"="0 0 255 0 0"
+"Colour57"="255 0 0 0 0"
+"Colour58"="0 0 0 0 0"
+"Colour59"="0 0 0 0 0"
+"Colour6"="0 0 0 0 0"
+"Colour60"="0 0 0 0 0"
+"Colour61"="0 255 0 0 0"
+"Colour62"="255 0 0 2 0"
+"Colour63"="128 128 128 0 0"
+"Colour64"="192 192 192 0 0"
+"Colour65"="255 128 128 0 0"
+"Colour66"="64 64 64 0 0"
+"Colour7"="255 0 0 0 0"
+"Colour8"="255 0 0 0 0"
+"Colour9"="128 0 255 0 0"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\PrinterFonts]
+"FaceName0"="Arial"
+"FaceName1"="Arial"
+"FaceName10"="Verdana"
+"FaceName11"="Verdana"
+"FaceName12"="Verdana"
+"FaceName13"="Verdana"
+"FaceName14"="Verdana"
+"FaceName15"="Verdana"
+"FaceName16"="Verdana"
+"FaceName17"="Verdana"
+"FaceName18"="Verdana"
+"FaceName19"="Verdana"
+"FaceName2"="Arial"
+"FaceName20"="Verdana"
+"FaceName21"="Verdana"
+"FaceName22"="Verdana"
+"FaceName23"="Verdana"
+"FaceName24"="Verdana"
+"FaceName25"=""
+"FaceName26"="Verdana"
+"FaceName27"="Verdana"
+"FaceName28"="Arial"
+"FaceName3"="Copperplate Gothic Light"
+"FaceName4"="Verdana"
+"FaceName5"="Verdana"
+"FaceName6"="Verdana"
+"FaceName7"="Verdana"
+"FaceName8"="Symbol"
+"FaceName9"="Verdana"
+"Font0"="12 0 0 0 700 0 0 0 0 3 2 1 34"
+"Font1"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font10"="6 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font11"="7 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font12"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font13"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font14"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font15"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font16"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font17"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font18"="12 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font19"="6 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font2"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font20"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font21"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font22"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font23"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font24"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font25"="8 0 0 0 400 0 0 0 0 0 0 0 0"
+"Font26"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font27"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font28"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font3"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font4"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font5"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font6"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font7"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font8"="10 0 0 0 400 0 0 0 2 3 2 1 18"
+"Font9"="6 0 0 0 400 255 0 0 0 3 2 1 34"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\QuickCat]
+"LevelHigh"=dword:00000009
+"LevelLow"=dword:00000000
+"Path"="C:\\Program Files\\SkyMap Pro 10\\Data\\Quick\\lyrid.qct"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\RADecGrid]
+"DecInterval"=dword:0000000a
+"LabelVisible"=dword:00000001
+"LevelHigh"=dword:00000005
+"LevelHigh2"=dword:ffffffff
+"LevelLow"=dword:00000003
+"LevelLow2"=dword:ffffffff
+"Method"=dword:00000000
+"RAInterval"=dword:0000003c
+"Visible"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ScaleLine]
+"LevelHigh"=dword:00000009
+"LevelLow"=dword:00000006
+"Visible"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ScreenColours]
+"Colour0"="0 0 0 0 0"
+"Colour1"="255 255 255 0 0"
+"Colour10"="128 128 128 0 0"
+"Colour11"="0 128 64 2 0"
+"Colour12"="128 0 0 0 1"
+"Colour13"="64 128 128 0 0"
+"Colour14"="128 128 128 0 0"
+"Colour15"="128 128 128 0 0"
+"Colour16"="128 128 128 0 0"
+"Colour17"="128 128 128 0 0"
+"Colour18"="128 128 128 0 0"
+"Colour19"="192 192 192 0 1"
+"Colour2"="128 128 128 0 0"
+"Colour20"="0 255 255 0 0"
+"Colour21"="0 255 255 0 0"
+"Colour22"="255 255 255 0 0"
+"Colour23"="255 255 0 0 0"
+"Colour24"="255 255 0 0 0"
+"Colour25"="0 92 172 0 0"
+"Colour26"="192 192 192 0 0"
+"Colour27"="255 255 255 0 0"
+"Colour28"="200 120 0 0 0"
+"Colour29"="128 128 128 0 0"
+"Colour3"="225 225 0 0 0"
+"Colour30"="200 80 20 0 0"
+"Colour31"="0 128 0 0 0"
+"Colour32"="255 0 0 0 0"
+"Colour33"="128 128 128 0 1"
+"Colour34"="128 128 128 0 0"
+"Colour35"="128 128 128 0 0"
+"Colour36"="128 128 128 0 0"
+"Colour37"="128 128 128 0 0"
+"Colour38"="128 128 128 0 0"
+"Colour39"="0 255 255 0 0"
+"Colour4"="225 225 0 0 0"
+"Colour40"="64 64 64 0 0"
+"Colour41"="128 128 128 0 0"
+"Colour42"="64 64 64 0 0"
+"Colour43"="128 128 128 0 0"
+"Colour44"="192 192 192 0 0"
+"Colour45"="255 255 255 0 0"
+"Colour46"="0 0 255 0 2"
+"Colour47"="0 0 255 0 0"
+"Colour48"="0 0 255 0 0"
+"Colour49"="255 0 0 0 0"
+"Colour5"="0 128 255 0 0"
+"Colour50"="192 192 192 0 0"
+"Colour51"="192 192 192 0 0"
+"Colour52"="0 128 0 0 0"
+"Colour53"="0 128 0 0 0"
+"Colour54"="0 255 0 2 0"
+"Colour55"="0 0 255 0 0"
+"Colour56"="0 0 255 0 0"
+"Colour57"="128 128 64 0 1"
+"Colour58"="255 255 255 0 0"
+"Colour59"="255 255 0 0 1"
+"Colour6"="0 128 255 0 0"
+"Colour60"="255 255 0 0 0"
+"Colour61"="32 32 32 0 0"
+"Colour62"="128 128 128 2 0"
+"Colour63"="196 64 0 0 0"
+"Colour64"="255 128 64 0 0"
+"Colour65"="160 0 0 0 0"
+"Colour66"="32 32 32 0 0"
+"Colour7"="255 255 128 0 0"
+"Colour8"="128 128 64 0 0"
+"Colour9"="128 128 128 0 0"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\ScreenFonts]
+"FaceName0"="Copperplate Gothic Light"
+"FaceName1"="Verdana"
+"FaceName10"="Verdana"
+"FaceName11"="Verdana"
+"FaceName12"="Verdana"
+"FaceName13"="Verdana"
+"FaceName14"="Verdana"
+"FaceName15"="Verdana"
+"FaceName16"="Verdana"
+"FaceName17"="Arial"
+"FaceName18"="Verdana"
+"FaceName19"="Arial"
+"FaceName2"="Verdana"
+"FaceName20"="Verdana"
+"FaceName21"="Verdana"
+"FaceName22"="Verdana"
+"FaceName23"="Verdana"
+"FaceName24"="Verdana"
+"FaceName25"="Verdana"
+"FaceName3"="Verdana"
+"FaceName4"="Verdana"
+"FaceName5"="Symbol"
+"FaceName6"="Verdana"
+"FaceName7"="Verdana"
+"FaceName8"="Verdana"
+"FaceName9"="Verdana"
+"Font0"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font1"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font10"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font11"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font12"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font13"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font14"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font15"="12 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font16"="6 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font17"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font18"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font19"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font2"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font20"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font21"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font22"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font23"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font24"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font25"="10 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font3"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font4"="6 0 0 0 400 0 0 0 0 3 2 1 34"
+"Font5"="8 0 0 0 400 0 0 0 2 3 2 1 18"
+"Font6"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font7"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font8"="8 0 0 0 400 255 0 0 0 3 2 1 34"
+"Font9"="8 0 0 0 400 0 0 0 0 3 2 1 34"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Settings]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Shadow]
+"LevelHigh"=dword:ffffffff
+"LevelLow"=dword:ffffffff
+"Visible"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\SkyColour]
+"Colour0"="0 0 0"
+"Colour1"="0 16 32"
+"Colour2"="0 128 255"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\SolarEclipse]
+"FileNumber"=dword:00000005
+"LineNumber"=dword:00000011
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Stars]
+"BV1"=dword:fffffe0c
+"BV2"=dword:00000064
+"BV3"=dword:000001f4
+"BV4"=dword:000007d0
+"GSCHideTycho"=dword:00000001
+"LabelMag"=dword:00000000
+"LabelMagBetween1"=dword:000001f4
+"LabelMagBetween2"=dword:000002bc
+"LabelMagBright"=dword:000001f4
+"LabelMagFaint"=dword:000002bc
+"LabelMagOption"=dword:00000001
+"LabelMagVar"=dword:00000001
+"LevelBayerHigh"=dword:00000009
+"LevelBayerLow"=dword:00000002
+"LevelBitmapHigh"=dword:ffffffff
+"LevelBitmapLow"=dword:ffffffff
+"LevelColourHigh"=dword:00000009
+"LevelColourLow"=dword:00000000
+"LevelDistHigh"=dword:00000009
+"LevelDistLow"=dword:00000007
+"LevelFlamsteedHigh"=dword:00000009
+"LevelFlamsteedLow"=dword:00000003
+"LevelHighGCVS"=dword:00000009
+"LevelHighGSC"=dword:00000009
+"LevelHighWDS"=dword:00000009
+"LevelLowGCVS"=dword:00000004
+"LevelLowGSC"=dword:00000005
+"LevelLowWDS"=dword:00000005
+"LevelMagHigh"=dword:ffffffff
+"LevelMagLow"=dword:ffffffff
+"LevelPMHigh"=dword:ffffffff
+"LevelPMLow"=dword:ffffffff
+"LevelProperHigh"=dword:ffffffff
+"LevelProperLow"=dword:ffffffff
+"ListDblCol0"="114 0"
+"ListDblCol1"="40 1"
+"ListDblCol2"="28 2"
+"ListVarCol0"="97 0"
+"ListVarCol1"="65 1"
+"ListVarCol2"="56 2"
+"ListVarCol3"="48 3"
+"MagLimit"=dword:00000226
+"PMLine"=dword:00000064
+"ShowColour"=dword:00000001
+"ShowDoubles"=dword:00000001
+"ShowFlamsteedWithBayer"=dword:00000001
+"ShowVariables"=dword:00000001
+"StarDotRadius"=dword:000000d0
+"StarGSCShowAllObjects"=dword:00000001
+"StarLabelMagFilter"=dword:00000001
+"StarLabelMagLimit"=dword:000000c8
+"StarMagBright"=dword:00000064
+"StarRadBright"=dword:00000208
+"StarRadFaint"=dword:00000000
+"StarShowSize"=dword:00000001
+"Visible"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\TargetList]
+"CatLevelHigh"=dword:ffffffff
+"CatLevelLow"=dword:ffffffff
+"CatShowUnobserved"=dword:00000000
+"Path"="Untitled.tgl"
+"TargetListCol0"="96 0"
+"TargetListCol1"="99 1"
+"TargetListCol2"="75 2"
+"TourDlgPos"="29 68 0"
+"TourSelName"="M 1"
+"TourSelType"=dword:00000009
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Telescope]
+"Driver"="AscomScope.drv"
+"Port"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Tip]
+"FilePos"=dword:00000188
+"StartUp"=dword:00000001
+"TimeStamp"="Sat Sep 29 15:59:00 2001"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Tools]
+"PrecessFinalEpoch"="J2000.0"
+"PrecessInitialEpoch"="B1950.0"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\Track]
+"Interval"="1"
+"LabelDate"=dword:00000001
+"LabelDir"=dword:00000001
+"LabelFormatDate"=dword:00000001
+"LabelFormatDateOnlyOnChange"=dword:00000001
+"LabelFormatNoMidnightTime"=dword:00000001
+"LabelFormatNoYear"=dword:00000000
+"LabelFormatTime"=dword:00000000
+"LabelInterval"=dword:00000001
+"LabelMag"=dword:00000000
+"MarkInterval"=dword:00000005
+"Points"=dword:0000001f
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\WindowPos]
+"DailyEvents"="391 241 762 595"
+"Darkness"="242 204 910 632"
+"EphDisplay"="313 215 934 737"
+"EventResults"="299 204 853 632"
+"InfoDataCat"="195 174 664 591"
+"InfoDeepSky"="269 313 694 708"
+"InfoLocalCircumstances"="370 184 783 526"
+"InfoLunarCircumstances"="53 151 466 493"
+"InfoPlanet"="363 138 788 533"
+"InfoQuickCat"="364 221 789 616"
+"InfoSolarSys"="364 221 789 616"
+"InfoStar"="317 186 742 581"
+"JupEvents"="297 218 856 619"
+"PlanetVisReport"="364 230 789 606"
+"TableDisplay"="234 189 806 596"
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\WorldAnnotation]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\WorldView]
+
+[HKEY_CURRENT_USER\Software\SkyMap Software\SkyMap Pro v10\WriteImageFile]
+"Format"=dword:00000000
+"Height"=dword:000002d0
+"SizeMethod"=dword:00000002
+"Width"=dword:000002d0

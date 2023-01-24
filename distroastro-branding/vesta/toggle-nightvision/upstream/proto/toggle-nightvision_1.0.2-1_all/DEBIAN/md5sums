@@ -1,0 +1,13 @@
+917f4cc89c7c689c11ed3b9b93d43dd1  usr/share/applications/toggle-nightvision.desktop
+507cadbe90905f8d24410cbd6c3200fa  usr/share/icons/Clearskies/apps/16/toggle-nightvision.png
+231845a8aff0a22363f206becce859c0  usr/share/icons/Clearskies/apps/32/toggle-nightvision.png
+850b32839c33247ba6fa194706eee99b  usr/share/icons/Clearskies/apps/48/toggle-nightvision.png
+321a7858c0f7432e19521f50f9eabae2  usr/share/icons/Clearskies/apps/24/toggle-nightvision.png
+a2d0ad658d6f127db2847c3b2de2b9e7  usr/share/doc/toggle-nightvision/changelog.Debian.gz
+1b9eb8a1e363f7b8dafe722594289096  usr/share/doc/toggle-nightvision/copyright
+7d40792530b3542853e056e242fc1d8d  usr/share/lintian/overrides/toggle-nightvision
+0d0dff89d6d4dc3b257a508a2148d954  usr/bin/toggle-nightvision
+c18d0817e933397e004b48973b725774  etc/toggle-nightvision/skychart
+36c4bdd28f9721960603aba91e25a0ee  etc/toggle-nightvision/wine
+a36b7dd6ea852979a6aaec0db4abfae3  etc/toggle-nightvision/kstars
+b8dcb308cd3b81083ba4da1db0d0a669  etc/toggle-nightvision/xephem

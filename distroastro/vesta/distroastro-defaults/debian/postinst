@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+cp /usr/share/distroastro/applications/*.desktop /usr/share/applications
+cp /usr/share/distroastro/desktop-directories/*.directory /usr/share/mate/desktop-directories
+cp -r /etc/distroastro/users/root/. /root
+# End manually added section

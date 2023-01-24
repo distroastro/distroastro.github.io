@@ -1,0 +1,24 @@
+#!/bin/sh
+
+configdir="$HOME/.config/astrodate"; mkdir -p "$configdir"
+basedir="$HOME/.cache/astrodate/iers/rapid"
+mkdir -p "$basedir"
+cd "$basedir"
+
+fixed="fixed.delta_t"
+datatable=$(zcat "fixed.dut1.zdat")
+N=$(echo "$datatable" | wc -l)
+printf "%s" "Creating ΔT table... "
+{
+	for i in $(seq 41317 $((41317 + N - 1))); do
+		datestamp=$(date -u --date="@$(echo "86400 * ($i - 40587)" | bc)" +%Y%m%d)
+		ut1_tt=$(echo "32.184 + $(numleap MJD "$i") - $(echo "$datatable" | grep " $i " | cut -d' ' -f3 | sed s/^+//)" | bc)
+		echo "$datestamp $i $ut1_tt"
+	done
+} > "$fixed"
+echo "Done."
+printf "%s" "Creating $fixed.zdat... "
+gzip -9 "$fixed"
+mv "$fixed.gz" "$fixed.zdat"
+echo "Done."
+

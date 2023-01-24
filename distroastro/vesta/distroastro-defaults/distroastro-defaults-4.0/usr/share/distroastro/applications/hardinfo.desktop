@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=System Information
+Name[es]=Información del sistema
+Name[it]=Informazioni di sistema
+Name[fr]=Informations sur le système
+Name[pt_BR]=Informações do Sistema
+Comment=System Profiler and Benchmark
+Comment[es]=Perfil del sistema y comparativa de rendimiento
+Comment[it]=Profili di sistema e benchmark
+Comment[fr]=Analyse le système et effectue des benchmarks
+Comment[pt_BR]=Informações e testes do sistema
+Exec=hardinfo
+Icon=hardinfo
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;Settings
+

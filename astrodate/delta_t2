@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir=$(dirname "$(readlink -f -- "$0")")
+. "$dir/include.sh"
+
+[ -n "$SHOWDEFN" ] && printf "%s" "TT-UT2="; SHOWDEFN=""
+if [ ! "$PRECISION" ]; then
+	delta_t=$(printtime delta_t)
+	LC_ALL=C frac=${delta_t##*.}
+	PRECISION="${#frac}"
+fi
+tt_ut2=$(echo "$(printtime delta_t) - $(printtime dut1s)" | bc)
+printf "%0.${PRECISION}f\n" "$tt_ut2"
+

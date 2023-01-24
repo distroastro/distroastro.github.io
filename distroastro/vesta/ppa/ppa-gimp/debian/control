@@ -1,0 +1,17 @@
+Source: ppa-gimp
+Section: misc
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: ppa-gimp
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, gpgv, apt
+Recommends: gnupg
+Description: Gimp PPA repository and GnuPG key
+ This package allows you to download and install packages from the Gimp
+ PPA repository using apt.

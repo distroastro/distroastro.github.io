@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Classic
+Comment=Window Classic theme based on Redmond and WinMe themes.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Classic
+MetacityTheme=Classic
+IconTheme=Clearskies
+CursorTheme=Clearskies

@@ -1,0 +1,31 @@
+{
+   "homepage_is_newtabpage":false,
+   "homepage":"about:blank",
+   "browser": {
+      "window_placement": {
+         "height": 576,
+         "left": 174,
+         "maximized": true,
+         "top": 117,
+         "width": 1024
+      }
+   },
+   "quick_access_bar": {
+      "visible": true
+   },
+   "speeddial": {
+      "bookmarks_folder_guid": "784EEC4B-4B53-470D-8529-81D4DBEB9CCE",
+      "imported_to_bookmarks": true
+   },
+   "session":{
+      "restore_on_startup":4,
+      "startup_urls":[
+         "http://www.distroastro.org/"
+      ],
+      "urls_signature":"DPZn9HpgkxSczLdwslB3CHb8f61ZKTwI7Q9+sUAP1UVtSoGpUatki28lkdnufPBQ"
+   },
+   "statistics": {
+      "collection_asked": true,
+      "collection_enabled": false
+   }
+}

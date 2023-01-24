@@ -1,0 +1,17 @@
+Source: screensavers-solarsystem
+Section: science
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0), automake, libgl1-mesa-dev, libgl1-mesa-glx, libglu1-mesa, libglu1-mesa-dev, libsdl1.2-dev, libsdl-image1.2-dev
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: screensavers-solarsystem
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Solarsystem Screensaver
+ A screensaver for Linux and UNIX that displays the planets of the Solar System
+ plus Pluto. A random planet is chosen and rotated on screen against a starfield
+ background. As the planet orbits the sun, it transitions from light into
+ darkness and a corona effect appears.

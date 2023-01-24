@@ -1,0 +1,47 @@
+distroastro-planetarium (4.0-3distroastro4) unstable; urgency=low
+
+  * Fixed bug in configure-resolution.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Tue, 05 Mar 2019 00:00:00 +0800
+
+distroastro-planetarium (4.0-2distroastro4) unstable; urgency=low
+
+  * Better integration with Nightshade.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 31 Jan 2019 00:00:00 +0800
+
+distroastro-planetarium (4.0-1distroastro4) unstable; urgency=low
+
+  * Release for 4.0 Vesta.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 02 Dec 2017 00:00:00 +0800
+
+distroastro-planetarium (3.0.3-1distroastro1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 04 Jul 2016 00:00:00 +0800
+
+distroastro-planetarium (3.0.2-1distroastro1) unstable; urgency=low
+
+  * Release for 3.0.2 Juno.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 25 Apr 2015 00:00:00 +0800
+
+distroastro-planetarium (3.0.1-1distroastro1) unstable; urgency=low
+
+  * Release for 3.0.1 Juno.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Dec 2014 00:00:00 +0800
+
+distroastro-planetarium (3.0-1distroastro1) unstable; urgency=low
+
+  * Release for 3.0 Juno.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Sep 2014 00:00:00 +0800
+
+distroastro-planetarium (1.0-1distroastro1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 30 Aug 2014 00:00:00 +0800

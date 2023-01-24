@@ -1,0 +1,5 @@
+Distro Astro
+
+Distro Astro is a project to create a Linux distribution for astronomers and
+astronomy enthusiasts. This metapackage provides tools needed for development
+and packaging of Distro Astro and included projects.

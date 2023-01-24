@@ -1,0 +1,6 @@
+NAME="Distro Astro"
+VERSION="4.0 Vesta"
+ID=DistroAstro
+ID_LIKE=Ubuntu
+PRETTY_NAME="Distro Astro - Linux for Astronomers"
+VERSION_ID="4.0"

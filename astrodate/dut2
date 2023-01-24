@@ -1,0 +1,64 @@
+#!/bin/sh
+
+dir=$(dirname "$(readlink -f -- "$0")")
+. "$dir/include.sh"
+
+configdir=${configdir?}
+mjdtime=${mjdtime?}
+y=${y?}
+
+if ! command -v "$dir/delta_t" >/dev/null || ! command -v "$dir/numleap" >/dev/null || ! command -v "$dir/dut1s" >/dev/null; then
+	echo "${exec?}: Some components of this program are missing." >&2
+	exit 127
+fi
+
+if [ "$y" -ge "1958" ]; then
+	if [ -z "$DATAEXTEND" ]; then
+		datafile="delta_t.modern.zdat"
+		if [ ! -f "$configdir/$datafile" ]; then
+			echo "${exec?}: Data file missing or corrupt." >&2
+			exit 127
+		fi
+		N=$(zcat "$configdir/$datafile" | wc -l)
+		if [ "${mjdtime%.*}" -gt "$((41317+N+365))" ]; then
+			echo "${exec?}: The data requested is beyond the range of this program." >&2
+			exit 2
+		fi
+	fi
+	if [ "$y" -ge "1972" ]; then
+		# Modern times, from the introduction of the first integral leap second on 1972 Jan 01
+		# This marks the time when TAI-UTC are exact integers.
+		[ -n "$SHOWDEFN" ] && printf "%s" "UT2-UTC="
+		[ -z "$PRECISION" ] && PRECISION="7"
+	elif [ "$y" -ge "1961" ]; then
+		# UTC was defined in 1960 and came into effect on 1961 Jan 01.
+		[ -n "$SHOWDEFN" ] && printf "%s" "UT2-UTC="
+		[ -z "$PRECISION" ] && PRECISION="6"
+	elif [ "$y" -ge "1960" ] && [ -z "$NOEXTEND" ]; then
+		# The file ftp://maia.usno.navy.mil/ser7/tai-utc.dat extends the definition of UTC
+		# backwards to 1960 although it actually started in 1961.
+		[ -z "$NOWARN" ] && echo "Warning: UTC is not defined for this period. Using an extension of UTC to 1960."
+		[ -n "$SHOWDEFN" ] && printf "%s" "UT2-UTC="
+		[ -z "$PRECISION" ] && PRECISION="5"
+	else [ "$y" -ge "1958" ];
+		# TAI was defined in 1958 and was the standard before corrections to time warranted
+		# the creation of the UTC standard in 1961.
+		[ -z "$NOWARN" ] && echo "Warning: UTC is not defined for this period. Using TAI instead."
+		[ -n "$SHOWDEFN" ] && printf "%s" "UT2-TAI="
+		[ -z "$PRECISION" ] && PRECISION="5"
+	fi
+	SHOWDEFN=""
+	export PRECISION
+	ut2_utc=$(echo "32.184 + $(printtime numleap) - $(printtime delta_t) + $(printtime dut1s)" | bc)
+	ut2_utc=$(printf "%0.${PRECISION}f\n" "$ut2_utc")
+else
+	if [ -n "$SHOWDEFN" ]; then
+		[ -z "$NOWARN" ] && echo "UTC is not defined for this period."
+		exit 0
+	else
+		echo "${exec?}: DUT2 is not defined for this epoch." >&2
+		exit 1
+	fi
+fi
+[ "$PRECISION" ] && printf "%0.${PRECISION}f\n" "$ut2_utc"
+

@@ -1,0 +1,186 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "4.0";
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version, $all, $short, $quick);
+my ($lat, $long, $elev, $street, $area, $city, $province, $region, $country, $cc);
+my ($tzid, $tzname, $tzabbr, $utcoffset, $dstoffset, $icao, $source);
+
+my $ARGN = $#ARGV + 1;
+GetOptions(
+	'd|debug'		=> \$debug,
+	'h|help'		=> \$help,
+	'V|version'		=> \$version,
+	'l|lat'			=> \$lat,
+	'L|long'		=> \$long,
+	'e|elev'		=> \$elev,
+	'S|street'		=> \$street,
+	'A|area'		=> \$area,
+	'C|city'		=> \$city,
+	'p|province'	=> \$province,
+	'r|region'		=> \$region,
+	'c|country'		=> \$country,
+	'2|cc'			=> \$cc,
+	'z|tzid'		=> \$tzid,
+	't|tzname'		=> \$tzname,
+	'b|tzabbr'		=> \$tzabbr,
+	'o|utcoffset'	=> \$utcoffset,
+	'O|dstoffset'	=> \$dstoffset,
+	'I|icao'		=> \$icao,
+	'x|source'		=> \$source,
+	'a|all'			=> \$all,
+	's|short'		=> \$short,
+	'q|quick'		=> \$quick,
+) and $ARGN != $#ARGV + 1 or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+sub main {
+
+	my $location = "/etc/location";
+
+	open FILE, "$location" or print STDERR "No location data found.\nTry running `sudo update-location' first.\n" and exit 64 + 8;
+	my %loc;
+	for (<FILE>) {
+		chomp $_;
+		if ($_ =~ m/=/) {
+			my ($var, $val) = split /=/, $_;
+			$loc{"$var"} = "$val";
+		}
+	}
+	close FILE;
+
+	$loc{UTCOFFSET}= $loc{TZOFFSET} / 3600;
+	$loc{DSTOFFSET}= $loc{TZDSTOFFSET} / 3600;
+
+	my %fields;
+	$fields{LATITUDE} = "Latitude";
+	$fields{LONGITUDE} = "Longitude";
+	$fields{ELEVATION} = "Elevation";
+	$fields{STREET} = "Street";
+	$fields{AREA} = "Area";
+	$fields{CITY} = "City";
+	$fields{PROVINCE} = "Province";
+	$fields{REGION} = "Region";
+	$fields{COUNTRY} = "Country";
+	$fields{COUNTRYCODE} = "Country Code";
+	$fields{TIMEZONE} = "Timezone ID";
+	$fields{TZNAME} = "Timezone Name";
+	$fields{TZABBR} = "Timezone Abbr";
+	$fields{UTCOFFSET} = "UTC Offset";
+	$fields{DSTOFFSET} = "DST Offset";
+	$fields{ICAO} = "ICAO Code";
+	$fields{SOURCE} = "Source";
+
+	my $L = maxlength(values %fields) + 2;
+	for (keys %fields) {
+		$fields{$_} = $short ? "" : sprintf("%-${L}s", "$fields{$_}:");
+	}
+
+	print "$loc{LATITUDE},$loc{LONGITUDE}\n" and exit if ($quick) and defined $loc{LATITUDE} and defined $loc{LONGITUDE};
+
+	print "$fields{LATITUDE}$loc{LATITUDE}\n" if ($all or $lat) and defined $loc{LATITUDE};
+	print "$fields{LONGITUDE}$loc{LONGITUDE}\n" if ($all or $long) and defined $loc{LONGITUDE};
+	print "$fields{ELEVATION}$loc{ELEVATION}\n" if ($all or $elev) and defined $loc{ELEVATION};
+	print "$fields{STREET}$loc{STREET}\n" if ($all or $street) and defined $loc{STREET};
+	print "$fields{AREA}$loc{AREA}\n" if ($all or $area) and defined $loc{AREA};
+	print "$fields{CITY}$loc{CITY}\n" if ($all or $city) and defined $loc{CITY};
+	print "$fields{PROVINCE}$loc{PROVINCE}\n" if ($all or $province) and defined $loc{PROVINCE};
+	print "$fields{REGION}$loc{REGION}\n" if ($all or $region) and defined $loc{REGION};
+	print "$fields{COUNTRY}$loc{COUNTRY}\n" if ($all or $country) and defined $loc{COUNTRY};
+	print "$fields{COUNTRYCODE}$loc{COUNTRYCODE}\n" if ($all or $cc) and defined $loc{COUNTRYCODE};
+	print "$fields{TIMEZONE}$loc{TIMEZONE}\n" if ($all or $tzid) and defined $loc{TIMEZONE};
+	print "$fields{TZNAME}$loc{TZNAME}\n" if ($all or $tzname) and defined $loc{TZNAME};
+	print "$fields{TZABBR}$loc{TZABBR}\n" if ($all or $tzabbr) and defined $loc{TZABBR};
+	print "$fields{UTCOFFSET}$loc{UTCOFFSET}\n" if ($all or $utcoffset) and defined $loc{UTCOFFSET};
+	print "$fields{DSTOFFSET}$loc{DSTOFFSET}\n" if ($all or $dstoffset) and defined $loc{DSTOFFSET};
+	print "$fields{ICAO}$loc{ICAO}\n" if ($all or $icao) and defined $loc{ICAO};
+	print "$fields{SOURCE}$loc{SOURCE}\n" if ($source) and defined $loc{SOURCE};
+}
+
+sub maxlength {
+	my $max = -1;
+	for (@_) {
+		$max = length if (length > $max);
+	}
+	$max
+}
+
+sub showhelp {print <<DOC;
+Usage: $exec [OPTION]...
+
+Display the location and timezone information.
+
+  -l, --lat		show latitude
+  -L, --long		show longitude
+  -e, --elev		show elevation
+  -S, --street		show street name
+  -A, --area		show area within city
+  -C, --city		show city name
+  -p, --province	show province within region
+  -r, --region		show region within country
+  -c, --country		show country name
+  -2, --cc		show two-letter country code
+  -z, --tzid		show timezone identifier
+  -t, --tzname		show timezone name
+  -b, --tzabbr		show timezone abbreviation
+  -o, --utcoffset	show timezone UTC offset
+  -O, --dstoffset	show timezone DST offset
+  -I, --icao		show ICAO code of nearest airport
+  -a, --all		show all of the above information
+  -s, --short		show requested information in short format
+  -q, --quick		show latitude and longitude in quick format
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2014-2015 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp and exit if ($help);
+showversion and exit if ($version);
+main;
+

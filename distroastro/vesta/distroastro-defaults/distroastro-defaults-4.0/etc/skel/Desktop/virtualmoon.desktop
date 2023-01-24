@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=View the Moon
+Name[es]=Ver la Luna
+Name[it]=Vedi la Luna
+Name[fr]=Voir la Lune
+Exec=atlun
+Icon=desktop-virtualmoon
+Categories=Science;Education;Astronomy
+Comment=See and study lunar features
+Comment[es]=Visualiza y explora la superficie lunar
+Comment[it]=Visualizza e esplora la superficie lunare
+Comment[fr]=Voir et étudier les caractéristiques lunaires
+StartupNotify=false
+Terminal=false
+Path=
+

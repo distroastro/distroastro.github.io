@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ Author: Bamm Gabriana <bamm@distroastro.org>
+ Copyright (C) 2017 Bamm Gabriana
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the
+ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ Boston, MA 02111-1307, USA.
+
+-->
+<language id="stratoscript" _name="StratoScript" version="2.0" _section="Scripts">
+  <metadata>
+    <property name="globs">*.sts</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
+
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
+    <style id="command" _name="Command" map-to="def:keyword"/>
+    <style id="keyword" _name="Keyword" map-to="def:type"/>
+  </styles>
+
+  <default-regex-options case-sensitive="false"/>
+
+  <definitions>
+
+    <context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>(?&lt;!\S)#</start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+    </context>
+
+    <context id="number" style-ref="decimal">
+      <match>\b(0|[\+-]?[1-9][0-9]*)</match>
+    </context>
+
+    <context id="commands" style-ref="command">
+      <keyword>audio</keyword>
+      <keyword>body</keyword>
+      <keyword>clear</keyword>
+      <keyword>color</keyword>
+      <keyword>configuration</keyword>
+      <keyword>cove_lights</keyword>
+      <keyword>date</keyword>
+      <keyword>deselect</keyword>
+      <keyword>external_viewer</keyword>
+      <keyword>flag</keyword>
+      <keyword>image</keyword>
+      <keyword>landscape</keyword>
+      <keyword>meteors</keyword>
+      <keyword>moveto</keyword>
+      <keyword>nebula</keyword>
+      <keyword>script</keyword>
+      <keyword>select</keyword>
+      <keyword>set</keyword>
+      <keyword>sky_culture</keyword>
+      <keyword>timerate</keyword>
+      <keyword>wait</keyword>
+      <keyword>zoom</keyword>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <keyword>action</keyword>
+      <keyword>alpha</keyword>
+      <keyword>alt</keyword>
+      <keyword>altitude</keyword>
+      <keyword>angular_size</keyword>
+      <keyword>antialias_lines</keyword>
+      <keyword>atmosphere</keyword>
+      <keyword>atmosphere_fade_duration</keyword>
+      <keyword>auto</keyword>
+      <keyword>auto_move_duration</keyword>
+      <keyword>azimuth</keyword>
+      <keyword>azimuthal_grid</keyword>
+      <keyword>b</keyword>
+      <keyword>background_framerate</keyword>
+      <keyword>base_altitude</keyword>
+      <keyword>bright_nebulae</keyword>
+      <keyword>cardinal_points</keyword>
+      <keyword>circumpolar_circle</keyword>
+      <keyword>clear</keyword>
+      <keyword>clone</keyword>
+      <keyword>clouds</keyword>
+      <keyword>connect</keyword>
+      <keyword>constellation</keyword>
+      <keyword>constellation_art</keyword>
+      <keyword>constellation_art_fade_duration</keyword>
+      <keyword>constellation_art_intensity</keyword>
+      <keyword>constellation_boundaries</keyword>
+      <keyword>constellation_drawing</keyword>
+      <keyword>constellation_lines</keyword>
+      <keyword>constellation_names</keyword>
+      <keyword>constellation_pick</keyword>
+      <keyword>coordinate_system</keyword>
+      <keyword>credit</keyword>
+      <keyword>current</keyword>
+      <keyword>de</keyword>
+      <keyword>decrement</keyword>
+      <keyword>default</keyword>
+      <keyword>delta_fov</keyword>
+      <keyword>distance</keyword>
+      <keyword>dome</keyword>
+      <keyword>drop</keyword>
+      <keyword>duration</keyword>
+      <keyword>ecliptic_line</keyword>
+      <keyword>end</keyword>
+      <keyword>equator_grid</keyword>
+      <keyword>equatorial</keyword>
+      <keyword>equatorial_grid</keyword>
+      <keyword>equator_line</keyword>
+      <keyword>filename</keyword>
+      <keyword>fisheye</keyword>
+      <keyword>fog</keyword>
+      <keyword>fov</keyword>
+      <keyword>function</keyword>
+      <keyword>g</keyword>
+      <keyword>galactic_grid</keyword>
+      <keyword>heading</keyword>
+      <keyword>home_planet</keyword>
+      <keyword>horizontal</keyword>
+      <keyword>hp</keyword>
+      <keyword>in</keyword>
+      <keyword>increment</keyword>
+      <keyword>initial</keyword>
+      <keyword>j2000</keyword>
+      <keyword>landscape</keyword>
+      <keyword>landscape_name</keyword>
+      <keyword>lat</keyword>
+      <keyword>light_pollution_limiting_magnitude</keyword>
+      <keyword>light_travel_time</keyword>
+      <keyword>line_width</keyword>
+      <keyword>load</keyword>
+      <keyword>local</keyword>
+      <keyword>lon</keyword>
+      <keyword>loop</keyword>
+      <keyword>magnitude</keyword>
+      <keyword>manual_zoom</keyword>
+      <keyword>max_mag_nebula_name</keyword>
+      <keyword>max_mag_star_name</keyword>
+      <keyword>meridian_line</keyword>
+      <keyword>milky_way</keyword>
+      <keyword>milky_way_intensity</keyword>
+      <keyword>milky_way_texture</keyword>
+      <keyword>mipmap</keyword>
+      <keyword>moon_scale</keyword>
+      <keyword>moon_scaled</keyword>
+      <keyword>name</keyword>
+      <keyword>natural</keyword>
+      <keyword>nebula</keyword>
+      <keyword>nebula_circle</keyword>
+      <keyword>nebulae</keyword>
+      <keyword>nebula_names</keyword>
+      <keyword>night_texture</keyword>
+      <keyword>object_trails</keyword>
+      <keyword>off</keyword>
+      <keyword>old_style</keyword>
+      <keyword>on</keyword>
+      <keyword>out</keyword>
+      <keyword>output_rate</keyword>
+      <keyword>path</keyword>
+      <keyword>pause</keyword>
+      <keyword>planet</keyword>
+      <keyword>planet_names</keyword>
+      <keyword>planet_orbits</keyword>
+      <keyword>planets</keyword>
+      <keyword>planet_trails</keyword>
+      <keyword>play</keyword>
+      <keyword>point_star</keyword>
+      <keyword>precession_circle</keyword>
+      <keyword>preset</keyword>
+      <keyword>property</keyword>
+      <keyword>protocol</keyword>
+      <keyword>r</keyword>
+      <keyword>ra</keyword>
+      <keyword>rate</keyword>
+      <keyword>relative</keyword>
+      <keyword>reset_timer</keyword>
+      <keyword>resume</keyword>
+      <keyword>rotate_z</keyword>
+      <keyword>rotation</keyword>
+      <keyword>satellite_orbits</keyword>
+      <keyword>scale</keyword>
+      <keyword>script_gui_debug</keyword>
+      <keyword>show_tui_datetime</keyword>
+      <keyword>show_tui_short_obj_info</keyword>
+      <keyword>sidereal</keyword>
+      <keyword>sky_culture</keyword>
+      <keyword>sky_locale</keyword>
+      <keyword>spherical</keyword>
+      <keyword>star_limiting_mag</keyword>
+      <keyword>star_mag_scale</keyword>
+      <keyword>star_names</keyword>
+      <keyword>stars</keyword>
+      <keyword>star_scale</keyword>
+      <keyword>star_twinkle</keyword>
+      <keyword>star_twinkle_amount</keyword>
+      <keyword>state</keyword>
+      <keyword>stop</keyword>
+      <keyword>sync</keyword>
+      <keyword>texture</keyword>
+      <keyword>texture_luminance_adjust</keyword>
+      <keyword>time_zone</keyword>
+      <keyword>toggle</keyword>
+      <keyword>top_altitude</keyword>
+      <keyword>track_object</keyword>
+      <keyword>tropic_lines</keyword>
+      <keyword>type</keyword>
+      <keyword>until</keyword>
+      <keyword>utc</keyword>
+      <keyword>viewport</keyword>
+      <keyword>volume</keyword>
+      <keyword>xpos</keyword>
+      <keyword>ypos</keyword>
+      <keyword>zhr</keyword>
+      <keyword>zoom_offset</keyword>
+    </context>
+
+    <context id="stratoscript" class="no-spell-check">
+      <include>
+        <context ref="comment"/>
+        <context ref="string"/>
+        <context ref="commands"/>
+        <context ref="keywords"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
+

@@ -1,0 +1,38 @@
+<opml version="1.0" xmlns:fz="urn:forumzilla:">
+	<head>
+		<title>Astronomy News</title>
+	</head>
+	<body>
+		<outline title="NASA Breaking News">
+			<outline type="rss" version="RSS" title="NASA Breaking News" text="NASA Breaking News" xmlUrl="https://www.nasa.gov/rss/dyn/breaking_news.rss" htmlUrl="https://www.nasa.gov/news/releases/latest/" />
+		</outline>
+		<outline title="ESA Top News">
+			<outline type="rss" version="RSS" title="ESA Top News" text="ESA Top News" xmlUrl="https://www.esa.int/rss/TopNews.xml" htmlUrl="https://www.esa.int/Our_Activities/Space_News" />
+		</outline>
+		<outline title="Google News Topics">
+			<outline type="rss" version="RSS" title="Google News Topics" text="Google News Topics" xmlUrl="https://news.google.com/rss/topics/CAAqBwgKMLn3jQsw7M6gAw" htmlUrl="https://news.google.com/topics/CAAqBwgKMLn3jQsw7M6gAw" />
+		</outline>
+		<outline title="Google News Search">
+			<outline type="rss" version="RSS" title="Google News Search" text="Google News Search" xmlUrl="https://news.google.com/rss/search?q=astronomy" htmlUrl="https://news.google.com/search?q=astronomy" />
+		</outline>
+		<outline title="Sky &amp; Telescope">
+			<outline type="rss" version="RSS" title="Sky &amp; Telescope" text="Sky &amp; Telescope" xmlUrl="https://www.skyandtelescope.com/feed/" htmlUrl="https://www.skyandtelescope.com" />
+		</outline>
+		<outline title="Astronomy.com">
+			<outline type="rss" version="RSS" title="Astronomy.com" text="Astronomy.com" xmlUrl="http://www.astronomy.com/rss/news/" htmlUrl="http://www.astronomy.com/news" />
+		</outline>
+		<outline title="Space.com">
+			<outline type="rss" version="RSS" title="Space.com" text="Space.com" xmlUrl="https://feeds.feedburner.com/spaceheadlines" htmlUrl="https://www.space.com/news" />
+		</outline>
+		<outline title="Universe Today">
+			<outline type="rss" version="RSS" title="Universe Today" text="Universe Today" xmlUrl="https://feeds.feedburner.com/universetoday" htmlUrl="https://www.universetoday.com" />
+		</outline>
+		<outline title="ScienceDaily">
+			<outline type="rss" version="RSS" title="ScienceDaily" text="ScienceDaily" xmlUrl="https://www.sciencedaily.com/rss/space_time/astronomy.xml" htmlUrl="https://www.sciencedaily.com/news/space_time/astronomy/" />
+		</outline>
+		<outline title="Bad Astronomy">
+			<outline type="rss" version="RSS" title="Bad Astronomy" text="Bad Astronomy" xmlUrl="https://www.syfy.com/tags/bad-astronomy/feed" htmlUrl="https://www.syfy.com/tags/bad-astronomy" />
+		</outline>
+	</body>
+</opml>
+

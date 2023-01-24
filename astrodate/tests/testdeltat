@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export PRECISION="7"
+true > "$0.out"
+for i in $(seq 51544 59623); do
+	datestamp=$(date -u +%Y%m%d --date="@$(echo "($i - 40587) * 86400" | bc)")
+	result="$(delta_t MJD $i) $(dut1r MJD $i) $(dut1s MJD $i)"
+	output="$datestamp $i $result"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+

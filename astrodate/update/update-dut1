@@ -1,0 +1,123 @@
+#!/bin/sh
+
+configdir="$HOME/.config/astrodate"; mkdir -p "$configdir"
+basedir="$HOME/.cache/astrodate/iers/rapid"
+mkdir -p "$basedir"
+cd "$basedir"
+
+rapid=$(echo "
+ftp://ftp.iers.org/products/eop/rapid/daily/finals2000A.daily
+ftp://ftp.iers.org/products/eop/rapid/standard/finals2000A.data
+" | xargs)
+
+red='\033[0;31m'
+end='\033[0m'
+
+filelist=""
+for url in $rapid; do
+	filename=$(basename "$url")
+	printf '%s' "Getting $filename... "
+	lastmod1=$(stat --printf=%y "$filename" 2>/dev/null)
+	wget -cqN "$url"
+	status="$?"
+	lastmod2=$(stat --printf=%y "$filename" 2>/dev/null)
+	if [ "$status" = "0" ]; then
+		if [ "$lastmod1" = "" ]; then
+			chmod 644 "$filename"
+			filelist=$(echo "$filelist" "$filename" | xargs)
+			echo "Done."
+		elif [ "$lastmod1" != "$lastmod2" ]; then
+			chmod 644 "$filename"
+			filelist=$(echo "$filelist" "$filename" | xargs)
+			echo "Updated."
+		else
+			echo "Still current."
+		fi
+	elif [ "$status" = "8" ]; then
+		echo "404: Not Found."
+		exit 127
+	else
+		echo "${red}Failed.${end}"
+		exit 1
+	fi
+done
+url="ftp://ftp.iers.org/products/eop/rapid/standard/finals2000A.all"
+filename=$(basename "$url")
+if [ ! -e "$filename" ]; then
+	printf '%s' "Getting $filename... "
+	wget -cqN "$url"
+	if [ "$status" = "0" ]; then
+		echo "Done."
+	elif [ "$status" = "8" ]; then
+		echo "404: Not Found."
+		exit 127
+	else
+		echo "${red}Failed.${end}"
+		exit 1
+	fi
+fi
+[ ! -e "finals2000A.daily.dut1" ] && filelist="$filelist finals2000A.daily"
+[ ! -e "finals2000A.data.dut1" ] && filelist="$filelist finals2000A.data"
+[ ! -e "finals2000A.all.dut1" ] && filelist="$filelist finals2000A.all"
+filelist=$(echo "$filelist" | xargs)
+
+if [ "$filelist" ]; then
+	for url in $filelist; do
+		filename=$(basename "$url")
+		datafile="$filename.dut1"
+		printf "%s" "Converting $filename... "
+		true > "$datafile"
+		awk '{print $1,$3,$5}' FIELDWIDTHS="6 1 8 42 11" "$filename" | tr ' ' '0' | sed -e 's/I0/I+/g' | awk '{print $1,$3,$5}' FIELDWIDTHS="6 1 5 5 10" | grep -v "0000000000" >> "$datafile"
+		if [ "$?" -eq "0" ]; then
+			echo "Done."
+		else
+			echo "${red}Failed.${end}"
+			exit 2
+		fi
+	done
+	dut1dat="dut1.dat"
+	fixed="fixed.dut1"
+	merged="merged.dut1"
+	dailyfile="finals2000A.daily.dut1"
+	datafile="finals2000A.data.dut1"
+	allfile="finals2000A.all.dut1"
+	tmpfile="finals2000A.data.dut1.tmp"
+	if [ ! -e "$fixed.zdat" ]; then
+		printf "%s" "Creating fixed data... "
+		{
+			zcat "extended.dut1.zdat"
+			head -6938 $allfile
+		} > $fixed
+		gzip -9 $fixed
+		mv "$fixed.gz" "$fixed.zdat"
+		echo "Done."
+	fi
+	printf "%s" "Merging... "
+	if echo "$filelist" | grep -v "finals2000A.data" >/dev/null; then
+		zcat "$merged.zdat" > "$tmpfile"
+		datafile="$tmpfile"
+	fi
+	dailyfile1=$(head -1 $dailyfile | cut -d' ' -f2)
+	dailyfile2=$(tail -1 $dailyfile | cut -d' ' -f2)
+	datafile1=$(head -1 $datafile | cut -d' ' -f2)
+	datafile2=$(tail -1 $datafile | cut -d' ' -f2)
+	{
+		head -$((dailyfile1 - datafile1)) $datafile
+		cat $dailyfile
+		tail -$((datafile2 - dailyfile2)) $datafile
+	} > $merged
+	{
+		echo "YYMMDD  MJD   UT1-UTC  "
+		zcat "$fixed.zdat"
+		cat $merged
+	} > $dut1dat
+	gzip -9 $merged
+	mv "$merged.gz" "$merged.zdat"
+	echo "Done."
+	rm "$tmpfile" 2>/dev/null
+	gzip -9 "$dut1dat"
+	mv "$dut1dat.gz" "dut1.zdat"
+else
+	echo "No changes."
+fi
+

@@ -1,0 +1,2 @@
+application/vnd.bammtest; bammtest '%s'; edit=bammtest '%s'; test=test -n "$DISPLAY"; description="Bamm Test File"; nametemplate=%s.bam; priority=6
+

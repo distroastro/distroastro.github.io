@@ -1,0 +1,120 @@
+#!/bin/sh
+
+################################################################################
+#                                                                              #
+# Distro Astro Upgrades                                                        #
+# Version 3.0                                                                  #
+#                                                                              #
+# Copyright (C) 2015 Bamm Gabriana.                                            #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+exec="$(basename $0)"
+ver="3.0"
+
+# Process command line arguments.
+for i do
+	if [ -z "$i" ]; then false
+	# All options.
+	elif [ "$i" = "-q" -o "$i" = "--quiet"    ]; then	quiet="$i"
+	elif [ "$i" = "-v" -o "$i" = "--verbose"  ]; then	verbose="$i"
+	elif [ "$i" = "-d" -o "$i" = "--debug"    ]; then	debug="$i"
+	elif [ "$i" = "-h" -o "$i" = "--help"     ]; then	help="$i"
+	elif [ "$i" = "-V" -o "$i" = "--version"  ]; then	version="$i"
+	elif [ "$i" = "-s" -o "$i" = "--dry-run"  ]; then	dryrun="$i"
+	elif [ "$i" = "-u" -o "$i" = "--upgrade"  ]; then	upgrade="$i"
+	# Remaining arguments.
+	elif echo $i | grep " " >/dev/null; then
+		args="$args \"$i\""
+	else
+		args="$args $i"
+	fi
+	_="$i"
+done
+args=$(echo $args | sed 's/^ //g')
+[ -n "$dryrun" ] && dryrun="--dry-run"
+
+main() {
+
+	# Only run as root.
+	if [ "$(id -u)" != "0" ]; then
+		echo "$exec: error: requested operation requires superuser privilege." 1>&2
+		exit 2
+	fi
+
+
+	if [ -n "$upgrade" ]; then
+
+		# Show output in debug mode.
+		[ -z "$debug" ] && devnull="> /dev/null 2>&1"
+
+		# Wait a few seconds.
+		numsecs=10
+		eval "echo Waiting $numsecs seconds...$devnull"
+		sleep $numsecs
+
+		# Update the apt cache.
+		eval "apt-get update $devnull"
+
+		# Run unattended-upgrade if it exists.
+		unattended_upgrades=$(command -v "unattended-upgrade")
+		if [ -n "$unattended_upgrades" ]; then
+			eval "echo Found $unattended_upgrades $devnull"
+			$unattended_upgrades $debug $dryrun
+		fi
+
+	else
+
+		# Show output in debug mode.
+		[ -z "$debug" ] && background="&"
+
+		# Fork process and run upgrade in the background
+		eval "$0 --upgrade $debug $dryrun $background"
+
+	fi
+}
+
+showhelp() {
+	echo "Usage: $exec"
+	echo ""
+	echo "Perform an unattended upgrade."
+	echo ""
+	echo "  -h, --help		display this help and exit"
+	echo "  -d, --debug		print debug messages"
+	echo "  -s, --dry-run		simulation, download but do not install"
+	echo "  -V, --version		output version information and exit"
+	echo ""
+	echo "Report $exec bugs to Bamm Gabriana <bamm@distroastro.org>"
+	echo "Distro Astro home page: <http://www.distroastro.org/>"
+}
+
+showversion() {
+	echo "$exec $ver"
+	echo "Copyright (C) 2014 Bamm Gabriana."
+	echo "License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>."
+	echo "This is free software: you are free to change and redistribute it."
+	echo "There is NO WARRANTY, to the extent permitted by law."
+	echo ""
+	echo "Written by Bamm Gabriana."
+}
+
+[ -n "$help" ] && showhelp && exit
+[ -n "$version" ] && showversion && exit
+main

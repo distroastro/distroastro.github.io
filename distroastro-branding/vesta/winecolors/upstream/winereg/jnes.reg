@@ -1,0 +1,41 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\JaboSoft]
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes]
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes\0.6]
+"Browser Directory"="Z:\\media\\sda7\\Nintendo\\Cartridges\\"
+"FullScreen.BPP"=dword:00000020
+"FullScreen.X"=dword:00000320
+"FullScreen.Y"=dword:00000258
+"Input Struct"=hex:c8,00,00,00,d0,00,00,00,cb,00,00,00,cd,00,00,00,38,00,00,00,\
+  1d,00,00,00,1c,00,00,00,0f,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00\
+  
+"Last Directory"="Z:\\media\\sda7\\Nintendo\\Cartridges\\"
+"Options Union"=dword:4838907f
+"Rom Directory"=""
+"Saves Directory"="Z:\\media\\sda7\\Nintendo\\Jnes\\saves\\"
+"Screenshots Directory"="Z:\\media\\sda7\\Nintendo\\Jnes\\screenshots\\"
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes\0.6\Cheats]
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes\0.6\Cheats\014A0B2E-0198AFA0]
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes\0.6\Cheats\A6A3A17F-DC297A01]
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes\0.6\Directory History]
+"Entry 0"="Z:\\media\\sda7\\Nintendo\\Cartridges\\"
+
+[HKEY_CURRENT_USER\Software\JaboSoft\Jnes\0.6\Page Setup]
+"Main Bottom"=dword:000002f5
+"Main Left"=dword:0000017a
+"Main Right"=dword:00000382
+"Main Top"=dword:000000f6
+"Main.Browser Bottom"=dword:000002f5
+"Main.Browser Left"=dword:0000017a
+"Main.Browser Right"=dword:00000382
+"Main.Browser Top"=dword:000000f6

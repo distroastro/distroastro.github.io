@@ -1,0 +1,28 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+exit if (! `which kstars`);
+exit if (! @ARGV);
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose);
+
+exit unless GetOptions(
+	'q|quiet'   => \$quiet,
+	'v|verbose' => \$verbose,
+);
+
+if ($ARGV[0] eq "Nightvision") {
+	`kwriteconfig --file kstarsrc --group Colors --key ColorSchemeFile night.colors`;
+	print "KStars Nightvision ON.\n" if !$quiet;
+}
+
+else {
+	`kwriteconfig --file kstarsrc --group Colors --key ColorSchemeFile classic.colors`;
+	print "KStars Nightvision OFF.\n" if !$quiet;
+}
+

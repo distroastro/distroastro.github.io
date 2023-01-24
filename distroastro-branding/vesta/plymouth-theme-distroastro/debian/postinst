@@ -1,0 +1,24 @@
+#!/bin/sh -e
+#DEBHELPER#
+case "$1" in
+    configure|triggered)
+
+	update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/distroastro/distroastro.plymouth 100
+
+	if which update-initramfs >/dev/null 2>&1
+	then
+	    update-initramfs -u
+	fi
+	;;
+
+    abort-upgrade|abort-deconfigure|abort-remove)
+	;;
+
+    *)
+	echo "$0 called with unknown argument \`$1'" 1>&2
+	exit 1
+	;;
+esac
+
+exit 0
+

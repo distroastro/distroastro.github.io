@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<title>Age and Weight on Each Planet</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="window" content="width=1366, height=768" />
+<meta name="license" content="GPLv2+">
+<meta name="copyright" content="Copyright © 2014-2019 Bamm Gabriana">
+<link rel="author" title="Bamm Gabriana" />
+<link rel="stylesheet" type="text/css" href="planetweight.css" />
+<script type="text/javascript" src="planetweight.js"></script>
+</head>
+<body>
+
+<h1 class="item" id="title">Age and Weight on Each Planet</h1>
+
+<div class="item" id="sun">
+	<div class="name">Sun</div>
+</div>
+
+<div class="item planet" id="mercury">
+	<div class="name">Mercury</div>
+	<div class="weight">Weight: <span id="mercury-weight"></span></div>
+	<div class="age">Age: <span id="mercury-age"></span></div>
+</div>
+
+<div class="item planet" id="venus">
+	<div class="name">Venus</div>
+	<div class="weight">Weight: <span id="venus-weight"></span></div>
+	<div class="age">Age: <span id="venus-age"></span></div>
+</div>
+
+<div class="item planet" id="earth">
+	<div class="name">Earth</div>
+	<div class="weight">Weight: <span id="earth-weight"></span></div>
+	<div class="age">Age: <span id="earth-age"></span></div>
+</div>
+
+<div class="item planet" id="moon">
+	<div class="name">Moon</div>
+	<div class="weight">Weight: <span id="moon-weight"></span></div>
+	<div class="age">Age: <span id="moon-age"></span></div>
+</div>
+
+<div class="item planet" id="mars">
+	<div class="name">Mars</div>
+	<div class="weight">Weight: <span id="mars-weight"></span></div>
+	<div class="age">Age: <span id="mars-age"></span></div>
+</div>
+
+<div class="item planet" id="jupiter">
+	<div class="name">Jupiter</div>
+	<div class="weight">Weight: <span id="jupiter-weight"></span></div>
+	<div class="age">Age: <span id="jupiter-age"></span></div>
+</div>
+
+<div class="item planet" id="saturn">
+	<div class="name">Saturn</div>
+	<div class="weight">Weight: <span id="saturn-weight"></span></div>
+	<div class="age">Age: <span id="saturn-age"></span></div>
+</div>
+
+<div class="item planet" id="uranus">
+	<div class="name">Uranus</div>
+	<div class="weight">Weight: <span id="uranus-weight"></span></div>
+	<div class="age">Age: <span id="uranus-age"></span></div>
+</div>
+
+<div class="item planet" id="neptune">
+	<div class="name">Neptune</div>
+	<div class="weight">Weight: <span id="neptune-weight"></span></div>
+	<div class="age">Age: <span id="neptune-age"></span></div>
+</div>
+
+<div class="item planet" id="pluto">
+	<div class="name">Pluto</div>
+	<div class="weight">Weight: <span id="pluto-weight"></span></div>
+	<div class="age">Age: <span id="pluto-age"></span></div>
+</div>
+
+<div class="item" id="inputbox" title="Type your weight and age on the blanks provided and press Calculate to see your weight and age on each planet!">
+	<p>Weight: <div><input id="weight" onkeydown="if (event.keyCode == 13) document.getElementById('calculate').click()" autofocus="autofocus" /></div></p>
+	<p>Age: <div><input id="age" onkeydown="if (event.keyCode == 13) document.getElementById('calculate').click()" /></div></p>
+	<p>
+	<button id="calculate" onclick="calculate()" title="Click Calculate to see the results!">Calculate</button>
+	<button id="clear" onclick="location.reload()" title="Clear the results">Clear</button>
+	</p>
+</div>
+
+<div class="item" id="close" onclick="window.close();"></div>
+
+</body>
+</html>

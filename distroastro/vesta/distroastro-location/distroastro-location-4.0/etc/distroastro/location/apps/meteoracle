@@ -1,0 +1,121 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my ($exec, $longname) = ("meteoracle", "Meteoracle");
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+$quiet = 0 if $verbose || $debug;
+$quiet = $quiet ? "-q" : "";
+$verbose = $verbose ? "-v" : "";
+$debug = $debug ? "-d" : "";
+
+exit if (! @ARGV);
+exit if (! `which $exec`);
+
+my ($LATITUDE, $LONGITUDE, $ELEVATION, $CITY, $REGION, $COUNTRY, $COUNTRYCODE, $TIMEZONE, $TZABBR, $TZOFFSET, $TZDSTOFFSET, $ICAO) = @ARGV;
+
+sub main {
+	exit if !$<;
+	&setlocation;
+}
+
+sub setlocation {
+
+	print "Configuring $longname...\n" if $verbose;
+
+	# Convert to app-specific data format.
+
+	my $LatRAD = Dec2Rad("$LATITUDE");
+	my $LongRAD = -Dec2Rad("$LONGITUDE");
+	my $TZOffMin = -$TZOFFSET / 60;
+	my $State = $REGION ? $REGION : " ";
+
+	# Write down configuration data.
+
+	my $RegFile = "/tmp/meteoracle.reg";
+	my $DefRegFile = "/usr/share/meteoracle/default.reg";
+	my $RegKey = "\"HKEY_CURRENT_USER\\Software\\Daniel van Os\\MeteorWB\"";
+	`regedit -e $RegFile $RegKey 2>/dev/null`;
+
+	if (! -e $RegFile) {
+		if (! -e $DefRegFile) {
+			print STDERR "Skipped $longname.\n";
+			exit 1;
+		}
+		else {
+			system "cp $DefRegFile $RegFile";
+		}
+
+	}
+
+	open FILE, "$RegFile";
+	my @lines = <FILE>;
+	close FILE;
+
+	for my $line (@lines) {
+		$line =~ s/^"City"=.*/"City"="$CITY"/;
+		$line =~ s/^"Country"=.*/"Country"="$COUNTRY"/;
+		$line =~ s/^"Elevation"=.*/"Elevation"="$ELEVATION"/;
+		$line =~ s/^"Latitude"=.*/"Latitude"="$LatRAD"/;
+		$line =~ s/^"Longitude"=.*/"Longitude"="$LongRAD"/;
+		$line =~ s/^"State"=.*/"State"="$State"/;
+		$line =~ s/^"TimeZone"=.*/"TimeZone"="$TZOffMin"/;
+	}
+
+	open FILE, ">$RegFile";
+	print FILE @lines;
+	close FILE;
+
+	system "regedit $RegFile";
+	unlink "$RegFile";
+}
+
+sub Dec2Rad {
+	use constant PI => 4 * atan2(1, 1);
+	my $dec = $_[0];
+	my $rad = $dec * PI / 180;
+	return $rad;
+}
+
+main;
+

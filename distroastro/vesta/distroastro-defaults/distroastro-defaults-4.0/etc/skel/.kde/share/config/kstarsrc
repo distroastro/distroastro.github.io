@@ -1,0 +1,9 @@
+[MainWindow][Toolbar kstarsToolBar]
+IconSize=16
+
+[MainWindow][Toolbar viewToolBar]
+IconSize=16
+
+[View]
+UpdateSupernovaeOnStartup=false
+

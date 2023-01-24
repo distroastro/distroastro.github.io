@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GPredict
+Exec=gpredict
+Icon=gpredict
+Categories=Education;Science;Astronomy;HamRadio;
+Comment=Satellite tracker
+Comment[es]=Seguimiento de satélites artificiales
+Comment[it]=Localizzatore satellitare
+Comment[fr]=Localisateur de satellite
+GenericName=Satellite tracker
+GenericName[es]=Seguimiento de satélites artificiales
+GenericName[it]=Localizzatore satellitare
+GenericName[fr]=Localisateur de satellite
+StartupNotify=true
+Terminal=false
+

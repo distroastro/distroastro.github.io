@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+
+	<!-- Text Formats -->
+	<mime-type type="text/x-ini">
+		<comment>Configuration Settings</comment>
+		<sub-class-of type="text/plain"/>
+		<glob pattern="*.ini"/>
+	</mime-type>
+	<mime-type type="text/x-inf">
+		<comment>Setup Information</comment>
+		<sub-class-of type="text/plain"/>
+		<glob pattern="*.inf"/>
+	</mime-type>
+
+	<!-- Image Formats -->
+	<mime-type type="image/fits">
+		<alias type="image/x-fits"/>
+		<alias type="application/fits"/>
+		<alias type="application/x-fits"/>
+		<comment>FITS image</comment>
+		<comment xml:lang="ar">صورة FITS</comment>
+		<comment xml:lang="ast">imaxe FITS</comment>
+		<comment xml:lang="be">Vyjava FITS</comment>
+		<comment xml:lang="be@latin">Vyjava FITS</comment>
+		<comment xml:lang="bg">Изображение — FITS</comment>
+		<comment xml:lang="bo">FITS བརྙན་གཟུགས</comment>
+		<comment xml:lang="bs">FITS slika</comment>
+		<comment xml:lang="ca">imatge FITS</comment>
+		<comment xml:lang="cs">Obrázek FITS</comment>
+		<comment xml:lang="da">FITS-billede</comment>
+		<comment xml:lang="de">FITS-Bild</comment>
+		<comment xml:lang="el">εικόνα FITS</comment>
+		<comment xml:lang="en_AU">FITS image</comment>
+		<comment xml:lang="en_GB">FITS image</comment>
+		<comment xml:lang="eo">FITS-bildo</comment>
+		<comment xml:lang="es">imagen FITS</comment>
+		<comment xml:lang="eu">FITS irudia</comment>
+		<comment xml:lang="fi">FITS-kuva</comment>
+		<comment xml:lang="fo">FITS mynd</comment>
+		<comment xml:lang="fr">image FITS</comment>
+		<comment xml:lang="ga">íomhá FITS</comment>
+		<comment xml:lang="gl">imaxe FITS</comment>
+		<comment xml:lang="he">תמונת FITS</comment>
+		<comment xml:lang="hr">FITS slika</comment>
+		<comment xml:lang="hu">FITS kép</comment>
+		<comment xml:lang="id">Citra FITS</comment>
+		<comment xml:lang="it">Immagine FITS</comment>
+		<comment xml:lang="ja">FITS 画像</comment>
+		<comment xml:lang="ka">FITS გამოსახულება</comment>
+		<comment xml:lang="kk">FITS суреті</comment>
+		<comment xml:lang="ko">FITS 그림</comment>
+		<comment xml:lang="lt">FITS paveikslėlis</comment>
+		<comment xml:lang="lv">FITS attēls</comment>
+		<comment xml:lang="nb">FITS-bilde</comment>
+		<comment xml:lang="nl">FITS-afbeelding</comment>
+		<comment xml:lang="nn">FITS-bilete</comment>
+		<comment xml:lang="oc">imatge FITS</comment>
+		<comment xml:lang="pl">Obraz FITS</comment>
+		<comment xml:lang="pt">imagem FITS</comment>
+		<comment xml:lang="pt_BR">Imagem FITS</comment>
+		<comment xml:lang="ro">Imagine FITS</comment>
+		<comment xml:lang="ru">изображение FITS</comment>
+		<comment xml:lang="sk">Obrázok FITS</comment>
+		<comment xml:lang="sl">Slikovna datoteka FITS</comment>
+		<comment xml:lang="sq">Figurë FITS</comment>
+		<comment xml:lang="sv">FITS-bild</comment>
+		<comment xml:lang="tr">FITS görüntüsü</comment>
+		<comment xml:lang="uk">зображення FITS</comment>
+		<comment xml:lang="vi">Ảnh FITS</comment>
+		<comment xml:lang="zh_CN">FITS 图像</comment>
+		<comment xml:lang="zh_TW">FITS 影像</comment>
+		<acronym>FITS</acronym>
+		<expanded-acronym>Flexible Image Transport System</expanded-acronym>
+		<magic priority="50">
+			<match value="SIMPLE  =" type="string" offset="0"/>
+		</magic>
+		<glob weight="60" pattern="*.fits"/>
+		<glob weight="60" pattern="*.fit"/>
+		<glob weight="60" pattern="*.fts"/>
+	</mime-type>
+
+</mime-info>
+

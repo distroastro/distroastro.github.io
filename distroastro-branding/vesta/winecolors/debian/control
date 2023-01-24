@@ -1,0 +1,20 @@
+Source: winecolors
+Section: otherosfs
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: winecolors
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends}, dconf-cli | mate-conf | gconf2
+Suggests: wine
+Description: Copy theme colors into Wine
+ This is a quick and dirty solution to copying Gtk+ theme colors into Wine. It
+ reads the current theme's color scheme and imports it into Wine's registry.
+ .
+ You may specify a WINEPREFIX to import it to, or the name of a theme to import
+ at the command line. It accepts plugins in the form of reg files, allowing you
+ to fine-tune how a theme's colors would look in Wine.

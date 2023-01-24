@@ -1,0 +1,82 @@
+distropack (4.0-1distroastro4) unstable; urgency=low
+
+  * Release for 4.0 Vesta.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Tue, 16 May 2017 00:00:00 +0800
+
+distropack (3.0.3-1distroastro1) unstable; urgency=low
+
+  * New upstream version.
+  * Fixed some upgrade issues.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 04 Jul 2016 00:00:00 +0800
+
+distropack (3.0.2-1distroastro1) unstable; urgency=low
+
+  * Release for 3.0.2 Juno.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 25 Apr 2015 00:00:00 +0800
+
+distropack (3.0.1-1distroastro1) unstable; urgency=low
+
+  * Release for 3.0.1 Juno.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Dec 2014 00:00:00 +0800
+
+distropack (3.0-1distroastro1) unstable; urgency=low
+
+  * Release for 3 Juno.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Sep 2014 00:00:00 +0800
+
+distropack (2.0-1distroastro1) unstable; urgency=low
+
+  * Release for 2 Pallas.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 08 Sep 2013 00:00:00 +0800
+
+distropack (1.0.2-1) unstable; urgency=low
+
+  * New release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 18 Jul 2013 00:00:00 +0800
+
+distropack (1.0.1-1) unstable; urgency=low
+
+  * New release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Fri, 25 Jan 2013 00:00:00 +0800
+
+distropack (1.0-1) unstable; urgency=low
+
+  * New release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 08 Dec 2012 00:00:00 +0800
+
+distropack (0.8-1) unstable; urgency=low
+
+  * New release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 28 Apr 2012 00:00:00 +0800
+
+distropack (0.7.5-1) unstable; urgency=low
+
+  * Updated list.
+  * Added distropack-system, distropack-time, and distropack-non-astro.
+  * Renamed distropack-themes to distropack-appearance.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 05 Apr 2012 00:00:00 +0800
+
+distropack (0.7-1) unstable; urgency=low
+
+  * Updated list.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sun, 25 Mar 2012 00:00:00 +0800
+
+distropack (0.6-1) unstable; urgency=low
+
+  * Initial release.
+  * Two packages, distropack and distropack-themes.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 22 Mar 2012 00:00:00 +0800
+

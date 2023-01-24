@@ -1,0 +1,22 @@
+#!/bin/sh
+
+for i in `seq -1000 100 1600`; do
+	echo "${i}.0 $(delta_t Y ${i})"
+done
+
+for i in `seq 1620 10 1970`; do
+	echo "${i}.0 $(delta_t Y ${i})"
+done
+
+for i in `seq 1971 2040`; do
+	echo "${i}.0 $(delta_t Y ${i})"
+done
+
+for i in `seq 2050 10 2200`; do
+	echo "${i}.0 $(delta_t Y ${i})"
+done
+
+for i in `seq 2300 100 4600`; do
+	echo "${i}.0 $(delta_t Y ${i})"
+done
+

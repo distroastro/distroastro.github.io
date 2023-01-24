@@ -1,0 +1,3 @@
+content	linuxmint	content/
+
+overlay	chrome://browser/content/browser.xul	chrome://linuxmint/content/linuxmint-overlay.xul

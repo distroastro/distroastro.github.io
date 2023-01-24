@@ -1,0 +1,2 @@
+package-installs-apt-preferences etc/apt/preferences
+package-installs-apt-sources etc/apt/sources.list

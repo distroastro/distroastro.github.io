@@ -1,0 +1,138 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my ($exec, $longname) = ("alw", "Astronomy Lab 2");
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+$quiet = 0 if $verbose || $debug;
+$quiet = $quiet ? "-q" : "";
+$verbose = $verbose ? "-v" : "";
+$debug = $debug ? "-d" : "";
+
+exit if (! @ARGV);
+exit if (! `which $exec`);
+
+my ($LATITUDE, $LONGITUDE, $ELEVATION, $CITY, $REGION, $COUNTRY, $COUNTRYCODE, $TIMEZONE, $TZABBR, $TZOFFSET, $TZDSTOFFSET, $ICAO) = @ARGV;
+
+sub main {
+	exit if !$<;
+	&setlocation;
+}
+
+sub setlocation {
+
+	print "Configuring $longname...\n" if $verbose;
+
+	# Convert to app-specific data format.
+
+	my ($D, $M, $S, $H);
+
+	($D, $M, $S, $H) = Dec2DMS("$LATITUDE");
+	$S = sprintf("%02d", $S);
+	$H = ($H eq "+") ? "N" : "S";
+	my $LatDMS = "${D}|${M}|${S}|${H}";
+
+	($D, $M, $S, $H) = Dec2DMS("$LONGITUDE");
+	$S = sprintf("%02d", $S);
+	$H = ($H eq "+") ? "E" : "W";
+	my $LongDMS = "${D}|${M}|${S}|${H}";
+
+	my $Elev = sprintf("%4d", $ELEVATION);
+	my $TZHours = sprintf("%4.2f", $TZOFFSET / 3600);
+
+	# Write down configuration data.
+
+	my $conffile = "$ENV{HOME}/.wine/drive_c/users/$ENV{USER}/Local Settings/Application Data/Astronomy Lab 2/CITIES.DAT";
+	my $defconffile = "/usr/lib/alw/cities.dat";
+	if (! -e $conffile) {
+		if (! -e $defconffile) {
+			print STDERR "Skipped $longname.\n";
+			exit 1;
+		}
+		else {
+			system "mkdir -p \"$ENV{HOME}/.wine/drive_c/users/$ENV{USER}/Local Settings/Application Data/Astronomy Lab 2\"";
+			system "cp \"$defconffile\" \"$conffile\"";
+		}
+	}
+
+	open FILE, "$conffile";
+	my @lines = <FILE>;
+	close FILE;
+
+	my $LocationName = sprintf("%-20s", "$CITY, $COUNTRYCODE");
+	my $LocationData = "$LocationName|$LatDMS|$LongDMS|$Elev|$TZHours\n";
+
+	my $found = 0;
+	for my $line (@lines) {
+		if ($line =~ m/^$LocationName/) {
+			$line = $LocationData;
+			$found++;
+			last;
+		}
+	}
+	push @lines, "$LocationData" if !$found;
+	splice @lines, 0, 1;
+	@lines = sort @lines;
+	splice @lines, 0, 0, "$CITY, $COUNTRYCODE\n";
+
+	open FILE, ">$conffile";
+	print FILE @lines;
+	close FILE;
+}
+
+sub Dec2DMS {
+	my $dec = $_[0];
+	my $sgn = ($dec >= 0) ? "+" : "-";
+	$dec = abs $dec;
+	my $deg = sprintf("%1d", $dec);
+	$dec = $dec - $deg;
+	$dec = $dec * 60;
+	my $min = sprintf("%2d", $dec);
+	$dec = $dec - $min;
+	$dec = $dec * 60;
+	my $sec = sprintf("%5.2f", $dec);
+	return ($deg, $min, $sec, $sgn);
+}
+
+main;
+

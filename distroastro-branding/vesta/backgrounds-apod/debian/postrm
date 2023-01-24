@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+rm -f /var/log/apod
+# End manually added section

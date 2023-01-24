@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Startup Disk Creator
+Name[es]=Creador de discos de arranque
+Name[it]=Creatore di dischi d'avvio
+Name[fr]=Créateur de disque de démarrage
+GenericName=Startup Disk Creator
+GenericName[es]=Creador de discos de arranque
+GenericName[it]=Creatore di dischi d'avvio
+GenericName[fr]=Créateur de disque de démarrage
+Comment=Create a startup disk using a CD or disc image
+Comment[es]=Crea un disco de arranque usando un CD o una imágen de CD
+Comment[it]=Crea un disco d'avvio usando un CD o un'immagine di CD
+Comment[fr]=Créer un disque de démarrage utilisant un CD ou une image disque
+Exec=usb-creator-gtk
+Icon=usb-creator-gtk
+Terminal=false
+Type=Application
+Categories=System;Settings;GTK;HardwareSettings;
+X-Ubuntu-Gettext-Domain=usbcreator

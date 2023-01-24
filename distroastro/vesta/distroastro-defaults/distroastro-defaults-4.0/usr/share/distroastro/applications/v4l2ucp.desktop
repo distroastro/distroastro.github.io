@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Video Capture and Output
+Name[es]=Captura y salida de vídeo
+Name[it]=Configurazioni video
+Name[fr]=Capture et sortie de vidéo
+Comment=Configure video devices
+Comment[es]=Configura los dispositivos de vídeo
+Comment[it]=Configura i dispositivi video
+Comment[fr]=Configurer les dispositifs vidéos
+Exec=v4l2ucp
+Categories=Settings;HardwareSettings;
+Icon=video

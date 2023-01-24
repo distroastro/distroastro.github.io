@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Lipik Sticky Note
+Exec= python -u /usr/share/screenlets/screenlets-pack-basic/Lipik/LipikScreenlet.py
+Comment=Starts a Desktop sticky note.
+Terminal=false
+StartupNotify=false
+Hidden=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=false
+X-MATE-Autostart-enabled=false

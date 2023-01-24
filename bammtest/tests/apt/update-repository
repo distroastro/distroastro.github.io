@@ -1,0 +1,8 @@
+#!/bin/sh
+rm -rf dists
+rm -rf db
+rm -rf pool
+reprepro includedeb juno binary/*.deb
+echo Copying binaries...
+rm -f binary/*.deb
+cp pool/*/*/*/*.deb binary

@@ -1,0 +1,19 @@
+Source: ubiquity-slideshow-distroastro
+Section: x11
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: ubiquity-slideshow-distroastro
+Architecture: all
+Depends: ${misc:Depends}
+Conflicts: ubiquity-slideshow
+Replaces: ubiquity-slideshow
+Provides: ubiquity-slideshow
+Description: Ubiquity slideshow for Distro Astro
+ A slideshow intended for the Ubiquity installer, designed as a quick
+ introduction to Distro Astro
+

@@ -1,0 +1,7 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_link:
+	dh_link /usr/lib/g95/bin/x86_64-unknown-linux-gnu-g95 /usr/bin/g95
+

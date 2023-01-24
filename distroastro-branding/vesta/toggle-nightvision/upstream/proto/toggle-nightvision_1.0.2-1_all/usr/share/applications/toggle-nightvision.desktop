@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Toggle Nightvision
+Exec=toggle-nightvision
+Icon=toggle-nightvision
+Comment=Toggle nightvision mode
+Categories=GNOME;GTK;System;
+StartupNotify=true
+Terminal=false
+

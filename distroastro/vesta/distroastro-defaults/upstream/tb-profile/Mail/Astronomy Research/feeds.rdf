@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NS1="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:fz="urn:forumzilla:" xmlns:NC="http://home.netscape.com/NC-rdf#" xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<RDF:Description RDF:about="urn:forumzilla:root">
+		<fz:feeds RDF:resource="rdf:#$o306F" />
+	</RDF:Description>
+	<RDF:Seq RDF:about="rdf:#$o306F">
+		<RDF:li RDF:resource="https://export.arxiv.org/rss/astro-ph" />
+		<RDF:li RDF:resource="https://www.nature.com/subjects/astronomy-and-astrophysics.rss" />
+		<RDF:li RDF:resource="https://feeds.feedburner.com/aa_highlights?format=xml" />
+		<RDF:li RDF:resource="https://academic.oup.com/rss/site_5326/3192.xml" />
+		<RDF:li RDF:resource="https://iopscience.iop.org/journal/rss/1538-3873" />
+		<RDF:li RDF:resource="https://iopscience.iop.org/journal/rss/1538-3881" />
+		<RDF:li RDF:resource="https://iopscience.iop.org/journal/rss/0004-637X" />
+	</RDF:Seq>
+	<fz:feed RDF:about="https://export.arxiv.org/rss/astro-ph" dc:title="arXiv.org &gt; astro-ph" NS1:link="https://arxiv.org/archive/astro-ph" dc:identifier="https://export.arxiv.org/rss/astro-ph">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/arXiv%E2%80%8A%3E%E2%80%8Aastro-ph" />
+	</fz:feed>
+	<fz:feed RDF:about="https://www.nature.com/subjects/astronomy-and-astrophysics.rss" dc:title="Nature: Astronomy and astrophysics" NS1:link="https://www.nature.com/subjects/astronomy-and-astrophysics" dc:identifier="https://www.nature.com/subjects/astronomy-and-astrophysics.rss">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/Nature" />
+	</fz:feed>
+	<fz:feed RDF:about="https://feeds.feedburner.com/aa_highlights?format=xml" dc:title="Astronomy &amp; Astrophysics (A&amp;A)" NS1:link="https://www.aanda.org/highlights" dc:identifier="https://feeds.feedburner.com/aa_highlights">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/A%26A" />
+	</fz:feed>
+	<fz:feed RDF:about="https://academic.oup.com/rss/site_5326/3192.xml" dc:title="Monthly Notices of the Royal Astronomical Society" NS1:link="https://academic.oup.com/mnras" dc:identifier="https://academic.oup.com/rss/site_5326/3192.xml">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/MNRAS" />
+	</fz:feed>
+	<fz:feed RDF:about="https://iopscience.iop.org/journal/rss/1538-3873" dc:title="Publications of the Astronomical Society of the Pacific" NS1:link="https://iopscience.iop.org/journal/1538-3873" dc:identifier="https://iopscience.iop.org/journal/rss/1538-3873">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/IOP%20PASP" />
+	</fz:feed>
+	<fz:feed RDF:about="https://iopscience.iop.org/journal/rss/1538-3881" dc:title="The Astronomical Journal" NS1:link="https://iopscience.iop.org/journal/1538-3881" dc:identifier="https://iopscience.iop.org/journal/rss/1538-3881">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/IOP%20AJ" />
+	</fz:feed>
+	<fz:feed RDF:about="https://iopscience.iop.org/journal/rss/0004-637X" dc:title="The Astrophysical Journal" NS1:link="https://iopscience.iop.org/journal/0004-637X" dc:identifier="https://iopscience.iop.org/journal/rss/0004-637X">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20Research/IOP%20ApJ" />
+	</fz:feed>
+</RDF:RDF>
+

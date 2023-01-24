@@ -1,0 +1,572 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "4.0";
+
+use DateTime;
+use DateTime::TimeZone;
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version, $test, $file, $reload, $userset, $ip, $gps, $force, $minsat, $maxhdop);
+
+# Set default values
+$minsat = 0;
+$maxhdop = 9.9;
+
+GetOptions(
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	't|test'	=> \$test,
+	'F|file=s'	=> \$file,
+	'r|reload'	=> \$reload,
+	'u|user-set'=> \$userset,
+	'i|ip'  	=> \$ip,
+	'g|gps' 	=> \$gps,
+	'f|force'	=> \$force,
+	'S|sat=i'	=> \$minsat,
+	'H|hdop=f'	=> \$maxhdop,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+use LWP::Simple qw($ua get);
+$ua->agent('distroastro-location/' . $ver);
+
+my $location = "/etc/location";
+
+sub main {
+
+	print STDERR "$exec: error: requested operation requires superuser privilege.\n" and exit 2 if $> and !$test;
+
+	my ($Latitude, $Longitude, $TimeZone, $Source);
+	my $IsUserSet = -e $location && `grep "SOURCE=USER" $location`;
+
+	if ($reload or $userset or $file) {
+
+		if ($userset) {
+
+			if ($IsUserSet) {
+				print "Location is already set as user-defined.\n" if !$quiet;
+				exit 0 if !$reload;
+			}
+			else {
+				print "Setting location to user-defined...\n" if !$quiet;
+				my $locationdata = `cat $location | sed -e "s/SOURCE=.*/SOURCE=USER/"`;
+
+				open FILE, ">$location" or
+				print STDERR "$exec: $location: Permission denied\n" and exit 64 + 13;
+				print FILE $locationdata;
+				close FILE;
+			}
+		}
+
+		if ($file) {
+			if (-e $file) {
+				print "Importing file `$file'...\n" if !$quiet;
+				use File::Copy;
+				copy($file, $location) or die "Unexpected error: copy failed: $!";
+				$Latitude	= `awk -F "=" '/LATITUDE/  {printf \$2}' $location`;
+				$Longitude	= `awk -F "=" '/LONGITUDE/ {printf \$2}' $location`;
+				$TimeZone	= `awk -F "=" '/TIMEZONE/  {printf \$2}' $location`;
+				$Source 	= `awk -F "=" '/SOURCE/    {printf \$2}' $location`;
+			}
+			else {
+				print STDERR "File not found - $file\n";
+				exit 64 + 5;
+			}
+		}
+
+		if ($reload) {
+			print "Reading values from location file...\n" if !$quiet;
+			$Latitude	= `awk -F "=" '/LATITUDE/  {printf \$2}' $location`;
+			$Longitude	= `awk -F "=" '/LONGITUDE/ {printf \$2}' $location`;
+			$TimeZone	= `awk -F "=" '/TIMEZONE/  {printf \$2}' $location`;
+			$Source 	= `awk -F "=" '/SOURCE/    {printf \$2}' $location`;
+		}
+
+	}
+	else {
+
+		if ($IsUserSet && !$force) {
+			print "Location has user-defined values. You can force an update by typing:\n" if !$quiet;
+			print "sudo update-location --force\n" if !$quiet;
+			exit 64 + 6;
+		}
+
+		print "Updating system location...\n" if !$quiet && !$test;
+
+
+		# Get the Latitude and Longitude.
+
+		if (!$Latitude or !$Longitude) {
+			$Source = "USER";
+			($Latitude, $Longitude) = GetLatLongUSER();
+		}
+
+		if (!$Latitude or !$Longitude) {
+			$Source = "GPS";
+			($Latitude, $Longitude) = GetLatLongGPS() if !$ip;
+		}
+
+		if (!$Latitude or !$Longitude) {
+			$Source = "IP";
+			CheckIP() if (!$force);
+			($Latitude, $Longitude) = GetLatLongIP() if !$gps;
+		}
+
+		if (!$Latitude or !$Longitude) {
+			if (-e "$location") {
+				print STDERR "Cannot get updated location.\n" and exit 64 + 4;
+			}
+			else {
+				CreateLocationFromZoneTab();
+				print "Done.\n" if !$quiet and !$verbose;
+				exit 0;
+			}
+		}
+
+		print "Latitude $Latitude\n" if $debug;
+		print "Longitude $Longitude\n" if $debug;
+
+		if (-e $location && `grep "LATITUDE=$Latitude\$" $location` && `grep "LONGITUDE=$Longitude\$" $location`) {
+			print "Location has not changed. No need to update.\n" if !$quiet;
+			exit 64 + 5;
+		}
+
+
+		# Get the place names, including city, region, and country.
+
+		print "Looking up place names...\n" if $verbose;
+		my @geo = ReverseGeo($Latitude, $Longitude);
+		print "No data received.\n" if !@geo and $verbose;
+		print STDERR "Unable to update location.\n" and exit 64 + 11 if !@geo;
+		print STDERR "No address found for this location.\n" and exit 64 + 1 if scalar @geo == 1;
+
+		my ($Street, $Area, $City, $Province, $Region, $Country, $CC) = @geo;
+
+		my $Elevation = ReverseElev($Latitude, $Longitude);
+		if (!$Elevation) {
+			print "Cannot lookup elevation. Setting to zero.\n" if $verbose;
+			$Elevation = 0;
+		}
+
+
+		# Get the time zone, including ID, offset, and DST offset.
+
+		print "Looking up time zone...\n" if $verbose;
+		my @tz = ReverseTZ($Latitude, $Longitude);
+		print "No data received.\n" if !@tz and $verbose;
+		print STDERR "Unable to update time zone.\n" and exit 64 + 11 if !@tz;
+		print STDERR "No results. Exiting.\n" and exit 64 + 1 if scalar @tz == 1;
+
+		(my $TZOffset, my $DSTOffset, $TimeZone, my $TZName) = @tz;
+
+		my $TZAbbr = "";
+		if ($TZName) {
+			$TZAbbr = join "", map { substr$_, 0, 1 } split / /, $TZName;
+		}
+
+
+		# Get the other info such as the ICAO code.
+
+		my $ICAO = ReverseICAO($Latitude, $Longitude);
+		if (!$ICAO) {
+			print "Cannot lookup ICAO code.\n" if $verbose;
+		}
+
+
+		# Put all these info into the location file.
+
+		if ($test) {
+			print "This is a test. No changes are made.\n";
+			print "LATITUDE=$Latitude\nLONGITUDE=$Longitude\nELEVATION=$Elevation\n";
+			print "STREET=$Street\nAREA=$Area\nCITY=$City\nPROVINCE=$Province\nREGION=$Region\nCOUNTRY=$Country\nCOUNTRYCODE=$CC\n";
+			print "TIMEZONE=$TimeZone\nTZNAME=$TZName\nTZABBR=$TZAbbr\nTZOFFSET=$TZOffset\nTZDSTOFFSET=$DSTOffset\n";
+			print "ICAO=$ICAO\n" if $ICAO and $ICAO ne "-";
+			print "SOURCE=$Source\n";
+			exit;
+		}
+		else {
+			print "Saving location...\n" if $verbose;
+
+			open FILE, ">$location" or
+			print STDERR "$exec: $location: Permission denied\n" and exit 64 + 13;
+			print FILE "LATITUDE=$Latitude\nLONGITUDE=$Longitude\nELEVATION=$Elevation\n";
+			print FILE "STREET=$Street\nAREA=$Area\nCITY=$City\nPROVINCE=$Province\nREGION=$Region\nCOUNTRY=$Country\nCOUNTRYCODE=$CC\n";
+			print FILE "TIMEZONE=$TimeZone\nTZNAME=$TZName\nTZABBR=$TZAbbr\nTZOFFSET=$TZOffset\nTZDSTOFFSET=$DSTOffset\n";
+			print FILE "ICAO=$ICAO\n" if $ICAO and $ICAO ne "-";
+			print FILE "SOURCE=$Source\n";
+			close FILE;
+		}
+
+	}
+
+	if (!$userset or $reload) {
+
+		print "Configuring system...\n" if $debug;
+
+		# Configure the time zone.
+		my $timezone = "/etc/timezone";
+		my $SystemTimeZone = `head -c -1 $timezone`;
+
+		if ($SystemTimeZone ne $TimeZone) {
+			print "Reconfiguring system timezone...\n" if !$quiet;
+			open FILE, ">$timezone" or
+			print STDERR "$exec: $timezone: Permission denied\n" and exit 64 + 13;
+			print FILE "$TimeZone\n";
+			close FILE;
+			`sudo dpkg-reconfigure -f noninteractive tzdata 2> /dev/null`;
+			print "System timezone set to $TimeZone.\n" if !$quiet;
+		}
+
+		# Configure the location map.
+		my $mapurl = "/etc/distroastro/location/map/url";
+		my $radius = "2952m";
+		$radius = "92m"  if $Source eq "GPS";
+		$radius = "369m" if $Source eq "USER";
+
+		open FILE, ">$mapurl" or
+		print STDERR "$exec: $mapurl: Permission denied\n" and exit 64 + 13;
+		print FILE "location=\"https://www.google.com/maps/place/$Latitude,$Longitude/\@$Latitude,$Longitude,$radius/data=!3m1!1e3!4m2!3m1!1s0x0:0x0?force=lite\"\n";
+		close FILE;
+	}
+
+	# Prevent automatic location update.
+	`sudo rm -f /etc/network/if-up.d/autolocation`;
+	`sudo ln -s /usr/bin/autolocation /etc/network/if-up.d/autolocation` if ($Source ne 'USER');
+
+	print "Done.\n" if !$quiet and !$verbose;
+}
+
+sub GetLatLongUSER {
+	return split /\s+/, join " ", map { s/[^0-9.+-]//g; $_ } split /,/, join ",", @ARGV;
+}
+
+sub GetLatLongGPS {
+
+	print "Acquiring location from GPS...\n" if $verbose;
+	my ($success, @geogps) = AcquireGPSLocation();
+
+	if ($success) {
+		my ($Lat, $NS, $Long, $EW) = @geogps;
+		return (NMEA2Dec($Lat, $NS), NMEA2Dec($Long, $EW));
+	}
+	else {
+		print "GPS location not available.\n" if $verbose;
+		return;
+	}
+}
+
+sub GetLatLongIP {
+
+	print "Acquiring location from IP...\n" if $verbose;
+	my ($success, @geoip) = AcquireIPLocation();
+
+	if ($success) {
+		return @geoip;
+	}
+	else {
+		print "Network not available.\n" if $verbose;
+		return;
+	}
+}
+
+sub CheckIP {
+	if (-e $location && `grep "SOURCE=IP" $location`) {
+		print "Reading IP address...\n" if $verbose;
+		my $ipcheck = "http://www.distroastro.org/cgi-bin/printenv.pl?REMOTE_ADDR";
+		my $ip = get("$ipcheck");
+		print "Cannot read remote IP.\n" if !$ip and $debug;
+
+		if ($ip) {
+			my $remoteip = "/etc/remoteip";
+			my $sameip;
+
+			if ( -e $remoteip) {
+				open FILE, "$remoteip";
+				my @lines = <FILE>;
+				close FILE;
+
+				if ($ip eq $lines[0]) {
+					$sameip = 1;
+				}
+			}
+
+			if ($sameip) {
+				print "IP address has not changed. No need to update.\n" if !$quiet;
+				exit 0;
+			}
+			else {
+				open FILE, ">$remoteip" or
+				print STDERR "$exec: $remoteip: Permission denied\n" and exit 64 + 13;
+				print FILE "$ip\n";
+				close FILE;
+			}
+		}
+	}
+}
+
+sub AcquireGPSLocation {
+
+	my @ttyS = map("/dev/ttyS$_", 0..31);
+	my @ttyUSB = map("/dev/ttyUSB$_", 0..31);
+	my @rfcomm = map("/dev/rfcomm$_", 0..31);
+	my @gpslog = ("/var/log/nmea.log");
+	my @devices = (@ttyS, @ttyUSB, @rfcomm, @gpslog);
+
+	my ($Fix, $Lat, $NS, $Long, $EW, $QI, $Sat, $HDoP);
+	my $FailCount;
+	for my $device (@devices) {
+		if ( -e $device) {
+			print "Looking up $device...\n" if $debug;
+			open my $PORT, "+<", "$device" or next;
+			if (PollDevice($PORT)) {
+				<$PORT>;
+				while (<$PORT>) {
+					last if ($_ !~ m/^\$GP/);
+					print "GPS found. Getting fix...\n" if !$FailCount++ and $debug;
+					my ($sentence, $checksum) = split /\*/, $_;
+					my ($id, @words) = split /,/, $sentence;
+					if ("$id" eq "\$GPGGA") {
+						print "Using GPS data at $device\n" if !$Fix and $debug;
+						($Fix, $Lat, $NS, $Long, $EW, $QI, $Sat, $HDoP) = @words;
+						print "Satellites: $Sat, HDoP: $HDoP m\n" if $debug;
+						last if $Sat >= $minsat and $HDoP <= $maxhdop;
+					}
+					if ("$id" eq "\$GPGSA") {
+						if (!$Fix) {
+							$FailCount++;
+							if ($FailCount >= 24) {
+								print "Fix data not available.\n" if $debug;
+								sleep 1 if $debug;
+								last;
+							}
+						}
+					}
+				}
+			}
+			close $PORT;
+		}
+		last if $Fix;
+	}
+	return (1, $Lat, $NS, $Long, $EW) if $Fix;
+}
+
+sub AcquireIPLocation {
+
+	my $geoiplookup = "http://geoip.ubuntu.com/lookup";
+
+	my $xml = get("$geoiplookup");
+	if ($xml) {
+		$xml =~ m/<Latitude>(|.+)<\/Latitude><Longitude>(|.+)<\/Longitude>/;
+		return (1, $1, $2);
+	}
+	return;
+}
+
+sub ReverseGeo {
+	# e.g., https://maps.googleapis.com/maps/api/geocode/xml?latlng=0,0
+	my ($lat, $lng) = @_;
+	my $api = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=$lat,$lng";
+	my $xml = get("$api");
+	if ($xml) {
+		return 1 if ($xml !~ m/<status>OK<\/status>/);
+		$xml =~ s/\n\s+//g;
+		$xml =~ s/<geometry>.*//g;
+		$xml =~ m/<address_component>(.+)<\/address_component>/g;
+		my @address_component = split /<\/address_component><address_component>/, $1;
+		my %loc; my $cc;
+		for (@address_component) {
+			s/<\/type>.*/<\/type>/;
+			m/<long_name>(|.+)<\/long_name><short_name>(|.+)<\/short_name><type>(|.+)<\/type>/;
+			print "$_\n" if 0;
+			$loc{"$3"} = "$1";
+			$cc = $2 if $3 eq "country";
+		}
+		my $streetnumber = $loc{"street_number"} || "";
+		my $street = $loc{"route"} || "";
+		my $neighborhood = $loc{"neighborhood"} || "";
+		my $sublocality = $loc{"sublocality_level_1"} || "";
+		my $city = $loc{"locality"} || "";
+		my $province = $loc{"administrative_area_level_2"} || "";
+		my $region = $loc{"administrative_area_level_1"} || "";
+		my $country = $loc{"country"} || "";
+		my $postalcode = $loc{"postal_code"} || "";
+		my $area = $sublocality || $neighborhood;
+		$street = "$streetnumber $street" if $streetnumber;
+		my $address_string = "$street, $area, $city, $region, $country $cc $postalcode";
+		$address_string =~ s/ ,//g;
+		$address_string =~ s/^, //g;
+		print "$address_string\n" if $debug;
+		return 2 if !$city or !$region or !$country;
+		return ($street, $area, $city, $province, $region, $country, $cc);
+	}
+	return;
+}
+
+sub ReverseElev {
+	# e.g., https://maps.googleapis.com/maps/api/elevation/xml?locations=0,0
+	my ($lat, $lng) = @_;
+	my $api = "https://maps.googleapis.com/maps/api/elevation/xml?locations=$lat,$lng";
+	my $xml = get("$api");
+	if ($xml) {
+		return 1 if ($xml !~ m/<status>OK<\/status>/);
+		$xml =~ m/<elevation>(|.+)<\/elevation>/;
+		return sprintf("%0.1f", $1);
+	}
+	return;
+}
+
+sub ReverseTZ {
+	# e.g., https://maps.googleapis.com/maps/api/timezone/xml?timestamp=0&location=0,0
+	my ($lat, $lng) = @_;
+	my $api = "https://maps.googleapis.com/maps/api/timezone/xml?timestamp=0&location=$lat,$lng";
+	my $xml = get("$api");
+	if ($xml) {
+		return 1 if ($xml !~ m/<status>OK<\/status>/);
+		$xml =~
+		m/<raw_offset>(|.+)<\/raw_offset>\n\s+<dst_offset>(|.+)<\/dst_offset>\n\s+<time_zone_id>(|.+)<\/time_zone_id>\n\s+<time_zone_name>(|.+)<\/time_zone_name>/;
+		my @tzdata = (sprintf("%0d", $1), sprintf("%0d", $2), $3, $4);
+		print "Timezone $tzdata[2] ($tzdata[3])\n" if $debug;
+		return @tzdata;
+	}
+	return;
+}
+
+sub ReverseICAO {
+	# e.g., http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml?query=0,0
+	my ($lat, $lng) = @_;
+	my $api = "http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml?query=$lat,$lng";
+	my $xml = get("$api");
+	if ($xml) {
+		return 1 if ($xml =~ m/<wui_error>/);
+		$xml =~ s/<icao>([A-Z]{4})<\/icao>//;
+		return ($1 || "-");
+	}
+	return;
+}
+
+sub PollDevice {
+    my ($fh) = @_;
+    my $in = '';
+    vec ($in, fileno($fh), 1) = 1;
+    return select($in, undef, undef, 0);
+}
+
+sub CreateLocationFromZoneTab {
+	my $zonetab = "/usr/share/zoneinfo/zone.tab";
+	my $timezone = `head -c -1 /etc/timezone`;
+	my ($cc, $ztlocdata) = split /\s+/, `grep $timezone $zonetab`;
+	$ztlocdata =~ m/(\+|\-)/g;
+	my $ins = $+[0];
+	my $ztns = substr($ztlocdata, $ins - 1, 1);
+	$ztlocdata = substr($ztlocdata, $ins);
+	$ztlocdata =~ m/(\+|\-)/g;
+	my $iew = $+[0];
+	my $ztew = substr($ztlocdata, $iew - 1, 1);
+	my $ztlat = substr($ztlocdata, 0, $iew - 1);
+	my $ztlong = substr($ztlocdata, $iew);
+	my $latdeg = substr($ztlat, 0, 2);
+	my $latmin = substr($ztlat, 2, 2);
+	my $longdeg = substr($ztlong, 0, 3);
+	my $longmin = substr($ztlong, 3, 2);
+	my $latitude = sprintf "%2.4f", $ztns . ($latdeg + ($latmin / 60));
+	my $longitude = sprintf "%3.4f", $ztew . ($longdeg + ($longmin / 60));
+	my ($category, $city) = split /\//, $timezone;
+	(my $country = (split /=/, `grep 'alpha_2_code="$cc"' "/usr/share/xml/iso-codes/iso_3166.xml" -A3 | tail -1`)[1]) =~ s/^\"|\"\n$//g;
+	my $tz = DateTime::TimeZone->new(name => $timezone);
+	my $now = DateTime->now();
+	my $tzoffset = $tz->offset_for_datetime($now);
+	my $tzabbr = $tz->short_name_for_datetime($now);
+	my $tzdstoffset = $tz->is_dst_for_datetime($now);
+	open FILE, ">$location";
+	print FILE "LATITUDE=$latitude\nLONGITUDE=$longitude\nELEVATION=0\nCITY=$city\nCOUNTRY=$country\nCOUNTRYCODE=$cc\n";
+	print FILE "TIMEZONE=$timezone\nTZABBR=$tzabbr\nTZOFFSET=$tzoffset\nTZDSTOFFSET=$tzdstoffset\nSOURCE=ZONETAB\n";
+	close FILE;
+}
+
+sub NMEA2Dec {
+	my ($dm, $f) = split /\./, $_[0];
+	my @c = split //, sprintf ("%05d", $dm);
+	my $d = "$c[0]$c[1]$c[2]";
+	my $m = "$c[3]$c[4].$f";
+	my $deg = sprintf("%.6f", $d + $m / 60);
+	my $sgn = ($_[1] eq "S") || ($_[1] eq "W") ? "-" : "";
+	return "$sgn$deg";
+}
+
+sub showhelp {print <<DOC;
+Usage: $exec [OPTION]... [LAT,LONG]
+
+Update the system location from IP or GPS. It will use GPS if a stream of NMEA
+strings are detected from either a serial, USB, or RFComm port. It will use IP
+if an Internet connection is found and a GPS is not detected. This program also
+accepts user-supplied LAT,LONG coordinates from the command line.
+
+After finding the latitude and longitude, a reverse geocoding is performed to
+lookup the place name, elevation, and time zone. The results are then saved to
+$location, allowing it to be used by any 3rd-party application.
+
+  -f, --force		force a location update, even if IP address has not
+			changed or location has user-defined values 
+  -i, --ip		update by IP even if a GPS is detected on a serial port
+  -g, --gps		update by GPS even if an Internet connection is detected
+  -r, --reload		reload information from /etc/location after manually
+			editing the file
+  -q, --quiet		don't display any output
+  -v, --verbose		verbose mode
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2014-2015 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp and exit if ($help);
+showversion and exit if ($version);
+main;
+

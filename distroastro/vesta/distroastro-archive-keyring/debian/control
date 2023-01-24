@@ -1,0 +1,17 @@
+Source: distroastro-archive-keyring
+Section: misc
+Priority: important
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-archive-keyring
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, gpgv, apt
+Recommends: gnupg
+Description: GnuPG key of the Distro Astro repository
+ The Distro Astro project digitally signs its Release files. This package
+ contains the archive key used for that.

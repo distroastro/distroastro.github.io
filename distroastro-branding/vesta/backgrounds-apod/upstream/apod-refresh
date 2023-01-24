@@ -1,0 +1,216 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Astronomy Picture of the Day (APOD) Wallpaper                                #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2012-2014 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "4.0";
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version, $notify);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'n|notify'	=> \$notify,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+sub main {
+
+	my $DBUS = &setdbus;
+	print "User: $ENV{'USER'}\n" if $debug;
+	print "DBUS_SESSION_BUS_ADDRESS=$DBUS\n" if $debug;
+
+	&refresh_wallpaper_dconf_gnome;
+	&refresh_wallpaper_dconf_mate;
+	&refresh_wallpaper_dconf_cinnamon;
+	&refresh_wallpaper_mateconf_mate;
+	&refresh_wallpaper_gconf_gnome;
+}
+
+sub setdbus {
+	chomp (my $DBUS = `cat ~/.dbus/session-bus/* | grep ^DBUS_SESSION_BUS_ADDRESS`);
+	$DBUS =~ s/^DBUS_SESSION_BUS_ADDRESS=//;
+	$ENV{"DBUS_SESSION_BUS_ADDRESS"} = $DBUS;
+}
+
+sub refresh_wallpaper_dconf_gnome {
+
+	my $picture_filename = "";
+	chomp ($picture_filename=`dconf read /org/gnome/desktop/background/picture-filename | sed "s/'//g"`) if `which dconf`;
+	print "picture_filename from dconf_gnome: $picture_filename\n" if $debug;
+	return if (!$picture_filename);
+
+	if ($picture_filename eq "/usr/share/backgrounds/APOD/APOD") {
+		print "Refreshing wallpaper...\n" if !$quiet;
+
+		print "Unsetting picture_filename...\n" if $verbose;
+		system "dconf reset /org/gnome/desktop/background/picture-filename";
+
+		print "Resetting picture_filename...\n" if $verbose;
+		system "dconf write /org/gnome/desktop/background/picture-filename \"'$picture_filename'\"";
+
+		&shownotify if $notify;
+		print "Done.\n" if !$quiet;
+	}
+}
+
+sub refresh_wallpaper_dconf_mate {
+
+	my $picture_filename = "";
+	chomp ($picture_filename=`dconf read /org/mate/desktop/background/picture-filename | sed "s/'//g"`) if `which dconf`;
+	print "picture_filename from dconf_mate: $picture_filename\n" if $debug;
+	return if (!$picture_filename);
+
+	if ($picture_filename eq "/usr/share/backgrounds/APOD/APOD") {
+		print "Refreshing wallpaper...\n" if !$quiet;
+
+		print "Unsetting picture_filename...\n" if $verbose;
+		system "dconf reset /org/mate/desktop/background/picture-filename";
+
+		print "Resetting picture_filename...\n" if $verbose;
+		system "dconf write /org/mate/desktop/background/picture-filename \"'$picture_filename'\"";
+
+		&shownotify if $notify;
+		print "Done.\n" if !$quiet;
+	}
+}
+
+sub refresh_wallpaper_dconf_cinnamon {
+
+	my $picture_filename = "";
+	chomp ($picture_filename=`dconf read /org/cinnamon/desktop/background/picture-filename | sed "s/'//g"`) if `which dconf`;
+	print "picture_filename from dconf_cinnamon: $picture_filename\n" if $debug;
+	return if (!$picture_filename);
+
+	if ($picture_filename eq "/usr/share/backgrounds/APOD/APOD") {
+		print "Refreshing wallpaper...\n" if !$quiet;
+
+		print "Unsetting picture_filename...\n" if $verbose;
+		system "dconf reset /org/cinnamon/desktop/background/picture-filename";
+
+		print "Resetting picture_filename...\n" if $verbose;
+		system "dconf write /org/cinnamon/desktop/background/picture-filename \"'$picture_filename'\"";
+
+		&shownotify if $notify;
+		print "Done.\n" if !$quiet;
+	}
+}
+
+sub refresh_wallpaper_gconf_gnome {
+
+	my $picture_filename = "";
+	chomp ($picture_filename=`gconftool-2 --get /desktop/gnome/background/picture_filename`) if `which gconftool-2`;
+	print "picture_filename from gconf_gnome: $picture_filename\n" if $debug;
+	return if (!$picture_filename);
+
+	if ($picture_filename eq "/usr/share/backgrounds/APOD/APOD") {
+		print "Refreshing wallpaper...\n" if !$quiet;
+
+		print "Unsetting picture_filename...\n" if $verbose;
+		system "gconftool-2 --unset /desktop/gnome/background/picture_filename";
+		select(undef, undef, undef, 0.3);
+
+		print "Resetting picture_filename...\n" if $verbose;
+		system "gconftool-2 --set /desktop/gnome/background/picture_filename --type string \"$picture_filename\"";
+
+		&shownotify if $notify;
+		print "Done.\n" if !$quiet;
+	}
+}
+
+sub refresh_wallpaper_mateconf_mate {
+
+	my $picture_filename = "";
+	chomp ($picture_filename=`mateconftool-2 --get /desktop/mate/background/picture_filename`) if `which mateconftool-2`;
+	print "picture_filename from mateconf_mate: $picture_filename\n" if $debug;
+	return if (!$picture_filename);
+
+	if ($picture_filename eq "/usr/share/backgrounds/APOD/APOD") {
+		print "Refreshing wallpaper...\n" if !$quiet;
+
+		print "Unsetting picture_filename...\n" if $verbose;
+		system "mateconftool-2 --unset /desktop/mate/background/picture_filename";
+		select(undef, undef, undef, 0.3);
+
+		print "Resetting picture_filename...\n" if $verbose;
+		system "mateconftool-2 --set /desktop/mate/background/picture_filename --type string \"$picture_filename\"";
+
+		&shownotify if $notify;
+		print "Done.\n" if !$quiet;
+	}
+}
+
+sub shownotify {
+	my $app_name = "APOD Wallpaper";
+	my $summary = "New APOD wallpaper";
+	my $desc = `cat /usr/share/backgrounds/APOD/APOD.txt`;
+	my $body = "A new Astronomy Picture of the Day (APOD) wallpaper has been downloaded.\nDescription: <b>$desc</b>";
+	my $icon = "apod";
+	my $expire_time = "3000";
+	my $urgency = "low";
+	`notify-send -u $urgency -t $expire_time -a "$app_name" -i $icon "$summary" "$body"`;
+}
+
+sub showhelp {print <<DOC;
+Usage: $exec [OPTION]...
+
+Refresh the wallpaper if the file /usr/share/backgrounds/APOD/APOD.jpg has
+changed.
+
+  -q, --quiet		don't display any output
+  -v, --verbose		verbose mode
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2011-2014 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp and exit if ($help);
+showversion and exit if ($version);
+main;
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html><!--
+
+################################################################################
+#                                                                              #
+# Distro Astro Location Admin                                                  #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2016 Bamm Gabriana.                                            #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Input Location</title>
+<meta charset="UTF-8" />
+<meta name="window" content="width=350, height=170" />
+<link type="text/css" rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<div class="settingsarea">
+<p>
+Enter your location in decimal degrees, e.g., <kbd>11.1111</kbd>:
+</p>
+<table id="input-location-form">
+<tr>
+<td>Latitude:</td><td><input type="text" class="textinput" id="latitude" onkeyup="validateInput();" autofocus />
+</tr>
+<tr>
+<td>Longitude:</td><td><input type="text" class="textinput" id="longitude" onkeyup="validateInput();" />
+</tr>
+</table>
+</div>
+<div class="buttonbar">
+<button id="buttoncancel" onclick="window.close()">Cancel</button>
+<button id="buttonok" onclick="updateSysManual();">Ok</button>
+</div>
+</body>
+</html>
+

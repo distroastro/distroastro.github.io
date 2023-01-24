@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<mateconf>
+	<entry name="background_set" mtime="1337500000" type="bool" value="true"/>
+	<entry name="background_color" mtime="1337500000" type="string">
+		<stringvalue>#AD3841</stringvalue>
+	</entry>
+</mateconf>

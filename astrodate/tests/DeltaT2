@@ -1,0 +1,8 @@
+DeltaT2 = TT-UT2
+DeltaT = TT-UT1
+
+DeltaT - DeltaT2 = (TT-UT1) - (TT-UT2) = UT2-UT1 = DUT2
+
+DeltaT = DeltaT2 + DUT2
+DeltaT2 = DeltaT - DUT2
+

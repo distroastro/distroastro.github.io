@@ -1,0 +1,141 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my ($exec, $longname) = ("accut", "Accurate Times");
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+$quiet = 0 if $verbose || $debug;
+$quiet = $quiet ? "-q" : "";
+$verbose = $verbose ? "-v" : "";
+$debug = $debug ? "-d" : "";
+
+exit if (! @ARGV);
+exit if (! `which $exec`);
+
+my ($LATITUDE, $LONGITUDE, $ELEVATION, $CITY, $REGION, $COUNTRY, $COUNTRYCODE, $TIMEZONE, $TZABBR, $TZOFFSET, $TZDSTOFFSET, $ICAO) = @ARGV;
+
+sub main {
+	exit if !$<;
+	&setlocation;
+}
+
+sub setlocation {
+
+	print "Configuring $longname...\n" if $verbose;
+
+	# Convert to app-specific data format.
+
+	my ($D, $M, $S, $H, $NS, $EW, $NS0, $EW0, $NS1, $EW1);
+
+	($D, $M, $S, $H) = Dec2DMS("$LATITUDE");
+	$M = sprintf("%1d", $M);
+	$S = sprintf("%1d", $S);
+	$NS = ($H eq "+") ? "1" : "0";
+	$NS0 = ($H eq "+") ? "#TRUE#" : "#FALSE#";
+	$NS1 = ($H eq "+") ? "#FALSE#" : "#TRUE#";
+	my $LatDMS = "${D},${M},${S}";
+
+	($D, $M, $S, $H) = Dec2DMS("$LONGITUDE");
+	$M = sprintf("%1d", $M);
+	$S = sprintf("%1d", $S);
+	$EW = ($H eq "+") ? "1" : "0";
+	$EW0 = ($H eq "+") ? "#TRUE#" : "#FALSE#";
+	$EW1 = ($H eq "+") ? "#FALSE#" : "#TRUE#";
+	my $LongDMS = "${D},${M},${S}";
+
+	my $Elev = sprintf("%1d", $ELEVATION);
+	my $TZHours = sprintf("%.3f", $TZOFFSET / 3600) * 1;
+
+	my $LocationName = "\"" . uc("$COUNTRY") . " $CITY" . "\"";
+	my $LocationDataTxt = "$LocationName,$LatDMS,$LongDMS,$NS,$EW,$TZHours,$Elev,0,1010,10\n";
+	my $LocationDataOde = "$LocationName,$LongDMS,$LatDMS,$Elev,$TZHours,$EW0,$NS0,$EW1,$NS1,0,1010,10\n";
+
+	# Write down configuration data.
+
+	my $conffile = "/usr/lib/accut/5/loc.ode";
+	my $locsfile = "/usr/lib/accut/5/loc.txt";
+	if (! -e $conffile) {
+		print STDERR "Skipped $longname.\n";
+		exit 1;
+	}
+
+	open FILE, "$locsfile";
+	my @lines = <FILE>;
+	close FILE;
+
+	my $found = 0;
+	for my $line (@lines) {
+		if ($line =~ m/^$LocationName/) {
+			$line = "$LocationDataTxt";
+			$found++;
+			last;
+		}
+	}
+	push @lines, "$LocationDataTxt" if !$found;
+	@lines = sort @lines;
+
+	open FILE, ">$locsfile";
+	print FILE @lines;
+	close FILE;
+
+	open FILE, ">$conffile";
+	print FILE $LocationDataOde;
+	close FILE;
+}
+
+sub Dec2DMS {
+	my $dec = $_[0];
+	my $sgn = ($dec >= 0) ? "+" : "-";
+	$dec = abs $dec;
+	my $deg = sprintf("%1d", $dec);
+	$dec = $dec - $deg;
+	$dec = $dec * 60;
+	my $min = sprintf("%2d", $dec);
+	$dec = $dec - $min;
+	$dec = $dec * 60;
+	my $sec = sprintf("%5.2f", $dec);
+	return ($deg, $min, $sec, $sgn);
+}
+
+main;
+

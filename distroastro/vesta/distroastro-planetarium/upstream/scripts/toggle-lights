@@ -1,0 +1,151 @@
+#!/bin/sh
+
+################################################################################
+#                                                                              #
+# Distro Astro Planetarium                                                     #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2015 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+exec="$(basename $0)"
+ver="4.0"
+
+# Process command line arguments.
+for i do
+	if [ -z "$i" ]; then false
+	# All options.
+	elif [ "$i" = "-q" -o "$i" = "--quiet"    ]; then	quiet="$i"
+	elif [ "$i" = "-d" -o "$i" = "--debug"    ]; then	debug="$i"
+	elif [ "$i" = "-h" -o "$i" = "--help"     ]; then	help="$i"
+	elif [ "$i" = "-V" -o "$i" = "--version"  ]; then	version="$i"
+	# Remaining arguments.
+	elif echo $i | grep " " >/dev/null; then
+		args="$args \"$i\""
+	else
+		args="$args $i"
+	fi
+	_="$i"
+done
+args=$(echo $args | sed 's/^ //g')
+
+if [ "$args" = "color" ]; then
+	targetbackground="/usr/share/backgrounds/Planetarium/lights-color.png"
+else
+	targetbackground="/usr/share/backgrounds/Planetarium/lights.png"
+fi
+
+main() {
+
+	if [ -n "$GNOME_DESKTOP_SESSION_ID" ]; then
+		if command -v dconf >/dev/null; then
+			gtktheme=$(dconf read /org/gnome/desktop/interface/gtk-theme | sed "s/'//g")
+			if [ -n "$gtktheme" ]; then
+				currentbackground=$(dconf read /org/gnome/desktop/background/picture-filename | sed "s/'//g")
+				if [ "$currentbackground" = "$targetbackground" ]; then
+					dconf write /org/gnome/desktop/background/picture-filename "''"
+					dconf write /org/gnome/desktop/background/picture-options "'none'"
+					dconf write /org/gnome/desktop/background/primary-color "'#000000000000'"
+				else
+					dconf write /org/gnome/desktop/background/picture-filename "'$targetbackground'"
+					dconf write /org/gnome/desktop/background/picture-options "'scaled'"
+					dconf write /org/gnome/desktop/background/primary-color "'#000000000000'"
+				fi
+			fi
+		fi
+		if command -v gconftool-2 >/dev/null; then
+			gtktheme=$(gconftool-2 --get /desktop/gnome/interface/gtk_theme)
+			if [ -n "$gtktheme" ]; then
+				currentbackground=$(gconftool-2 --get /desktop/gnome/background/picture_filename)
+				if [ "$currentbackground" = "$targetbackground" ]; then
+					gconftool-2 --set /desktop/gnome/background/picture_filename --type string ""
+					gconftool-2 --set /desktop/gnome/background/picture_options --type string "none"
+					gconftool-2 --set /desktop/gnome/background/primary_color --type string "#000000000000"
+				else
+					gconftool-2 --set /desktop/gnome/background/picture_filename --type string "$targetbackground"
+					gconftool-2 --set /desktop/gnome/background/picture_options --type string "scaled"
+					gconftool-2 --set /desktop/gnome/background/primary_color --type string "#000000000000"
+				fi
+			fi
+		fi
+	fi
+
+	if [ -n "$MATE_DESKTOP_SESSION_ID" ]; then
+		if command -v dconf >/dev/null; then
+			gtktheme=$(dconf read /org/mate/desktop/interface/gtk-theme | sed "s/'//g")
+			if [ -n "$gtktheme" ]; then
+				currentbackground=$(dconf read /org/mate/desktop/background/picture-filename | sed "s/'//g")
+				if [ "$currentbackground" = "$targetbackground" ]; then
+					dconf write /org/mate/desktop/background/picture-filename "''"
+					dconf write /org/mate/desktop/background/picture-options "'none'"
+					dconf write /org/mate/desktop/background/primary-color "'#000000000000'"
+				else
+					dconf write /org/mate/desktop/background/picture-filename "'$targetbackground'"
+					dconf write /org/mate/desktop/background/picture-options "'scaled'"
+					dconf write /org/mate/desktop/background/primary-color "'#000000000000'"
+				fi
+			fi
+		fi
+		if command -v mateconftool-2 >/dev/null; then
+			gtktheme=$(mateconftool-2 --get /desktop/mate/interface/gtk_theme)
+			if [ -n "$gtktheme" ]; then
+				currentbackground=$(mateconftool-2 --get /desktop/mate/background/picture_filename)
+				if [ "$currentbackground" = "$targetbackground" ]; then
+					mateconftool-2 --set /desktop/mate/background/picture_filename --type string ""
+					mateconftool-2 --set /desktop/mate/background/picture_options --type string "none"
+					mateconftool-2 --set /desktop/mate/background/primary_color --type string "#000000000000"
+				else
+					mateconftool-2 --set /desktop/mate/background/picture_filename --type string "$targetbackground"
+					mateconftool-2 --set /desktop/mate/background/picture_options --type string "scaled"
+					mateconftool-2 --set /desktop/mate/background/primary_color --type string "#000000000000"
+				fi
+			fi
+		fi
+	fi
+
+}
+
+showhelp() {
+	echo "Usage: $exec [OPTION]..."
+	echo ""
+	echo "Turn the fulldome light on and off during a planetarium show."
+	echo ""
+	echo "  -h  --help     display this help and exit"
+	echo "  -V  --version  output version information and exit"
+	echo ""
+	echo "Report $exec bugs to Bamm Gabriana <bamm@distroastro.org>"
+	echo "Distro Astro home page: <http://www.distroastro.org/>"
+}
+
+showversion() {
+	echo "$exec $ver"
+	echo "Copyright (C) 2014-2015 Bamm Gabriana."
+	echo "License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>."
+	echo "This is free software: you are free to change and redistribute it."
+	echo "There is NO WARRANTY, to the extent permitted by law."
+	echo ""
+	echo "Written by Bamm Gabriana."
+}
+
+[ -n "$help" ] && showhelp && exit
+[ -n "$version" ] && showversion && exit
+main
+

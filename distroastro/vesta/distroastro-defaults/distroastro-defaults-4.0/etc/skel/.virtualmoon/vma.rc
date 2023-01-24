@@ -1,0 +1,6 @@
+[default]
+Install_Dir=/usr/share/virtualmoon
+Obslatitude=48.86
+Obslongitude=-2.33
+ObsCountry=FR
+ObsTZ=Europe/Paris

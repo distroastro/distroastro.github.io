@@ -1,0 +1,26 @@
+[Desktop Entry]
+Type=Application
+Name=Software & Updates
+Name[es]=Software y actualizaciones
+Name[it]=Programmi e aggiornamenti
+Name[fr]=Logiciels et mises à jour
+Exec=software-properties-gtk
+Icon=software-properties
+Categories=MATE;GTK;Settings;X-MATE-SystemSettings;
+GenericName=Software & Updates
+GenericName[es]=Software y actualizaciones
+GenericName[it]=Programmi e aggiornamenti
+GenericName[fr]=Logiciels et mises à jour
+Comment=Configure the sources for installable software and updates
+Comment[es]=Configura los orígenes de instalación de programas y las actualiaciones
+Comment[it]=Configura la sorgente dei programmi installabili e degli aggiornamenti
+Comment[fr]=Configurer les sources pour l'installation des logiciels et des mises à jour
+MimeType=text/x-apt-sources-list;
+Terminal=false
+OnlyShowIn=MATE;
+Keywords=Drivers;Repositories;Repository;PPA;
+X-MultipleArgs=false
+X-GNOME-Settings-Panel=software-properties
+X-Unity-Settings-Panel=software-properties
+X-KDE-SubstituteUID=true
+X-Ubuntu-Gettext-Domain=software-properties

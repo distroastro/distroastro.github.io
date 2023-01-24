@@ -1,0 +1,242 @@
+#!/bin/sh
+
+basedir="/home/bamm/Projects/astrodate"
+. "$basedir/include.sh"
+
+configdir=${configdir?}
+mjdtime=${mjdtime?}
+mjddate=${mjddate?}
+y=${y?}
+
+if [ "$y" -ge "1972" ]; then
+	# Modern times, from the introduction of the first integral leap second on 1972 Jan 01
+	# This marks the time when TAI-UTC are exact integers, hence Delta T is calculated
+	# from the value of DUT1 supplied by IERS using: ΔT = 32.184 + Numleap - DUT1.
+
+	# The data file contains values for the beginning of each day.
+	datafile="delta_t.modern.zdat"
+	if [ ! -f "$configdir/$datafile" ]; then
+		echo "${exec?}: Data file missing or corrupt." >&2
+		exit 127
+	fi
+	datatable=$(zcat "$configdir/$datafile")
+
+	table_start=$(echo "$datatable" | head -2 | tail -1 | cut -d' ' -f2)
+	table_end=$(echo "$datatable" | tail -1 | cut -d' ' -f2)
+	if [ "$mjddate" -le "$table_end" ]; then
+		x="${dfrac?}"
+		if [ "$x" = "0" ]; then
+			tt_ut1=$(echo "$datatable" | grep -m1 " $mjddate " | cut -d' ' -f3)
+		else
+			if [ "$mjddate" -gt "$table_start" ]; then
+			A=$(echo "$datatable" | grep -m1 " $(($mjddate - 1)) " | cut -d' ' -f3 | sed s/^+//) # Yesterday
+			B=$(echo "$datatable" | grep -m1 " $(($mjddate + 0)) " | cut -d' ' -f3 | sed s/^+//) # Today
+			C=$(echo "$datatable" | grep -m1 " $(($mjddate + 1)) " | cut -d' ' -f3 | sed s/^+//) # Tomorrow
+			a=$(echo "($C + $A - 2*$B) / 2" | bc -l)
+			b=$(echo "($C - $A) / 2" | bc -l)
+			c=$(echo "$B" | bc)
+			tt_ut1=$(echo "$a*$x^2 + $b*$x + $c" | bc -l)
+			else
+			B=$(echo "$datatable" | grep -m1 " $(($mjddate + 0)) " | cut -d' ' -f3 | sed s/^+//) # Today
+			C=$(echo "$datatable" | grep -m1 " $(($mjddate + 1)) " | cut -d' ' -f3 | sed s/^+//) # Tomorrow
+			tt_ut1=$(echo "$B + $x*($C - $B)" | bc -l)
+			fi
+		fi
+		[ -z "$PRECISION" ] && PRECISION="7"
+	else status="2"
+	fi
+else status="1"
+fi
+[ -n "$SHOWDEFN" ] && printf "%s" "TT-UT1="
+
+if [ "$status" = "1" ]; then
+	# Pre-IERS era, based on historical values of ΔT. The historical values were corrected
+	# by removing the effects of UT1R-UT1 and UT2-UT1 and smoothed by polynomial splices,
+	# and then restoring UT1R-UT1. Hence the table actually lists TT-UT2, not TT-UT1.
+
+	# The historical data file contains TT-UT2 at the beginning of each year.
+	[ -f "$configdir/delta_t.historical.zdat" ] && datatable=$(zcat "$configdir/delta_t.historical.zdat")
+	[ -f "$configdir/delta_t.historical.dat" ] && datatable=$(cat "$configdir/delta_t.historical.dat")
+
+	T=$(echo "1900.0 + ($mjdtime - 15019.81352) / 365.24219878125" | bc -l)
+
+	if [ "$y" -ge "1620" ]; then
+		# 1620 to 1972, the telescope era.
+		x="${yfrac?}"
+		if [ "$x" = "0" ]; then
+			tt_ut2=$(echo "$datatable" | grep -m1 "^$y.0 " | cut -d' ' -f2 | sed s/^+//)
+		else
+			if [ "$y" -gt "1620" ]; then
+			A=$(echo "$datatable" | grep -m1 "$(echo "$y-1" | bc).0 " | cut -d' ' -f2 | sed s/^+//) # Last year
+			B=$(echo "$datatable" | grep -m1 "$(echo "$y+0" | bc).0 " | cut -d' ' -f2 | sed s/^+//) # This year
+			C=$(echo "$datatable" | grep -m1 "$(echo "$y+1" | bc).0 " | cut -d' ' -f2 | sed s/^+//) # Next year
+			a=$(echo "($C + $A - 2*$B) / 2" | bc -l)
+			b=$(echo "($C - $A) / 2" | bc -l)
+			c=$(echo "$B" | bc)
+			tt_ut2=$(echo "$a*$x^2 + $b*$x + $c" | bc)
+			else
+			B=$(echo "$datatable" | grep -m1 "$(echo "$y+0" | bc).0 " | cut -d' ' -f2 | sed s/^+//) # This year
+			C=$(echo "$datatable" | grep -m1 "$(echo "$y+1" | bc).0 " | cut -d' ' -f2 | sed s/^+//) # Next year
+			tt_ut2=$(echo "$B + $x*($C - $B)" | bc)
+			fi
+		fi
+		# Here UT2-UT1 is added back before rounding off.
+		Pi="3.14159265358979323846264338"
+		ut2_ut1=$(echo "0.022*s(2*$Pi*$T) - 0.012*c(2*$Pi*$T) - 0.006*s(4*$Pi*$T) + 0.007*c(4*$Pi*$T)" | bc -l)
+		tt_ut1=$(echo "$tt_ut2 + $ut2_ut1" | bc)
+		if [ -z "$PRECISION" ]; then
+			if [ "$mjddate" -ge "41315" ]; then
+				PRECISION="7"
+			elif [ "$y" -ge "1961" ]; then
+				# UTC was defined in 1960 and came into effect on 1961 Jan 01.
+				# Prior to this, Universal Time was taken to be UT2.
+				PRECISION="6"
+			elif [ "$y" -ge "1960" ]; then
+				# The USNO TAI-UTC file extends the definition of UTC backwards
+				# to 1960 although it actually started in 1961.
+				PRECISION="5"
+			elif [ "$y" -ge "1958" ]; then
+				# TAI was defined and came into effect on 1958 Jan 01
+				# based on the value of UT2 at that epoch.
+				PRECISION="5"
+			elif [ "$y" -ge "1955" ]; then
+				# The first Cesium clock for calibration was built in 1955.
+				# More precise determination of time began in this year.
+				PRECISION="4"
+			elif [ "$y" -ge "1860" ]; then
+				PRECISION="3"
+			elif [ "$y" -ge "1800" ]; then
+				PRECISION="2"
+			else
+				PRECISION="1"
+			fi
+		fi
+	elif [ "$y" -ge "1600" ]; then
+		# This section exists to address the discontinuity from 1600 to 1620.
+		tt_ut1=$(echo "120 + 3.844*($Y - 1600)/20" | bc -l)
+		[ -z "$PRECISION" ] && PRECISION="1"
+	elif [ "$y" -ge "500" ]; then
+		# 500 to 1600, using a 6th degree polynomial by Jean Meeus.
+		U=$(echo "($Y-1000)/100" | bc -l)
+		tt_ut1=$(echo "1574.2 - 556.01*$U + 71.23472*$U^2 + 0.319781*$U^3 - 0.8503463*$U^4 - 0.005050998*$U^5 + 0.0083572073*$U^6" | bc -l)
+		[ -z "$PRECISION" ] && PRECISION="0"
+	elif [ "$y" -ge "-900" ]; then
+		# -900 to 500, using table values from Morrison & Stephenson (2004)
+		# and the corrections given in Morrison & Stephenson (2005).
+		Cen="$(echo "$Y/100 * 100" | bc)"
+		x="${cfrac?}"
+		if [ "$x" = "0" ]; then
+			tt_ut1=$(echo "$datatable" | grep -m1 -- "^$(printf '%06.1f\n' "$Cen") " | cut -d' ' -f2 | sed s/^+//)
+		else
+			if [ "$y" -gt "-900" ]; then
+			A=$(echo "$datatable" | grep -m1 -- "^$(printf '%06.1f\n' "$(echo "$Cen-100" | bc)") " | cut -d' ' -f2 | sed s/^+//) # Last Century
+			B=$(echo "$datatable" | grep -m1 -- "^$(printf '%06.1f\n' "$(echo "$Cen-000" | bc)") " | cut -d' ' -f2 | sed s/^+//) # This Century
+			C=$(echo "$datatable" | grep -m1 -- "^$(printf '%06.1f\n' "$(echo "$Cen+100" | bc)") " | cut -d' ' -f2 | sed s/^+//) # Next Century
+			a=$(echo "($C + $A - 2*$B) / 2" | bc -l)
+			b=$(echo "($C - $A) / 2" | bc -l)
+			c=$(echo "$B" | bc)
+			tt_ut1=$(echo "$a*$x^2 + $b*$x + $c" | bc -l)
+			else
+			B=$(echo "$datatable" | grep -m1 -- "^$(printf '%06.1f\n' "$(echo "$Cen-000" | bc)") " | cut -d' ' -f2 | sed s/^+//) # This Century
+			C=$(echo "$datatable" | grep -m1 -- "^$(printf '%06.1f\n' "$(echo "$Cen+100" | bc)") " | cut -d' ' -f2 | sed s/^+//) # Next Century
+			tt_ut1=$(echo "$B + $x*($C - $B)" | bc -l)
+			fi
+		fi
+		[ -z "$PRECISION" ] && echo "$tt_ut1" | awk '{print int($1/10+0.5)*10}'
+	else
+		# Before -900, we use the long-term formula ΔT = 32 * u^2 - 20 derived
+		# using the laws of physics. This is theoretical not based on any data.
+		tt_ut1=$(echo "32*(($Y-1820)/100)^2 - 20" | bc -l)
+		[ -z "$PRECISION" ] && echo "$tt_ut1" | awk '{print int($1/100+0.5)*100}'
+	fi
+fi
+
+if [ "$status" = "2" ]; then
+	# Future, beyond the data from latest IERS ‘finals2000A.all’, we could only
+	# extrapolate. This probably has a very large margin of error and should be
+	# taken with a grain of salt.
+
+	datafile="delta_t.modern.zdat"
+	datatable=$(zcat "$configdir/$datafile")
+	T=$(echo "1900.0 + ($mjdtime - 15019.81352) / 365.24219878125" | bc -l)
+	Pi="3.14159265358979323846264338"
+	ut2_ut1=$(echo "0.022*s(2*$Pi*$T) - 0.012*c(2*$Pi*$T) - 0.006*s(4*$Pi*$T) + 0.007*c(4*$Pi*$T)" | bc -l)
+
+	datalength=$(zcat "$configdir/$datafile" | wc -l)
+	M0=$((41317+datalength-2-365))
+	D0=$(echo "$datatable" | grep " $M0 " | cut -d' ' -f3)
+	M1=$((41317+datalength-2))
+	D1=$(echo "$datatable" | grep " $M1 " | cut -d' ' -f3)
+	T0=$(echo "1900.0 + ($M0 - 15019.81352) / 365.24219878125" | bc -l)
+	C0=$(echo "0.022*s(2*$Pi*$T0) - 0.012*c(2*$Pi*$T0) - 0.006*s(4*$Pi*$T0) + 0.007*c(4*$Pi*$T0)" | bc -l)
+	T1=$(echo "1900.0 + ($M1 - 15019.81352) / 365.24219878125" | bc -l)
+	C1=$(echo "0.022*s(2*$Pi*$T1) - 0.012*c(2*$Pi*$T1) - 0.006*s(4*$Pi*$T1) + 0.007*c(4*$Pi*$T1)" | bc -l)
+	SLOPE0=$(echo "(($D1 - $C1) - ($D0 - $C0))/365" | bc -l)
+	SLOPE1=$(grep "UT1-UTC = " "$configdir/bulletin_a.latest.dat" | xargs | cut -d' ' -f5)
+	SLOPE2=$(echo "$SLOPE1 + ($SLOPE1 - $SLOPE0)*0.5" | bc)
+	M2=$((M1+365))
+	D2=$(echo "$D1 - $C1 + $SLOPE1 * 365" | bc -l)
+	M3=$((M1+365*2))
+	D3=$(echo "$D2 + $SLOPE2 * 365" | bc -l)
+	if [ "$mjddate" -le "$M2" ]; then
+		# Use the slope given in IERS Bulletin A to extend the data for
+		# another year by assuming a short-term linear increase in UT2.
+		tt_ut2=$(echo "$D1 - $C1 + $SLOPE1*($mjdtime - $M1)" | bc -l)
+		tt_ut1=$(echo "$tt_ut2 + $ut2_ut1" | bc)
+		[ -z "$PRECISION" ] && PRECISION="6"
+	elif [ "$mjddate" -le "$M3" ]; then
+		# Extends the data for yet another year by assuming a small change
+		# in slope over the short period, i.e., slightly parabolic.
+		tt_ut2=$(echo "$D2 + $SLOPE2*($mjdtime - $M2)" | bc -l)
+		tt_ut1=$(echo "$tt_ut2 + $ut2_ut1" | bc)
+		[ -z "$PRECISION" ] && PRECISION="6"
+	elif [ "$y" -lt "4340" ]; then
+		# What we need here is a function whose value at M3 is D3, and whose value
+		# at 4340.0 (MJD 906211) is 20301.28, with the additional condition that
+		# the slope is continuous and smooth at both endpoints.
+		M4="906211.0"
+		D4="20301.28"
+		SCALE="($M4 - $M3)/365.25"
+		R3=$(echo "$SLOPE2 * 365.0 * $SCALE" | bc)
+		R4=$(echo "16.128 * 365.24" | bc)
+		A4=$(echo "0.64 / 365.24" | bc)
+		x=$(echo "($mjdtime - $M3)/($M4 - $M3)" | bc -l)
+		a=$(echo "($A4 + $R3 - $R4)/3" | bc -l)
+		b=$(echo "$D4 - $D3 - $R3 - $a" | bc -l)
+		c=$(echo "$R3" | bc)
+		d=$(echo "$D3" | bc)
+		tt_ut2=$(echo "$a*$x^3 + $b*$x^2 + $c*$x + $d" | bc)
+		tt_ut1=$(echo "$tt_ut2 + $ut2_ut1" | bc)
+		if [ "$mjddate" -le "$((M1+365*10))" ]; then
+			[ -z "$PRECISION" ] && PRECISION="5"
+		elif [ "$mjddate" -lt "$((M1+365*30))" ]; then
+			[ -z "$PRECISION" ] && PRECISION="4"
+		elif [ "${tt_ut1%.*}" -lt "100" ]; then
+			[ -z "$PRECISION" ] && PRECISION="3"
+		elif [ "${tt_ut1%.*}" -lt "500" ]; then
+			[ -z "$PRECISION" ] && PRECISION="2"
+		elif [ "${tt_ut1%.*}" -lt "1000" ]; then
+			[ -z "$PRECISION" ] && PRECISION="1"
+		elif [ "$y" -lt "3150" ]; then
+			[ "$PRECISION" ] || echo "$tt_ut1" | awk '{print int($1+0.5)}'
+		elif [ "$y" -lt "4245" ]; then
+			[ "$PRECISION" ] || echo "$tt_ut1" | awk '{print int($1/10+0.5)*10}'
+		else
+			[ "$PRECISION" ] || echo "$tt_ut1" | awk '{print int($1/100+0.5)*100}'
+		fi
+	else [ "$y" -ge "4340" ];
+		# Beyond 4340. This was chosen as breakpoint to be equidistant from 1820 as the
+		# earliest observations in -700. As with the distant past, we use a theoretical
+		# model that assumes the relation: ΔT = 32 * u^2 - 20.
+		tt_ut2=$(echo "32*(($Y-1820)/100)^2 - 20" | bc -l)
+		tt_ut1=$(echo "$tt_ut2 + $ut2_ut1" | bc -l)
+		if [ "$y" -lt "7410" ]; then
+			[ "$PRECISION" ] || echo "$tt_ut1" | awk '{print int($1/100+0.5)*100}'
+		else
+			[ "$PRECISION" ] || echo "$tt_ut1" | awk '{print int($1/1000+0.5)*1000}'
+		fi
+	fi
+fi
+
+[ "$PRECISION" ] && printf "%0.${PRECISION}f\n" "$tt_ut1"
+

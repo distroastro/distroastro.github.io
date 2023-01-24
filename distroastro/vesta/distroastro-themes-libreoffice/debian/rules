@@ -1,0 +1,7 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_link:
+	dh_link /usr/share/libreoffice/share/config/images_human.zip /usr/lib/libreoffice/share/config/images_human.zip
+	dh_link

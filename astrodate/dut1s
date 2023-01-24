@@ -1,0 +1,13 @@
+#!/bin/sh
+
+dir=$(dirname "$(readlink -f -- "$0")")
+. "$dir/include.sh"
+
+Pi="3.14159265358979323846264338"
+T=$(echo "1900.0 + (${mjdtime?} - 15019.81352) / 365.242198781" | bc -l)
+ut2_ut1=$(echo "0.022*s(2*$Pi*$T) - 0.012*c(2*$Pi*$T) - 0.006*s(4*$Pi*$T) + 0.007*c(4*$Pi*$T)" | bc -l)
+
+[ -z "$PRECISION" ] && PRECISION="9"
+[ -n "$SHOWDEFN" ] && printf "%s" "UT2-UT1="
+printf "%0.${PRECISION}f\n" "$ut2_ut1"
+

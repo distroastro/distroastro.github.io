@@ -1,0 +1,82 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+exit if (! `which xephem`);
+exit if (! @ARGV);
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose);
+
+exit unless GetOptions(
+	'q|quiet'   => \$quiet,
+	'v|verbose' => \$verbose,
+);
+
+my $xephem_conf = "$ENV{HOME}/.xephem/XEphem";
+
+if (! -e $xephem_conf) {
+	die "Error: $xephem_conf not found.\n" if $verbose;
+}
+
+open FILE, "$xephem_conf";
+my @lines = <FILE>;
+close FILE;
+
+if ($ARGV[0] eq "Nightvision") {
+	for my $line (@lines) {
+		$line =~ s/XEphem\*XmArrowButton.foreground:        .*/XEphem\*XmArrowButton.foreground:             #d62121/;
+		$line =~ s/XEphem\*XmArrowButtonGadget.foreground:  .*/XEphem\*XmArrowButtonGadget.foreground:       #d62121/;
+		$line =~ s/XEphem\*XmCascadeButton.foreground:      .*/XEphem\*XmCascadeButton.foreground:           #d62121/;
+		$line =~ s/XEphem\*XmCascadeButtonGadget.foreground:.*/XEphem\*XmCascadeButtonGadget.foreground:     #d62121/;
+		$line =~ s/XEphem\*XmLabel.foreground:              .*/XEphem\*XmLabel.foreground:                   #d62121/;
+		$line =~ s/XEphem\*XmLabelGadget.foreground:        .*/XEphem\*XmLabelGadget.foreground:             #d62121/;
+		$line =~ s/XEphem\*XmPushButton.foreground:         .*/XEphem\*XmPushButton.foreground:              #d62121/;
+		$line =~ s/XEphem\*XmPushButtonGadget.foreground:   .*/XEphem\*XmPushButtonGadget.foreground:        #d62121/;
+		$line =~ s/XEphem\*XmScale.foreground:              .*/XEphem\*XmScale.foreground:                   #d62121/;
+		$line =~ s/XEphem\*XmToggleButton.foreground:       .*/XEphem\*XmToggleButton.foreground:            #d62121/;
+		$line =~ s/XEphem\*XmToggleButtonGadget.foreground: .*/XEphem\*XmToggleButtonGadget.foreground:      #d62121/;
+		$line =~ s/XEphem\.AnnoColor:                       .*/XEphem\.AnnoColor:                            #d62121/;
+		$line =~ s/XEphem\*background:                      .*/XEphem\*background:                           #212121/;
+		$line =~ s/XEphem\*XmList.background:               .*/XEphem\*XmList.background:                    #1a1a1a/;
+		$line =~ s/XEphem\*XmText.background:               .*/XEphem\*XmText.background:                    #1a1a1a/;
+		$line =~ s/XEphem\*XmTextField.background:          .*/XEphem\*XmTextField.background:               #1a1a1a/;
+		$line =~ s/XEphem\*XmList.foreground:               .*/XEphem\*XmList.foreground:                    #d61a1a/;
+		$line =~ s/XEphem\*XmText.foreground:               .*/XEphem\*XmText.foreground:                    #d61a1a/;
+		$line =~ s/XEphem\*XmTextField.foreground:          .*/XEphem\*XmTextField.foreground:               #d61a1a/;
+	}
+	print "XEphem Nightvision ON.\n" if !$quiet;
+}
+
+else {
+	for my $line (@lines) {
+		$line =~ s/XEphem\*XmArrowButton.foreground:        .*/XEphem\*XmArrowButton.foreground:             #212121/;
+		$line =~ s/XEphem\*XmArrowButtonGadget.foreground:  .*/XEphem\*XmArrowButtonGadget.foreground:       #212121/;
+		$line =~ s/XEphem\*XmCascadeButton.foreground:      .*/XEphem\*XmCascadeButton.foreground:           #212121/;
+		$line =~ s/XEphem\*XmCascadeButtonGadget.foreground:.*/XEphem\*XmCascadeButtonGadget.foreground:     #212121/;
+		$line =~ s/XEphem\*XmLabel.foreground:              .*/XEphem\*XmLabel.foreground:                   #212121/;
+		$line =~ s/XEphem\*XmLabelGadget.foreground:        .*/XEphem\*XmLabelGadget.foreground:             #212121/;
+		$line =~ s/XEphem\*XmPushButton.foreground:         .*/XEphem\*XmPushButton.foreground:              #212121/;
+		$line =~ s/XEphem\*XmPushButtonGadget.foreground:   .*/XEphem\*XmPushButtonGadget.foreground:        #212121/;
+		$line =~ s/XEphem\*XmScale.foreground:              .*/XEphem\*XmScale.foreground:                   #212121/;
+		$line =~ s/XEphem\*XmToggleButton.foreground:       .*/XEphem\*XmToggleButton.foreground:            #212121/;
+		$line =~ s/XEphem\*XmToggleButtonGadget.foreground: .*/XEphem\*XmToggleButtonGadget.foreground:      #212121/;
+		$line =~ s/XEphem\.AnnoColor:                       .*/XEphem\.AnnoColor:                            #212121/;
+		$line =~ s/XEphem\*background:                      .*/XEphem\*background:                           #d6d6d6/;
+		$line =~ s/XEphem\*XmList.background:               .*/XEphem\*XmList.background:                    #ededed/;
+		$line =~ s/XEphem\*XmText.background:               .*/XEphem\*XmText.background:                    #ededed/;
+		$line =~ s/XEphem\*XmTextField.background:          .*/XEphem\*XmTextField.background:               #ededed/;
+		$line =~ s/XEphem\*XmList.foreground:               .*/XEphem\*XmList.foreground:                    #1a1a1a/;
+		$line =~ s/XEphem\*XmText.foreground:               .*/XEphem\*XmText.foreground:                    #1a1a1a/;
+		$line =~ s/XEphem\*XmTextField.foreground:          .*/XEphem\*XmTextField.foreground:               #1a1a1a/;
+	}
+	print "XEphem Nightvision OFF.\n" if !$quiet;
+}
+
+open FILE, ">$xephem_conf";
+print FILE @lines;
+close FILE;
+

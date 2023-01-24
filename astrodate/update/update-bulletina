@@ -1,0 +1,29 @@
+#!/bin/sh
+
+exec="$(basename "$0")"
+
+url="https://datacenter.iers.org/data/latestVersion/6_BULLETIN_A_V2013_016.txt"
+infile="$(basename $url)"
+
+configdir="$HOME/.config/astrodate"; mkdir -p "$configdir"
+datafile="$configdir/bulletin_a.latest.dat"
+
+tmpfile=$(mktemp "/tmp/.$exec.$infile.XXXXXX.tmp")
+
+red='\033[0;31m'
+end='\033[0m'
+
+echo -n "Downloading $infile... "
+wget -cq "$url" -O "$tmpfile"
+if [ "$?" -eq "0" ]; then
+	echo "Done."
+else
+	rm "$tmpfile"
+	echo "${red}Failed.${end}"
+	exit 1
+fi
+
+echo -n "Saving $(basename $datafile)... "
+mv "$tmpfile" "$datafile"
+echo "Done."
+

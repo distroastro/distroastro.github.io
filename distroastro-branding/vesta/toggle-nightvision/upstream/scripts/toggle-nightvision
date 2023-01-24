@@ -1,0 +1,396 @@
+#!/bin/sh
+
+################################################################################
+#                                                                              #
+# Toggle Nightvision                                                           #
+# Version 3.0.1                                                                #
+#                                                                              #
+# Copyright (C) 2011-2014 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+exec="$(basename $0)"
+ver="3.0.1"
+
+# Process command line arguments.
+for i do
+	if [ -z "$i" ]; then false
+	# All options.
+	elif [ "$i" = "-q" -o "$i" = "--quiet"    ]; then	quiet="$i"
+	elif [ "$i" = "-v" -o "$i" = "--verbose"  ]; then	verbose="$i"
+	elif [ "$i" = "-d" -o "$i" = "--debug"    ]; then	debug="$i"
+	elif [ "$i" = "-h" -o "$i" = "--help"     ]; then	help="$i"
+	elif [ "$i" = "-V" -o "$i" = "--version"  ]; then	version="$i"
+	# Remaining arguments.
+	elif echo $i | grep " " >/dev/null; then
+		args="$args \"$i\""
+	else
+		args="$args $i"
+	fi
+	_="$i"
+done
+args=$(echo $args | sed 's/^ //g')
+
+[ -n "$verbose" ] && verbose="--arg $verbose"
+[ -n "$debug" ] && showtool=true && shift
+
+main() {
+
+	defaulttheme="Clearskies"
+	nighttheme="Nightvision"
+	defaultbackground="/usr/share/backgrounds/Hubble/Hubble"
+	nightbackground="/usr/share/backgrounds/Nightvision/Nightvision"
+	normalbgcolor="#ededed"
+	nightbgcolor="#212121"
+
+	# Check which Desktop Environment is running.
+	gnome_desktop=$GNOME_DESKTOP_SESSION_ID || $(pgrep -l gnome-session)
+	mate_desktop=$MATE_DESKTOP_SESSION_ID || $(pgrep -l mate-session)
+	cinnamon_desktop=$(pgrep -l cinnamon-sessio)
+
+	# Check which conf tools are installed.
+	dconf=$(command -v dconf)
+	gconf=$(command -v gconftool-2)
+	mateconf=$(command -v mateconftool-2)
+
+	[ -n "$gnome_desktop" ]    && [ -n "$dconf" ]    && toggle_nightvision_gnome_dconf
+	[ -n "$gnome_desktop" ]    && [ -n "$gconf" ]    && toggle_nightvision_gnome_gconf
+	[ -n "$mate_desktop" ]     && [ -n "$dconf" ]    && toggle_nightvision_mate_dconf
+	[ -n "$mate_desktop" ]     && [ -n "$mateconf" ] && toggle_nightvision_mate_mateconf
+	[ -n "$cinnamon_desktop" ] && [ -n "$dconf" ]    && toggle_nightvision_cinnamon_dconf
+}
+
+toggle_nightvision_gnome_dconf() {
+
+	[ -n "$showtool" ] && echo "Found DConf in GNOME"
+
+	gtktheme=$(dconf read /org/gnome/desktop/interface/gtk-theme | sed "s/'//g")
+	[ -n "$gtktheme" ] || gtktheme=$normaltheme
+
+	dconf reset /org/gnome/desktop/interface/gtk-color-scheme
+
+	nightbackground="file://$nightbackground"
+	defaultbackground="file://$defaultbackground"
+
+	if [ "$gtktheme" = "$nighttheme" ]; then
+
+		normaltheme=$(dconf read /org/gnome/desktop/interface/gtk-theme-normal | sed "s/'//g")
+		[ -z "$normaltheme" ] && normaltheme="$defaulttheme"
+		dconf reset /org/gnome/desktop/interface/gtk-theme-normal
+
+		dconf write /org/gnome/metacity/general/theme "'$normaltheme'"
+		dconf write /org/gnome/desktop/interface/gtk-theme "'$normaltheme'"
+		dconf write /org/gnome/desktop/interface/icon-theme "'$normaltheme'"
+		dconf write /org/gnome/desktop/peripherals/mouse/cursor-theme "'$normaltheme'"
+		dconf write /org/gnome/panel/toplevels/bottom/background/color "'$normalbgcolor'"
+
+		normalbackground=$(dconf read /org/gnome/desktop/background/picture-uri-normal | sed "s/'//g")
+		[ -z "$normalbackground" ] && normalbackground="$defaultbackground"
+		dconf reset /org/gnome/desktop/background/picture-uri-normal
+
+		dconf write /org/gnome/desktop/background/picture-uri "'$normalbackground'"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $normaltheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(dconf read /org/gnome/desktop/interface/gtk-theme | sed "s/'//g")
+	else
+
+		normaltheme=$(dconf read /org/gnome/desktop/interface/gtk-theme | sed "s/'//g")
+		dconf write /org/gnome/desktop/interface/gtk-theme-normal "'$normaltheme'"
+
+		dconf write /org/gnome/metacity/general/theme "'$nighttheme'"
+		dconf write /org/gnome/desktop/interface/gtk-theme "'$nighttheme'"
+		dconf write /org/gnome/desktop/interface/icon-theme "'$nighttheme'"
+		dconf write /org/gnome/desktop/peripherals/mouse/cursor-theme "'$nighttheme'"
+		dconf write /org/gnome/panel/toplevels/bottom/background/color "'$nightbgcolor'"
+
+		normalbackground=$(dconf read /org/gnome/desktop/background/picture-uri | sed "s/'//g")
+		dconf write /org/gnome/desktop/background/picture-uri-normal "'$normalbackground'"
+
+		dconf write /org/gnome/desktop/background/picture-uri "'$nightbackground'"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $nighttheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(dconf read /org/gnome/desktop/interface/gtk-theme | sed "s/'//g")
+	fi
+	[ -n "$showtool" ] && echo "Using DConf in GNOME"
+}
+
+toggle_nightvision_cinnamon_dconf() {
+
+	[ -n "$showtool" ] && echo "Found DConf in Cinnamon"
+
+	gtktheme=$(dconf read /org/cinnamon/desktop/interface/gtk-theme | sed "s/'//g")
+	[ -n "$gtktheme" ] || gtktheme=$normaltheme
+
+	dconf reset /org/cinnamon/desktop/interface/gtk-color-scheme
+
+	nightbackground="file://$nightbackground"
+	defaultbackground="file://$defaultbackground"
+
+	if [ "$gtktheme" = "$nighttheme" ]; then
+
+		normaltheme=$(dconf read /org/cinnamon/desktop/interface/gtk-theme-normal | sed "s/'//g")
+		[ -z "$normaltheme" ] && normaltheme="$defaulttheme"
+		dconf reset /org/cinnamon/desktop/interface/gtk-theme-normal
+
+		dconf write /org/cinnamon/muffin/general/theme "'$normaltheme'"
+		dconf write /org/cinnamon/desktop/interface/gtk-theme "'$normaltheme'"
+		dconf write /org/cinnamon/desktop/interface/icon-theme "'$normaltheme'"
+		dconf write /org/cinnamon/desktop/peripherals/mouse/cursor-theme "'$normaltheme'"
+		dconf write /org/cinnamon/panel/toplevels/bottom/background/color "'$normalbgcolor'"
+
+		normalbackground=$(dconf read /org/cinnamon/desktop/background/picture-uri-normal | sed "s/'//g")
+		[ -z "$normalbackground" ] && normalbackground="$defaultbackground"
+		dconf reset /org/cinnamon/desktop/background/picture-uri-normal
+
+		dconf write /org/cinnamon/desktop/background/picture-uri "'$normalbackground'"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $normaltheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(dconf read /org/cinnamon/desktop/interface/gtk-theme | sed "s/'//g")
+	else
+
+		normaltheme=$(dconf read /org/cinnamon/desktop/interface/gtk-theme | sed "s/'//g")
+		dconf write /org/cinnamon/desktop/interface/gtk-theme-normal "'$normaltheme'"
+
+		dconf write /org/cinnamon/muffin/general/theme "'$nighttheme'"
+		dconf write /org/cinnamon/desktop/interface/gtk-theme "'$nighttheme'"
+		dconf write /org/cinnamon/desktop/interface/icon-theme "'$nighttheme'"
+		dconf write /org/cinnamon/desktop/peripherals/mouse/cursor-theme "'$nighttheme'"
+		dconf write /org/cinnamon/panel/toplevels/bottom/background/color "'$nightbgcolor'"
+
+		normalbackground=$(dconf read /org/cinnamon/desktop/background/picture-uri | sed "s/'//g")
+		dconf write /org/cinnamon/desktop/background/picture-uri-normal "'$normalbackground'"
+
+		dconf write /org/cinnamon/desktop/background/picture-uri "'$nightbackground'"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $nighttheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(dconf read /org/cinnamon/desktop/interface/gtk-theme | sed "s/'//g")
+	fi
+	[ -n "$showtool" ] && echo "Using DConf in Cinnamon"
+}
+
+toggle_nightvision_mate_dconf() {
+
+	[ -n "$showtool" ] && echo "Found DConf in MATE"
+
+	gtktheme=$(dconf read /org/mate/desktop/interface/gtk-theme | sed "s/'//g")
+	[ -n "$gtktheme" ] || gtktheme=$normaltheme
+
+	dconf reset /org/mate/desktop/interface/gtk-color-scheme
+
+	if [ "$gtktheme" = "$nighttheme" ]; then
+
+		normaltheme=$(dconf read /org/mate/desktop/interface/gtk-theme-normal | sed "s/'//g")
+		[ -z "$normaltheme" ] && normaltheme="$defaulttheme"
+		dconf reset /org/mate/desktop/interface/gtk-theme-normal
+
+		dconf write /org/mate/marco/general/theme "'$normaltheme'"
+		dconf write /org/mate/desktop/interface/gtk-theme "'$normaltheme'"
+		dconf write /org/mate/desktop/interface/icon-theme "'$normaltheme'"
+		dconf write /org/mate/desktop/peripherals/mouse/cursor-theme "'$normaltheme'"
+		dconf write /org/mate/panel/toplevels/bottom/background/color "'$normalbgcolor'"
+
+		normalbackground=$(dconf read /org/mate/desktop/background/picture-filename-normal | sed "s/'//g")
+		[ -z "$normalbackground" ] && normalbackground="$defaultbackground"
+		dconf reset /org/mate/desktop/background/picture-filename-normal
+
+		dconf write /org/mate/desktop/background/picture-filename "'$normalbackground'"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $normaltheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(dconf read /org/mate/desktop/interface/gtk-theme | sed "s/'//g")
+	else
+
+		normaltheme=$(dconf read /org/mate/desktop/interface/gtk-theme | sed "s/'//g")
+		dconf write /org/mate/desktop/interface/gtk-theme-normal "'$normaltheme'"
+
+		dconf write /org/mate/marco/general/theme "'$nighttheme'"
+		dconf write /org/mate/desktop/interface/gtk-theme "'$nighttheme'"
+		dconf write /org/mate/desktop/interface/icon-theme "'$nighttheme'"
+		dconf write /org/mate/desktop/peripherals/mouse/cursor-theme "'$nighttheme'"
+		dconf write /org/mate/panel/toplevels/bottom/background/color "'$nightbgcolor'"
+
+		normalbackground=$(dconf read /org/mate/desktop/background/picture-filename | sed "s/'//g")
+		dconf write /org/mate/desktop/background/picture-filename-normal "'$normalbackground'"
+
+		dconf write /org/mate/desktop/background/picture-filename "'$nightbackground'"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $nighttheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(dconf read /org/mate/desktop/interface/gtk-theme | sed "s/'//g")
+	fi
+	[ -n "$showtool" ] && echo "Using DConf in MATE"
+}
+
+toggle_nightvision_gnome_gconf() {
+
+	[ -n "$showtool" ] && echo "Found GConf in GNOME"
+
+	gtktheme=$(gconftool-2 --get /desktop/gnome/interface/gtk_theme)
+	[ -n "$gtktheme" ] || gtktheme=$normaltheme
+
+	gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme
+
+	if [ "$gtktheme" = "$nighttheme" ]; then
+
+		normaltheme=$(gconftool-2 --get /desktop/gnome/interface/gtk_theme_normal)
+		[ -z "$normaltheme" ] && normaltheme="$defaulttheme"
+		gconftool-2 --unset /desktop/gnome/interface/gtk_theme_normal
+
+		gconftool-2 --set /apps/metacity/general/theme --type string "$normaltheme"
+		gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string "$normaltheme"
+		gconftool-2 --set /desktop/gnome/interface/icon_theme --type string "$normaltheme"
+		gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_theme --type string "$normaltheme"
+		gconftool-2 --set /apps/panel/toplevels/panel_0/background/color --type string "$normalbgcolor"
+
+		normalbackground=$(gconftool-2 --get /desktop/gnome/background/picture_filename_normal)
+		[ -z "$normalbackground" ] && normalbackground="$defaultbackground"
+		gconftool-2 --unset /desktop/gnome/background/picture_filename_normal
+
+		gconftool-2 --set /desktop/gnome/background/picture_filename --type string "$normalbackground"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $normaltheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(gconftool-2 --get /desktop/gnome/interface/gtk_theme)
+	else
+
+		normaltheme=$(gconftool-2 --get /desktop/gnome/interface/gtk_theme)
+		gconftool-2 --set /desktop/gnome/interface/gtk_theme_normal --type string "$normaltheme"
+
+		gconftool-2 --set /apps/metacity/general/theme --type string "$nighttheme"
+		gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string "$nighttheme"
+		gconftool-2 --set /desktop/gnome/interface/icon_theme --type string "$nighttheme"
+		gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_theme --type string "$nighttheme"
+		gconftool-2 --set /apps/panel/toplevels/panel_0/background/color --type string "$nightbgcolor"
+
+		normalbackground=$(gconftool-2 --get /desktop/gnome/background/picture_filename)
+		gconftool-2 --set /desktop/gnome/background/picture_filename_normal --type string "$normalbackground"
+
+		gconftool-2 --set /desktop/gnome/background/picture_filename --type string "$nightbackground"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $nighttheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(gconftool-2 --get /desktop/gnome/interface/gtk_theme)
+	fi
+	[ -n "$showtool" ] && echo "Using gconftool-2 in GNOME"
+}
+
+toggle_nightvision_mate_mateconf() {
+
+	[ -n "$showtool" ] && echo "Found MATEConf in MATE"
+
+	gtktheme=$(mateconftool-2 --get /desktop/mate/interface/gtk_theme)
+	[ -n "$gtktheme" ] || gtktheme=$normaltheme
+
+	mateconftool-2 --unset /desktop/mate/interface/gtk_color_scheme
+
+	if [ "$gtktheme" = "$nighttheme" ]; then
+
+		normaltheme=$(mateconftool-2 --get /desktop/mate/interface/gtk_theme_normal)
+		[ -z "$normaltheme" ] && normaltheme="$defaulttheme"
+		mateconftool-2 --unset /desktop/mate/interface/gtk_theme_normal
+
+		mateconftool-2 --set /apps/marco/general/theme --type string "$normaltheme"
+		mateconftool-2 --set /desktop/mate/interface/gtk_theme --type string "$normaltheme"
+		mateconftool-2 --set /desktop/mate/interface/icon_theme --type string "$normaltheme"
+		mateconftool-2 --set /desktop/mate/peripherals/mouse/cursor_theme --type string "$normaltheme"
+		mateconftool-2 --set /apps/panel/toplevels/panel_0/background/color --type string "$normalbgcolor"
+
+		normalbackground=$(mateconftool-2 --get /desktop/mate/background/picture_filename_normal)
+		[ -z "$normalbackground" ] && normalbackground="$defaultbackground"
+		mateconftool-2 --unset /desktop/mate/background/picture_filename_normal
+
+		mateconftool-2 --set /desktop/mate/background/picture_filename --type string "$normalbackground"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $normaltheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(mateconftool-2 --get /desktop/mate/interface/gtk_theme)
+	else
+
+		normaltheme=$(mateconftool-2 --get /desktop/mate/interface/gtk_theme)
+		mateconftool-2 --set /desktop/mate/interface/gtk_theme_normal --type string "$normaltheme"
+
+		mateconftool-2 --set /apps/marco/general/theme --type string "$nighttheme"
+		mateconftool-2 --set /desktop/mate/interface/gtk_theme --type string "$nighttheme"
+		mateconftool-2 --set /desktop/mate/interface/icon_theme --type string "$nighttheme"
+		mateconftool-2 --set /desktop/mate/peripherals/mouse/cursor_theme --type string "$nighttheme"
+		mateconftool-2 --set /apps/panel/toplevels/panel_0/background/color --type string "$nightbgcolor"
+
+		normalbackground=$(mateconftool-2 --get /desktop/mate/background/picture_filename)
+		mateconftool-2 --set /desktop/mate/background/picture_filename_normal --type string "$normalbackground"
+
+		mateconftool-2 --set /desktop/mate/background/picture_filename --type string "$nightbackground"
+
+		if [ -d "/etc/toggle-nightvision" ]; then
+			run-parts /etc/toggle-nightvision $verbose --arg $nighttheme
+		fi
+
+		[ -z "$quiet" ] && echo Switched to $(mateconftool-2 --get /desktop/mate/interface/gtk_theme)
+	fi
+	[ -n "$showtool" ] && echo "Using mateconftool-2 in MATE"
+}
+
+showhelp() {
+	echo "Usage: $exec [OPTION]..."
+	echo ""
+	echo "Quickly switch between normal and nightvision mode."
+	echo ""
+	echo "  -h, --help		display this help and exit"
+	echo "  -V, --version		output version information and exit"
+	echo ""
+	echo "Report $exec bugs to Bamm Gabriana <bamm@distroastro.org>"
+	echo "Distro Astro home page: <http://www.distroastro.org/>"
+}
+
+showversion() {
+	echo "$exec $ver"
+	echo "Copyright (C) 2011-2014 Bamm Gabriana."
+	echo "License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>."
+	echo "This is free software: you are free to change and redistribute it."
+	echo "There is NO WARRANTY, to the extent permitted by law."
+	echo ""
+	echo "Written by Bamm Gabriana."
+}
+
+[ -n "$help" ] && showhelp && exit
+[ -n "$version" ] && showversion && exit
+main
+

@@ -1,0 +1,27 @@
+Source: bammtest
+Section: science
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 9.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: bammtest
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, wine (= 5.0), hello, foo
+Description: Bamm Test
+ This is a test package.
+
+Package: bammtest-data
+Architecture: all
+Depends: ${misc:Depends}, bammtest (= ${source:Version})
+Description: Bamm Test Data
+ This is an dummy test data package.
+
+Package: bammtest-extra
+Architecture: all
+Depends: ${misc:Depends}, bammtest (= ${source:Version}), bammtest-data
+Description: Bamm Test Extra
+ This is an dummy test extra package.
+

@@ -1,0 +1,23 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Explore Outer Space
+Name[es]=Explora el Espacio Exterior
+Name[it]=Esplora lo Spazio Profondo
+Name[fr]=Explorer le Cosmos
+Exec=celestia-gnome
+Icon=desktop-celestia
+Categories=Education;Science;Astronomy
+GenericName=Space Simulator
+GenericName[es]=Simulador Espacial
+GenericName[it]=Simulatore Spaziale
+GenericName[fr]=Simulateur Spatial
+Comment=Explore the Universe in this detailed space simulation
+Comment[es]=Explora el Universo en este detallado simulador espacial.
+Comment[it]=Esplora l'universo con questo dettagliato simulatore dello spazio.
+Comment[fr]=Explorer l'Univers dans cette simulation spatiale détaillée
+StartupNotify=false
+Terminal=false
+Path=
+X-GNOME-DocPath=
+

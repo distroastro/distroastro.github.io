@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+for user in `awk -F: '$3 >= 1000 && $3 < 60000 {print $1}' /etc/passwd`; do
+	su - $user -c "mkdir -p ~/.config/autostart"
+	su - $user -c "cp /etc/skel/.config/autostart/autolocation.desktop ~/.config/autostart"
+done
+if [ -e "/etc/location" ]; then
+	update-location --reload
+else
+	echo "Creating location file ..."
+	autolocation -q
+fi
+# End manually added section

@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+if [ -x /usr/bin/apt-key ]; then
+    apt-key add /usr/share/keyrings/ppa-gimp-614C4B38.gpg > /dev/null
+fi
+# End manually added section

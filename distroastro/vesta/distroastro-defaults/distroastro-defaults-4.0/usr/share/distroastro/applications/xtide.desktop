@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=XTide
+Exec=xtide
+Icon=xtide
+Categories=Education;Science;Astronomy
+Comment=View tide and current predictions
+Comment[es]=Ver las predicciones de mareas
+Comment[it]=Visualizza le previsioni di marea
+Comment[fr]=Visualisation et prédiction de marée
+GenericName=Tide Predictor
+GenericName[es]=Predictor Marea
+GenericName[it]=Previsioni di marea
+GenericName[fr]=Prédiction de marée

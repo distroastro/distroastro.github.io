@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PRECISION="13"
+true > "$0.out"
+for i in $(seq 41684 59265); do
+	output="$i $(dut1r MJD $i $1) $(dut1s MJD $i $1)"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+

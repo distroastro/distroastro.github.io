@@ -1,0 +1,5 @@
+binary-without-manpage usr/bin/configure-resolution
+binary-without-manpage usr/bin/mvlc
+binary-without-manpage usr/bin/system-logout
+binary-without-manpage usr/bin/system-shutdown
+

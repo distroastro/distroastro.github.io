@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Simple Scan
+Name[es]=Escanea Simple
+Name[it]=Scansione Semplice
+Name[fr]=Numérisation simple
+Comment=Scan Documents
+Comment[es]=Escanea documentos
+Comment[it]=Scansiona documenti
+Comment[fr]=Numérisation de documents
+Exec=simple-scan
+Icon=scanner
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Graphics;Scanning;
+X-GNOME-Gettext-Domain=simple-scan

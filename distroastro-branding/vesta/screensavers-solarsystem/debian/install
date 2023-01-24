@@ -1,0 +1,4 @@
+src/gnome/solarsystem.desktop usr/share/applications/screensavers
+xscreensaver/solarsystem.xml usr/share/xscreensaver/config/
+xscreensaver/solarsystem.conf usr/share/xscreensaver/hacks.conf.d/
+

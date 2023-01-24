@@ -1,0 +1,16 @@
+Source: distroastro-compiz-support
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-compiz-support
+Architecture: all
+Depends: ${misc:Depends}, python, compiz-core, compiz-gnome, compiz-plugins, compiz-plugins-default, libcompizconfig0, python-compizconfig, libdecoration0-dev
+Replaces: compiz-gnome, libcompizconfig0
+Description: Distro Astro Compiz Support
+ Everything needed to get Compiz to run in Distro Astro. It also sets up
+ window decorations, wobbly windows, desktop cube, and animations.

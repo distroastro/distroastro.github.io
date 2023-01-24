@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Location
+Comment=Manage location information
+Exec=distroastro-location-admin
+Icon=location-admin
+Terminal=false
+Type=Application
+Categories=GTK;System;Settings;
+OnlyShowIn=MATE;XFCE;
+StartupNotify=false

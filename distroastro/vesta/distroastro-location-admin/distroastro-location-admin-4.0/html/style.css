@@ -1,0 +1,98 @@
+/*
+
+################################################################################
+#                                                                              #
+# Distro Astro Location Admin                                                  #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2016 Bamm Gabriana.                                            #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+*/
+
+html {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	background: background;
+	font: caption;
+}
+
+.messagearea {
+	margin: 20px;
+}
+
+.messagearea h1 {
+	font-size: 15pt;
+}
+
+.messagearea p {
+}
+
+.outputbox {
+	border: 1px solid GrayText;
+	background-color: Menu;
+	color: MenuText;
+	margin: 20px;
+	padding: 10px;
+	white-space: pre;
+	font-family: monospace;
+	line-height: 1.5em;
+	font-size: larger;
+	overflow: auto;
+	min-height: 334px;
+	min-width: 368px;
+}
+
+.outputbox #showmap {
+	float: right;
+}
+
+.settingsarea {
+	margin: 20px;
+	margin-bottom: 50px;
+	min-width: 388px;
+}
+
+.buttonbar {
+	margin: 20px;
+	position: absolute;
+}
+
+.buttonbar button {
+	width: 63pt;
+	height: 21pt;
+}
+
+.buttonbar button#showhelp {
+	float: left;
+}
+
+.buttonbar button#close {
+	float: right;
+}
+
+#editloc {
+	margin-top: 8px;
+}
+

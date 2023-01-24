@@ -1,0 +1,29 @@
+Source: distroastro-dev
+Section: devel
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-dev
+Architecture: all
+Depends: ${misc:Depends}, build-essential, automake, autoconf, autotools-dev, cmake (>= 2.8.11)
+Recommends: distroastro-packaging-dev, distroastro-build-dep
+Description: Development tools for Distro Astro projects
+ This is a metapackage for development of Distro Astro's projects.
+
+Package: distroastro-packaging-dev
+Architecture: all
+Depends: ${misc:Depends}, debhelper (>= 9), dh-make, dh-autoreconf, gnupg, diffutils, patch, quilt, lintian, reprepro, createrepo, alien, help2man
+Suggests: packaging-dev, apt-file, cdbs, devscripts, pbuilder, piuparts, ubuntu-dev-tools, ubuntu-packaging-guide
+Description: Packaging tools for Distro Astro projects
+ This is a metapackage for packaging of Distro Astro's projects.
+
+Package: distroastro-build-dep
+Architecture: all
+Depends: ${misc:Depends}, libglu-dev, libsdl-pango-dev, libsdl-mixer1.2-dev | libsdl-mixer-dev, libboost-all-dev, libgraphicsmagick++1-dev, libmotif-dev | lesstif2-dev, libxmu-dev, mesa-common-dev, doxygen, zlib1g-dev
+Suggests: qtbase5-dev (>= 5.2.1), libqt5opengl5-dev (>= 5.2.1), qtdeclarative5-dev (>= 5.2.1), qtdeclarative5-dev-tools (>= 5.2.1), qtquick1-5-dev (>= 5.2.1), qtscript5-dev (>= 5.2.1), qttools5-dev (>= 5.2.1), qttools5-dev-tools (>= 5.2.1)
+Description: Build dependencies for Distro Astro projects
+ This is a metapackage of build dependencies of Distro Astro's projects.

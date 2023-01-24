@@ -1,0 +1,148 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Astronomy Picture of the Day (APOD) Wallpaper                                #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2012-2014 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "4.0";
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version, $date, $hires);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+	'D|date'	=> \$date,
+	'H|hires'	=> \$hires,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+use LWP::Simple qw($ua get);
+#$ua->agent('apod-wallpaper/1.0');
+
+my $base_url = "http://apod.nasa.gov";
+
+sub main {
+
+	my ($src, $dest, $filename, $img);
+
+	my $datestring = getapoddate();
+	print "$datestring\n" and exit if $date;
+
+	my $url = "$base_url/apod/ap$datestring.html";
+
+	print "Reading APOD from $url...\n" if !$quiet;
+	my $html = get("$url") or
+	print STDERR "$exec: Cannot read $base_url\n" and exit 64 + 11;
+
+	$html =~ m/(<\s*img\s+.*src\s*=\s*)(")(.*?)(")([\s>])/i;
+
+	if ($src = $3) {
+
+		if ($hires) {
+			$html =~ m/(<\s*a\s+.*href\s*=\s*)(")(.*?)(")([\s>])(\s+<\s*img)(.*?)([\s>])/i;
+			$src = $3;
+		}
+
+		$filename = (split "/", $src)[-1];
+
+		$dest = $ARGV[0] || '';
+		$dest = "$dest/$filename" if (-d $dest);
+
+		$img = $dest || $filename;
+
+		print "Getting APOD picture $filename...\n" if !$quiet;
+		my $imgdata = get("$base_url/apod/$src") or
+		print STDERR "$exec: Cannot read $filename\n" and exit 64 + 11;
+
+		open FILE, ">$img" or
+		print STDERR "$exec: Cannot write to $img\n" and exit 64 + 13;
+		print FILE $imgdata;
+		close FILE;
+
+		print "APOD image stored as $img.\n" if !$quiet;
+
+		$html =~ m/<center>\n<b> (.*?) <\/b> <br>/i;
+		my $descdata = $1;
+
+		(my $desc = $img) =~ s/\.[^.]+$//;
+		open FILE, ">$desc.txt" or
+		print STDERR "$exec: Cannot write to $desc.txt\n" and exit 64 + 13;
+		print FILE $descdata;
+		close FILE;
+		exit 0;
+	}
+	else {
+		print STDERR "No image file. Perhaps APOD is not an picture?\n";
+		exit 2;
+	}
+}
+
+sub getapoddate {
+	my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time - 18000);
+	$year -= 100; $mon += 1;
+	my $datestring = sprintf ("%02d%02d%02d", $year,$mon,$mday);
+}
+
+sub showhelp {print <<DOC;
+Usage: $exec [OPTION]... [FILE]...
+
+Download the latest Astronomy Picture of the Day from $base_url.
+You may specify the filename or path to save it to.
+
+  -H, --hires		download the highest resolution version available
+  -q, --quiet		don't display any output
+  -v, --verbose		verbose mode
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2011-2014 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp and exit if ($help);
+showversion and exit if ($version);
+main;
+

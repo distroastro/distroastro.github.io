@@ -1,0 +1,12 @@
+Package: *
+Pin: release o=Distro Astro
+Pin-Priority: 800
+
+Package: *
+Pin: release o=LP-PPA-mutlaqja
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Ubuntu
+Pin-Priority: 500
+

@@ -1,0 +1,19 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Image the Planets
+Name[es]=Captura los Planetas
+Name[it]=Riprendi i Pianeti
+Name[fr]=Filmer les Planètes
+Exec=wxastrocapture
+Icon=desktop-wxastrocapture
+Categories=Education;Science;Astronomy
+Comment=Capture deep sky and planetary objects with telescopes
+Comment[es]=Captura objetos de espacio profundo y planetas con tu telescopio
+Comment[it]=Riprendi gli oggetti dello spazio profondo e i pianeti con il tuo  telescopio
+Comment[fr]=Capture d'objets planétaires et du ciel profond avec des télescopes
+StartupNotify=false
+Terminal=false
+Path=
+X-MultipleArgs=false
+

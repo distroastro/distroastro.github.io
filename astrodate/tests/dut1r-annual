@@ -1,0 +1,9 @@
+#!/bin/sh
+
+true > "$0.out"
+for i in $(seq 1620 1972); do
+	output="${i}0101 $(dut1r ${i}0101) $(dut1s ${i}0101)"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+

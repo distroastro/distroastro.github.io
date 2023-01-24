@@ -1,0 +1,92 @@
+.TH UPDATE-LOCATION "1" "May 2015" "Distro Astro Location" "User Commands"
+.SH NAME
+update-location \- update the system location
+.SH SYNOPSIS
+.B update-location
+[\fIOPTION\fR]... [\fILAT,LONG\fR]
+.SH DESCRIPTION
+Update the system location from IP or GPS. It will use GPS if a stream of NMEA
+strings are detected from either a serial, USB, or RFComm port. It will use IP
+if an Internet connection is found and a GPS is not detected. This program also
+accepts user\-supplied LAT,LONG coordinates from the command line.
+.PP
+After finding the latitude and longitude, a reverse geocoding is performed to
+lookup the place name, elevation, and time zone. The results are then saved to
+\fI/etc/location\fP, allowing it to be used by any 3rd\-party application.
+.SH OPTIONS
+.TP
+\fB\-f\fR, \fB\-\-force\fR
+force a location update, even if IP address has not
+changed or location has user\-defined values
+.TP
+\fB\-i\fR, \fB\-\-ip\fR
+update by IP even if a GPS is detected on a serial port
+.TP
+\fB\-g\fR, \fB\-\-gps\fR
+update by GPS even if an Internet connection is detected
+.TP
+\fB\-r\fR, \fB\-\-reload\fR
+reload information from \fI/etc/location\fP after manually
+editing the file
+.TP
+\fB\-q\fR, \fB\-\-quiet\fR
+don't display any output
+.TP
+\fB\-v\fR, \fB\-\-verbose\fR
+verbose mode
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+display this help and exit
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+output version information and exit
+.PP
+If no option is used, it will first try to use GPS, and if none is detected, it
+will use IP.
+.PP
+It is possible to manually enter the coordinates like so:
+.IP
+update\-location xx.xxxxxx,yyy.yyyyyy
+.PP
+where xx.xxxxxx represents the latitude and yyy.yyyyyy represents the longitude.
+.PP
+Directly supplying LAT,LONG coordinates this way may cause issues if at least
+one of the coordinates is negative because the program may read it as an OPTION
+switch. Therefore it is recommended to use two dashes first, to indicate that
+anything after them is not an OPTION. The syntax is like this:
+.IP
+update\-location \fB\-\-\fR [\-]xx.xxxxxx,[\-]yyy.yyyyyy
+.PP
+where xx.xxxxxx represents the latitude, yyy.yyyyyy represents the longitude,
+and [\-] represents a possible negative sign.
+.PP
+In  the past, it was not recommended to edit \fI/etc/location\fP directly for
+the following reasons:
+.PP
+1. it will not affect other files written by update\-location, and may therefore cause inconsistency in data.
+.PP
+2. update\-location overwrites \fI/etc/location\fP when a new location is detected (usually when your IP address changes), resulting in the loss of your manual edits.
+.PP
+It is now possible to edit \fI/etc/location\fP directly. To edit it manually, do the following steps:
+.TP
+1. Make changes to the data as desired.
+.TP
+2. Change the SOURCE line to read SOURCE=USER.
+.TP
+3. Run the following command:
+.IP
+update\-location \fB\-\-reload\fR
+.PP
+The changes you made are now recognized as the system location and will not be automatically overwritten.
+.SH AUTHOR
+Written by Bamm Gabriana.
+.SH "REPORTING BUGS"
+Report update\-location bugs to Bamm Gabriana <bamm@distroastro.org>
+.br
+Distro Astro home page: <http://www.distroastro.org/>
+.SH COPYRIGHT
+Copyright \(co 2014\-2015 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl\-2.0.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.

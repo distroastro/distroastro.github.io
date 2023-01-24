@@ -1,0 +1,3 @@
+desktop-command-not-in-package usr/share/applications/screensavers/hubble-slideshow-gnome.desktop usr/lib/gnome-screensaver/gnome-screensaver/slideshow
+desktop-command-not-in-package usr/share/applications/screensavers/hubble-slideshow-mate.desktop usr/lib/mate-screensaver/slideshow
+desktop-entry-invalid-category MATE usr/share/applications/screensavers/hubble-slideshow-mate.desktop

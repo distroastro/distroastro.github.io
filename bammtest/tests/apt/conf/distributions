@@ -1,0 +1,10 @@
+Version: 3.1
+Origin: Tests
+Label: Tests
+Suite: stable
+Codename: juno
+Architectures: i386 amd64 source
+Components: free non-free
+Description: Test apt repository
+SignWith: keys@distroastro.org
+

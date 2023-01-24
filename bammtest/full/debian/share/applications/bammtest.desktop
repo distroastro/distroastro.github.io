@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Bamm Test
+GenericName=Bamm Test
+Exec=bammtest %f
+Icon=bammtest
+Categories=Utility;
+Comment=Test source package building
+StartupNotify=true
+Terminal=false
+Path=

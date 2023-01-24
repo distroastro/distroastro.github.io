@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Text Editor
+GenericName=Text Editor
+Comment=Edit text files
+Exec=pluma %U
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=text/plain;
+Icon=accessories-text-editor
+Categories=MATE;GTK;Utility;TextEditor;
+X-MATE-DocPath=pluma/pluma.xml
+X-MATE-FullName=Text Editor
+X-MATE-Bugzilla-Bugzilla=MATE
+X-MATE-Bugzilla-Product=pluma
+X-MATE-Bugzilla-Component=general
+X-MATE-Bugzilla-Version=2.30.4
+X-MATE-Bugzilla-ExtraInfoScript=/usr/share/pluma-2/pluma-bugreport
+X-Ubuntu-Gettext-Domain=pluma

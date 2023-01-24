@@ -1,0 +1,14 @@
+Source: distroastro-desktop
+Section: metapackages
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-desktop
+Architecture: all
+Depends: ${misc:Depends}, astropack, distropack, distroastro-defaults
+Description: Distro Astro Desktop
+ This metapackage installs all the packages of the Distro Astro desktop.

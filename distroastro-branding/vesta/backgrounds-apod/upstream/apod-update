@@ -1,0 +1,193 @@
+#!/bin/sh
+
+################################################################################
+#                                                                              #
+# Astronomy Picture of the Day (APOD) Wallpaper                                #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2012-2014 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+exec="$(basename $0)"
+ver="4.0"
+
+# Default values.
+wait="0"		# Number of seconds before starting.
+retry="10"		# Number of seconds between retries.
+maxtries="2"		# Maximum retries before quitting.
+
+# Process command line arguments.
+for i do
+	if [ -z "$i" ]; then false
+	# All options.
+	elif [ "$i" = "-q" -o "$i" = "--quiet"    ]; then	quiet="$i"
+	elif [ "$i" = "-v" -o "$i" = "--verbose"  ]; then	verbose="$i"
+	elif [ "$i" = "-d" -o "$i" = "--debug"    ]; then	debug="$i"
+	elif [ "$i" = "-h" -o "$i" = "--help"     ]; then	help="$i"
+	elif [ "$i" = "-V" -o "$i" = "--version"  ]; then	version="$i"
+	elif [ "$i" = "-H" -o "$i" = "--hires"    ]; then	hires="$i"
+	elif [ "$i" = "-f" -o "$i" = "--force"    ]; then	force="$i"
+	elif [ "$i" = "-w" -o "$i" = "--wait"     ]; then	wait="$i"
+	elif [ "$i" = "-r" -o "$i" = "--retry"    ]; then	retry="$i"
+	elif [ "$i" = "-M" -o "$i" = "--maxtries" ]; then	maxtries="$i"
+	# Options with values.
+	elif [ "$_" = "-w" -o "$_" = "--wait"     ]; then	wait="$i"
+	elif [ "$_" = "-r" -o "$_" = "--retry"    ]; then	retry="$i"
+	elif [ "$_" = "-M" -o "$_" = "--maxtries" ]; then	maxtries="$i"
+	# Remaining arguments.
+	elif echo $i | grep " " >/dev/null; then
+		args="$args \"$i\""
+	else
+		args="$args $i"
+	fi
+	_="$i"
+done
+args=$(echo $args | sed 's/^ //g')
+
+if ! [ "$wait" -ge "0" 2>/dev/null ]; then
+	echo "Illegal value for wait." 1>&2
+	echo "Try \`$exec --help' for more information." 1>&2
+	exit 2
+fi
+
+if ! [ "$retry" -ge "0" 2>/dev/null ]; then
+	echo "Illegal value for retry." 1>&2
+	echo "Try \`$exec --help' for more information." 1>&2
+	exit 2
+fi
+
+if ! [ "$maxtries" -ge "0" 2>/dev/null ]; then
+	echo "Illegal value for maxtries." 1>&2
+	echo "Try \`$exec --help' for more information." 1>&2
+	exit 2
+fi
+
+main() {
+
+	# Only run as root.
+	if [ "$(id -u)" != "0" ]; then
+		echo "$exec: error: requested operation requires superuser privilege." 1>&2
+		exit 2
+	fi
+
+	# Define paths.
+	bgimgpath="/usr/share/backgrounds/APOD/APOD.jpg"	# APOD image.
+	bgimgdesc="/usr/share/backgrounds/APOD/APOD.txt"	# APOD description.
+	logfile="/var/log/apod" 	# APOD log file.
+	cachedir="/var/cache/apod"	# APOD cache directory.
+
+	# Call to APOD Image Downloader.
+	apodget="apod-getimage $quiet $verbose $debug $hires"
+
+	# Date of current APOD.
+	apoddate=`$apodget --date`
+
+	# Date of last APOD downloaded.
+	if [ -e "$logfile" ]; then
+		lastupdate=$(cat $logfile)
+	fi
+
+	# Test if update is required.
+	if [ -z "$force" ] && [ -n "$lastupdate" ] && [ "$apoddate" -eq "$lastupdate" ]; then
+		[ -z "$quiet" ] && echo You have the latest APOD image.
+		exit 0
+	fi
+
+	# Pause by $wait seconds before proceeding.
+	if [ "$wait" -gt "0" ]; then
+		[ -z "$quiet" ] && echo "Waiting for $wait seconds..."
+		sleep "$wait"
+	fi
+
+	# Download a new APOD image.
+	$apodget $bgimgpath
+
+	# If there are errors, retry every $retry seconds
+	# until successful.
+	while [ "$?" -gt "0" ]; do
+
+		count=$(($count+1))
+		if [ "$count" -ge "$maxtries" ]; then
+			[ "$maxtries" -gt "0" ] && echo "Update failed $count. Reached maximum number of $maxtries retries." 1>&2
+			exit "$maxtries"
+		fi
+
+		echo "Update failed $count. Retrying after $retry seconds..."; 1>&2
+		sleep "$retry"
+
+		echo ""; 1>&2
+		$apodget $bgimgpath
+
+	done
+
+	# Log the latest download.
+	echo $apoddate > $logfile
+
+	# Refresh the desktop wallpaper.
+	refresh_wallpaper
+
+	# Cache the downloaded image.
+	mkdir -p $cachedir
+	cp $bgimgpath $cachedir/ap$apoddate.jpg
+	cp $bgimgdesc $cachedir/ap$apoddate.txt
+
+	# Exit with no error.
+	exit 0;
+}
+
+refresh_wallpaper() {
+	for user in `awk -F: '$3 >= 1000 && $3 < 60000 {print $1}' /etc/passwd`; do
+		if users | grep $user >/dev/null; then
+			su - $user -c "apod-refresh -qn 2>/dev/null"
+		fi
+	done
+}
+
+showhelp() {
+	echo "Usage: $exec [OPTION]..."
+	echo ""
+	echo "Update the Astronomy Picture of the Day (APOD) wallpaper in the background."
+	echo ""
+	echo "  -H, --hires		download the highest resolution version available"
+	echo "  -f, --force		continue even if you have the latest image"
+	echo "  -q, --quiet		don't display any output"
+	echo "  -v, --verbose		verbose mode"
+	echo "  -h, --help		display this help and exit"
+	echo "  -V, --version		output version information and exit"
+	echo ""
+	echo "Report $exec bugs to Bamm Gabriana <bamm@distroastro.org>"
+	echo "Distro Astro home page: <http://www.distroastro.org/>"
+}
+
+showversion() {
+	echo "$exec $ver"
+	echo "Copyright (C) 2011-2014 Bamm Gabriana."
+	echo "License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>."
+	echo "This is free software: you are free to change and redistribute it."
+	echo "There is NO WARRANTY, to the extent permitted by law."
+	echo ""
+	echo "Written by Bamm Gabriana."
+}
+
+[ -n "$help" ] && showhelp && exit
+[ -n "$version" ] && showversion && exit
+main
+

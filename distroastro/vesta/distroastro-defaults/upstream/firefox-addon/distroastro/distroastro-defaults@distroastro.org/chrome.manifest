@@ -1,0 +1,3 @@
+content	distroastro	content/
+
+overlay	chrome://browser/content/browser.xul	chrome://distroastro/content/distroastro-overlay.xul

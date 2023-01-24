@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Time zone offset in seconds
+tzoffset_s=$(echo "$(date -u +%s --date=19700101) - $(date +%s --date=19700101)" | bc)
+
+# Time zone offset in minutes
+tzoffset_m=$(echo "$tzoffset_s / 60" | bc)
+
+# Time zone offset in hours
+tzoffset_h=$(echo "$tzoffset_m / 60" | bc)
+
+# Time zone offset in ISO 8601 notation
+tzoffset_iso=$(date "+%z")
+
+# Print the result
+case "$1" in
+-s) printf "%0.0f\n" "$tzoffset_s" ;;
+-m) printf "%0.0f\n" "$tzoffset_m" ;;
+-h) printf "%0.1f\n" "$tzoffset_h" ;;
+ *) printf "%s\n"  "$tzoffset_iso" ;;
+esac
+

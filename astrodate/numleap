@@ -1,0 +1,102 @@
+#!/bin/sh
+
+dir=$(dirname "$(readlink -f -- "$0")")
+. "$dir/include.sh"
+
+configdir=${configdir?}
+mjddate="${mjddate?}"
+leapseclst="$configdir/leap-seconds.list"
+
+datatable=$(grep -v "^#" "$leapseclst" | awk '{$1=$1};1')
+firstleapsec=$(echo "$datatable" | head -1 | cut -d' ' -f1)
+
+ntptime="${ntptime?}"
+ntpstamp="${ntptime%.*}"
+
+if [ "$ntpstamp" -ge "$firstleapsec" ]; then
+	if [ -z "$DATAEXTEND" ]; then
+		datafile="delta_t.modern.zdat"
+		if [ ! -f "$configdir/$datafile" ]; then
+			echo "${exec?}: Data file missing or corrupt." >&2
+			exit 127
+		fi
+		N=$(zcat "$configdir/$datafile" | wc -l)
+		if [ "$mjddate" -gt "$((41317+N+365))" ]; then
+			echo "${exec?}: The data requested is beyond the range of this program." >&2
+			exit 2
+		fi
+	fi
+	# shellcheck disable=SC2028
+	tai_utc=$(echo "$datatable" | grep "$(echo "$datatable\n$ntpstamp" | sort -r | grep -A 1 "$ntpstamp" | head -2 | tail -1 | cut -d' ' -f1)" | cut -d' ' -f2)
+else
+	MJD="${mjdtime?}"
+	if [ "$mjddate" -ge "39887" ]; then
+		# 1968-02-01
+		tai_utc=$(echo "4.21317000 + ($MJD - 39126.0) * 0.0025920" | bc)
+	elif [ "$mjddate" -ge "39126" ]; then
+		# 1966-01-01
+		tai_utc=$(echo "4.31317000 + ($MJD - 39126.0) * 0.0025920" | bc)
+	elif [ "$mjddate" -ge "39004" ]; then
+		# 1965-09-01
+		tai_utc=$(echo "3.84013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38942" ]; then
+		# 1965-07-01
+		tai_utc=$(echo "3.74013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38820" ]; then
+		# 1965-03-01
+		tai_utc=$(echo "3.64013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38761" ]; then
+		# 1965-01-01
+		tai_utc=$(echo "3.54013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38639" ]; then
+		# 1964-09-01
+		tai_utc=$(echo "3.44013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38486" ]; then
+		# 1964-04-01
+		tai_utc=$(echo "3.34013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38395" ]; then
+		# 1964-01-01
+		tai_utc=$(echo "3.24013000 + ($MJD - 38761.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "38334" ]; then
+		# 1963-11-01
+		tai_utc=$(echo "1.94585800 + ($MJD - 37665.0) * 0.0011232" | bc)
+	elif [ "$mjddate" -ge "37665" ]; then
+		# 1962-01-01
+		tai_utc=$(echo "1.84585800 + ($MJD - 37665.0) * 0.0011232" | bc)
+	elif [ "$mjddate" -ge "37512" ]; then
+		# 1961-08-01
+		tai_utc=$(echo "1.37281800 + ($MJD - 37300.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "37300" ]; then
+		# 1961-01-01
+		# UTC was defined in 1960 and came into effect on 1961 Jan 01.
+		tai_utc=$(echo "1.42281800 + ($MJD - 37300.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "36934" ] && [ -z "$NOUTCEXTEND" ]; then
+		# 1960-01-01
+		# The file ftp://maia.usno.navy.mil/ser7/tai-utc.dat extends the definition of UTC
+		# backwards to 1960 although it actually started in 1961.
+		tai_utc=$(echo "1.41781800 + ($MJD - 37300.0) * 0.0012960" | bc)
+	elif [ "$mjddate" -ge "36204" ]; then
+		# 1958-01-01
+		# UTC is not defined for this epoch but TAI serves the purpose then.
+		tai_utc="0"
+		# We can extend this though all the way to 1958 when TAI began.
+		[ "$UTCEXTEND" ] && tai_utc=$(echo "1.41781800 + ($MJD - 37300.0) * 0.0012960" | bc)
+	else
+		# Neither TAI nor UTC is defined before 1958. TAI-UTC is meaningless.
+		if [ -n "$SHOWDEFN" ]; then
+			echo "TAI is not defined for this period."
+		else
+			echo "${exec?}: TAI-UTC is not defined for this epoch." >&2
+		fi
+		exit 1
+	fi
+	tai_utc=$(printf "%0.9f\n" "$tai_utc")	
+	[ "$(echo "$tai_utc <= 0" | bc)" = "1" ] && tai_utc="0" && [ -z "$PRECISION" ] && PRECISION="0"
+	if [ -z "$PRECISION" ]; then
+		[ "${dfrac?}" = "0" ] && PRECISION="6" || PRECISION="9"
+	fi
+fi
+
+[ -n "$SHOWDEFN" ] && printf "%s" "TAI-UTC="
+printf "%0.${PRECISION}f\n" "$tai_utc"
+

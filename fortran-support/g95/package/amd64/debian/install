@@ -1,0 +1,2 @@
+bin lib /usr/lib/g95
+/debian/etc/* /etc

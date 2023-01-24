@@ -1,0 +1,66 @@
+[Toplevel bottom]
+expand=true
+orientation=bottom
+size=18
+
+[Object start-menu]
+object-type=applet
+applet-iid=MintMenuAppletFactory::MintMenuApplet
+toplevel-id=bottom
+position=0
+locked=true
+
+[Object show-desktop]
+object-type=applet
+applet-iid=WnckletFactory::ShowDesktopApplet
+toplevel-id=bottom
+position=1
+locked=true
+
+[Object launcher-firefox]
+object-type=launcher
+launcher-location=/usr/share/applications/firefox.desktop
+menu-path=applications:/
+toplevel-id=bottom
+position=2
+locked=true
+
+[Object launcher-text-editor]
+object-type=launcher
+launcher-location=/usr/share/applications/pluma.desktop
+menu-path=applications:/
+toplevel-id=bottom
+position=3
+locked=true
+
+[Object window-list]
+object-type=applet
+applet-iid=WnckletFactory::WindowListApplet
+toplevel-id=bottom
+position=4
+locked=true
+
+[Object notification-area]
+object-type=applet
+applet-iid=NotificationAreaAppletFactory::NotificationArea
+toplevel-id=bottom
+position=2
+panel-right-stick=true
+locked=true
+
+[Object clock]
+object-type=applet
+applet-iid=ClockAppletFactory::ClockApplet
+toplevel-id=bottom
+position=1
+panel-right-stick=true
+locked=true
+
+[Object launcher-astroclock]
+object-type=launcher
+launcher-location=/usr/share/applications/astroclock.desktop
+toplevel-id=bottom
+position=0
+panel-right-stick=true
+locked=true
+

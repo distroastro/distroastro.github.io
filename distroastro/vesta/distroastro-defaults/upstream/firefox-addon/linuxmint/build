@@ -1,0 +1,9 @@
+#!/bin/sh
+extensionname=useragent@linuxmint.com
+extensionxpi=$extensionname.xpi
+cd $extensionname
+rm -f $extensionxpi
+stamp
+kzip -r -q $extensionxpi *
+rm -f ../$extensionxpi
+mv $extensionxpi ../

@@ -1,0 +1,2 @@
+keyrings usr/share
+sources/*.list etc/apt/sources.list.d

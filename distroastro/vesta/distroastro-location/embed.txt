@@ -1,0 +1,1 @@
+http://maps.google.com/maps?output=embed&ll=16.413622,120.5597218&z=9

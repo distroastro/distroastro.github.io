@@ -1,0 +1,54 @@
+XEphem.ShareDir:                             /usr/share/xephem
+XEphem.Elevation:                            181.4 m
+XEphem.Lat:                                  41:52:28
+XEphem.Long:                                 87:38:22
+XEphem.Sitename:                             Chicago, Illinois
+XEphem.TZName:                               CST
+XEphem.TZone:                                6:00:00
+XEphem.Temp:                                 10.0 C
+XEphem.Pressure:                             1010 hPa
+XEphem*HelpConfig*BrowserCmd0.value:         x-www-browser '%s'
+XEphem*HelpConfig*BrowserName0.value:        x-www-browser
+XEphem*HelpConfig*BrowserCmd1.value:         firefox '%s'
+XEphem*HelpConfig*BrowserName1.value:        firefox
+XEphem*XmArrowButton.foreground:             #212121
+XEphem*XmArrowButtonGadget.foreground:       #212121
+XEphem*XmCascadeButton.foreground:           #212121
+XEphem*XmCascadeButtonGadget.foreground:     #212121
+XEphem*XmLabel.foreground:                   #212121
+XEphem*XmLabelGadget.foreground:             #212121
+XEphem*XmPushButton.foreground:              #212121
+XEphem*XmPushButtonGadget.foreground:        #212121
+XEphem*XmScale.foreground:                   #212121
+XEphem*XmToggleButton.foreground:            #212121
+XEphem*XmToggleButtonGadget.foreground:      #212121
+XEphem.AnnoColor:                            #212121
+XEphem*background:                           #d6d6d6
+XEphem*XmList.background:                    #ededed
+XEphem*XmText.background:                    #ededed
+XEphem*XmTextField.background:               #ededed
+XEphem*XmList.foreground:                    #1a1a1a
+XEphem*XmText.foreground:                    #1a1a1a
+XEphem*XmTextField.foreground:               #1a1a1a
+XEphem*XmCascadeButton.fontList:             -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmCascadeButtonGadget.fontList:       -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmLabel.fontList:                     -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmLabelGadget.fontList:               -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmList.fontList:                      -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmPushButton.fontList:                -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmPushButtonGadget.fontList:          -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmScale.fontList:                     -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmText.fontList:                      -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmTextField.fontList:                 -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmToggleButton.fontList:              -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem*XmToggleButtonGadget.fontList:        -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.AnnoFont:                             -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.CnsFont:                              -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.SkyGridFont:                          -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.cursorTrackingFont:                   -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.moonsFont:                            -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.tipFont:                              -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.trailsFont:                           -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.viewsFont:                            -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+XEphem.viewsGreekFont:                       -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+

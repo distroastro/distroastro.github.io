@@ -1,0 +1,23 @@
+Source: screensavers-nightvision-slideshow
+Section: misc
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: screensavers-nightvision-slideshow
+Architecture: all
+Depends: ${misc:Depends}, gnome-screensaver | mate-screensaver, backgrounds-nightvision
+Description: Wallpapers from Hubble Space Telescope Screensaver
+ These are selected wallpapers from ESA's Top 100 list of images from Hubble
+ Space Telescope. The full list of ESA/Hubble Top 100 Images can be found at
+ http://www.spacetelescope.org/images/archive/top100
+ .
+ The images are licensed under the Creative Commons Attribution 3.0 Unported
+ licensed and are free to be redistributed provided they are clearly and visibly
+ credited.
+ .
+ In this package, the images have been darkened and given a reddish tinge to
+ help preserve nightvision.

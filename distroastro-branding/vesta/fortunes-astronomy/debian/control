@@ -1,0 +1,15 @@
+Source: fortunes-astronomy
+Section: universe/games
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: fortunes-astronomy
+Architecture: all
+Depends: ${misc:Depends}, fortune-mod | fortune
+Description: Astronomy Quotes for Fortunes
+ A list of astronomy quotes for the fortunes package.
+

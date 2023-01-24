@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Desktop Sharing
+Name[es]=Escritorio remoto
+Name[it]=Condivisione desktop
+Name[fr]=Bureau à distance
+Exec=vino-preferences
+Icon=preferences-desktop-remote-desktop
+Categories=GTK;Settings;System;X-MATE-NetworkSettings;
+Comment=Choose how other users can remotely view your desktop
+Comment[es]=Elije como otros usuarios pueden acceder de forma remota a tu escritorio
+Comment[it]=Scegli come gli utenti remoti possano accedere al tuo desktop
+Comment[fr]=Choisir la manière dont les autres utilisateurs peuvent accéder à distance à votre bureau
+StartupNotify=true
+Terminal=false
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=vino
+X-GNOME-Bugzilla-Component=Preferences Dialog
+X-GNOME-Bugzilla-Version=3.8.1
+X-Ubuntu-Gettext-Domain=vino

@@ -1,0 +1,4 @@
+#AstroCC Preferences
+#Thu Sep 08 00:00:00 PHT 2014
+.coords.lat=0.0
+.coords.lon=0.0

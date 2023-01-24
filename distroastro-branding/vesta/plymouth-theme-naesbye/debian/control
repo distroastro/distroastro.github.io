@@ -1,0 +1,16 @@
+Source: plymouth-theme-naesbye
+Section: x11
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>, Lars Næsbye Christensen <lars@naesbye.dk>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: plymouth-theme-naesbye
+Architecture: all
+Depends: ${misc:Depends}, plymouth-x11
+Provides: plymouth-theme
+Description: Næsbye Plymouth Theme
+ A graphical animation for the plymouth boot process using a splash screen image
+ for Distro Astro 3.0 Juno created by Lars Næsbye Christensen.

@@ -1,0 +1,16 @@
+Source: distroastro-codecs
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 9.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-codecs
+Architecture: all
+Depends: ${misc:Depends}, adobe-flashplugin, cabextract, chromium-codecs-ffmpeg-extra, gstreamer0.10-ffmpeg, gstreamer1.0-libav, gstreamer1.0-plugins-bad, gstreamer1.0-plugins-ugly, libavcodec-extra, libdvdcss2, libdvdnav4, libdvdread4, libhal1-flash, oxideqt-codecs-extra, unrar, unshield, vlc, vlc-plugin-notify
+Description: Packages for multimedia support in Distro Astro
+ This is a metapackage containing all the packages required for multimedia
+ support in Distro Astro. Based on the Linux Mint package mint-meta-codecs.
+

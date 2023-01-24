@@ -1,0 +1,5 @@
+debian/share /usr
+bin /usr
+bammtest /usr/share
+data /usr/share/bammtest-data
+

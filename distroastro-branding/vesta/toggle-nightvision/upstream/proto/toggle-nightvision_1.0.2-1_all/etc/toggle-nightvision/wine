@@ -1,0 +1,28 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+exit if (! `which winecolors`);
+exit if (! @ARGV);
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose);
+
+exit unless GetOptions(
+	'q|quiet'   => \$quiet,
+	'v|verbose' => \$verbose,
+);
+
+if ($ARGV[0] eq "Nightvision") {
+	`winecolors -q $ARGV[0]`;
+	print "Wine Nightvision ON.\n" if !$quiet;
+}
+
+else {
+	`winecolors -q $ARGV[0]`;
+	print "Wine Nightvision OFF.\n" if !$quiet;
+}
+

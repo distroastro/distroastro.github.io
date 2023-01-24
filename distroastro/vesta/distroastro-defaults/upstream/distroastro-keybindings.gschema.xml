@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="mate-settings-daemon">
+  <schema path="/org/mate/desktop/keybindings/mate-system-monitor/" id="org.mate.keybindings.mate-system-monitor">
+    <key type="s" name="binding">
+      <default>''</default>
+      <summary>MATE System Monitor</summary>
+      <description>View current processes and monitor system state.</description>
+    </key>
+    <key type="s" name="name">
+      <default l10n="messages" context="name">'MATE System Monitor'</default>
+      <summary>The name of the keyboard shortcut to open the MATE System Monitor</summary>
+      <description>This is the name of the keyboard shortcut to open the MATE System Monitor. This name will be shown in the keyboard shortcut preferences dialog.</description>
+    </key>
+    <key type="s" name="action">
+      <default>'mate-system-monitor'</default>
+      <summary>MATE System Monitor</summary>
+      <description>Command used to open the MATE System Monitor.</description>
+    </key>
+  </schema>
+  <schema path="/org/mate/desktop/keybindings/xkill/" id="org.mate.keybindings.xkill">
+    <key type="s" name="binding">
+      <default>''</default>
+      <summary>Force a window to close</summary>
+      <description>Binding to force a window to close.</description>
+    </key>
+    <key type="s" name="name">
+      <default l10n="messages" context="name">'Force a window to close'</default>
+      <summary>The name of the keyboard shortcut to force a window to close</summary>
+      <description>This is the name of the keyboard shortcut to force a window to close. This name will be shown in the keyboard shortcut preferences dialog.</description>
+    </key>
+    <key type="s" name="action">
+      <default>'xkill'</default>
+      <summary>Force a window to close</summary>
+      <description>Command used to force a window to close.</description>
+    </key>
+  </schema>
+  <schema path="/org/mate/desktop/keybindings/toggle-nightvision/" id="org.mate.keybindings.toggle-nightvision">
+    <key type="s" name="name">
+      <default l10n="messages" context="name">'Toggle Nightvision'</default>
+      <summary>The name of the keyboard shortcut to toggle nightvision mode</summary>
+      <description>This is the name of the keyboard shortcut to toggle nightvision mode. This name will be shown in the keyboard shortcut preferences dialog.</description>
+    </key>
+    <key type="s" name="binding">
+      <default>''</default>
+      <summary>Toggle Nightvision</summary>
+      <description>Binding to toggle nightvision mode.</description>
+    </key>
+    <key type="s" name="action">
+      <default>'toggle-nightvision'</default>
+      <summary>Toggle nightvision mode</summary>
+      <description>Command used to turn nightvision mode on or off.</description>
+    </key>
+  </schema>
+</schemalist>

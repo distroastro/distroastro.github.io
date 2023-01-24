@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Planetarium
+Comment=Default theme for Distro Astro Planetarium sessions.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Planetarium
+MetacityTheme=Planetarium
+IconTheme=Clearskies
+CursorTheme=Planetarium
+GtkColorScheme=fg_color:#636363636363,bg_color:#212121212121,text_color:#b0b0b0b0b0b0,base_color:#1a1a1a1a1a1a,selected_fg_color:#303030303030,selected_bg_color:#949494949494,tooltip_fg_color:#212121212121,tooltip_bg_color:#fbfbeaeaa0a0
+

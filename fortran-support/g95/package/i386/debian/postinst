@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+update-alternatives --install /usr/bin/f77 f77 /usr/bin/g95 20
+update-alternatives --install /usr/bin/f95 f95 /usr/bin/g95 20
+# End manually added section

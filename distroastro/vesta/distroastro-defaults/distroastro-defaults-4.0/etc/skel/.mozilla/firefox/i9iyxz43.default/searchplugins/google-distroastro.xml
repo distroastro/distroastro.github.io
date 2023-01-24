@@ -1,0 +1,16 @@
+<SearchPlugin xmlns="http://www.mozilla.org/2006/browser/search/" xmlns:os="http://a9.com/-/spec/opensearch/1.1/">
+	<os:ShortName>Google</os:ShortName>
+	<os:Description>Google Search</os:Description>
+	<os:InputEncoding>UTF-8</os:InputEncoding>
+	<os:Image width="16" height="16">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADx0lEQVRYw71XSUxTURRlYxTHlTsXDqA7NSrCQjFOVZQFiRUFWeCAGIMujIoJQQOJoCBDAi6AIhLTUNAwqCiQIlIHiKghJQSiMqgIpC0doL+107/e17RN/0R/tXiTk9/0v3fPee/de9/9YWEijabplYhkl8slQ/QhZhB2D3Se/2Q4JomMDQuVobNN6LgGYQWRhmMtiGqcG/nXxOhnKTopQjjhLw3nOhCFKCQ82FVvxImDECJDX2r0GSGWfBtO0PI5ck5OACV/AMarF0F3/DBoJDGgORgNumMSMFy5AFRtJTgnfgiJ0OBjq5iVc8idU7/AlHMDNAd2gmZ/1PzAMaZb191z+EQI7gS+WMa37daOVtAejQ1MzII2fg/87uoQOg5uTJCAYw+m6h4GTeyP2YIcoeMo4Es1J3vlQo71aUlgrioD6/NGsLY24e9y0J9PZpIX5wHQtGB2MI6C5Dk72LRHdnOIZ1ISwPaxVzDabX09oDsZD3Pl98Rkhsyb76vYRcZceolDbsg4DfTsbEDHNGUWm5oU7sIKsv3JDAeWEXC0LwZT5lofOUk5l1EPoTbkPkG2X8ZQNpYHDuUiN6iy1aCN2wHWtmewEIbcFURAH+P8P0l8AghsjesAHI6FEtBLBMz4/+lQrWEIcA4kzetk322zaHQNOjiFiQiwMwR0LmYIcH3LDpkA+Ts7W4Dtvwqo6bbxCtDNewTqkyET0NBr5z0CZhB+PsQQMKHaDHZX8EE4qnFxBHQPOXiDkJWGd3zkz1rXwS5FAjSPKIMWoOixcwRMGWluGpIejlmIxsCiDIe85u2wQ3HMDUnzGdBZDaLJ56w0SEspBnlqhYWvECW6m03Sw/m/KOnJ9ZF7kdJ+DYy2wKXYjldaZp2Vs/p67vlT+FjuvYyq/V9OmjUQ++QUR0T803RQ/fooSP7FMA5nWxRIaGKQk92w2DjbX+l/HUeSK9J/wMtxFUeAF9IXl6Hocw00fHkJj7+2wX21HM4psyBKIXW/j36YCXvv/vQJeDPsZJPbkXMDuyEpZK/o0XCLoIhAiJKnQmzxB07uewTkC7XhA+zB7d/f4nGkBC0guj4RqtQtfOT9+Fgi1BdGeLpXhk1RWsh6XwI766WiyNNf3YQh/Qgf+TQ+1gf6INnKJ8IbnLVDTZDxOhfiWtIgpiHRvVJJ81lI68x2x8KwflTo5pvGBW4R+21AdkIdwmu3P+DKeUSEk+6VnR1BEpMP13zBMw9iN2SewiGWmCJ5zkm1f/xKXkF6OFK/ySVC4oRcpx5oPP9VkPLqq3Ai7A+h4X82sn/AoAAAAABJRU5ErkJggg==</os:Image>
+	<SearchForm>http://www.google.com/</SearchForm>
+	<os:Url type="text/html" method="GET" template="http://www.google.com/search" resultDomain="google.com">
+		<os:Param name="q" value="{searchTerms}"/>
+		<os:Param name="ie" value="utf-8"/>
+		<os:Param name="oe" value="utf-8"/>
+		<os:Param name="client" value="distroastro"/>
+		<os:Param name="channel" value="fs"/>
+		<os:Param name="aq" value="t"/>
+	</os:Url>
+	<os:Url type="application/x-suggestions+json" method="GET" template="http://suggestqueries.google.com/complete/search?output=firefox&amp;client=firefox&amp;hl={moz:locale}&amp;q={searchTerms}" resultDomain="suggestqueries.google.com" />
+</SearchPlugin>

@@ -1,0 +1,17 @@
+diff -ruN a/configure b/configure
+--- a/configure	2012-05-30 23:42:01.000000000 +0800
++++ b/configure	2015-01-01 17:25:30.659713253 +0800
+@@ -559,10 +559,10 @@
+ MAKEFLAGS=
+ 
+ # Identity of this package.
+-PACKAGE_NAME='solarsystem'
+-PACKAGE_TARNAME='solarsystem'
++PACKAGE_NAME='screensavers-solarsystem'
++PACKAGE_TARNAME='screensavers-solarsystem'
+ PACKAGE_VERSION='0.2.2'
+-PACKAGE_STRING='solarsystem 0.2.2'
++PACKAGE_STRING='screensavers-solarsystem 0.2.2'
+ PACKAGE_BUGREPORT='packages@amiga-hardware.com'
+ PACKAGE_URL=''
+ 

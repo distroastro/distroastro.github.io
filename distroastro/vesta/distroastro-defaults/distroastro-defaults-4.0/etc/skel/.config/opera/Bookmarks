@@ -1,0 +1,361 @@
+{
+   "checksum": "4724f559a63228c8bc8863aabe755160",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13059505762000000",
+            "id": "6",
+            "name": "More Software",
+            "type": "url",
+            "url": "http://www.distroastro.org/software/"
+         }, {
+            "date_added": "13059506506000000",
+            "id": "7",
+            "name": "My Location",
+            "type": "url",
+            "url": "file:///usr/share/distroastro/location/map.html"
+         }, {
+            "children": [ {
+               "date_added": "12976595742000000",
+               "id": "9",
+               "name": "Sky & Telescope ",
+               "type": "url",
+               "url": "http://www.skyandtelescope.com/"
+            }, {
+               "date_added": "12976595745000000",
+               "id": "10",
+               "name": "Astronomy.com ",
+               "type": "url",
+               "url": "http://www.astronomy.com/"
+            } ],
+            "date_added": "13076314278631658",
+            "date_modified": "0",
+            "id": "8",
+            "name": "Magazines",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13059536031000000",
+               "id": "12",
+               "name": "NASA",
+               "type": "url",
+               "url": "http://www.nasa.gov/"
+            }, {
+               "date_added": "12976595749000000",
+               "id": "13",
+               "name": "ESA ",
+               "type": "url",
+               "url": "http://www.esa.int/ESA"
+            }, {
+               "date_added": "13059711354000000",
+               "id": "14",
+               "name": "Roskosmos ",
+               "type": "url",
+               "url": "http://www.federalspace.ru/"
+            }, {
+               "date_added": "13059711358000000",
+               "id": "15",
+               "name": "JAXA ",
+               "type": "url",
+               "url": "http://global.jaxa.jp/"
+            }, {
+               "date_added": "13059711672000000",
+               "id": "16",
+               "name": "ASC | CSA",
+               "type": "url",
+               "url": "http://www.asc-csa.gc.ca/index.html"
+            }, {
+               "date_added": "13059711367000000",
+               "id": "17",
+               "name": "ISRO ",
+               "type": "url",
+               "url": "http://www.isro.org/"
+            } ],
+            "date_added": "13076314278632205",
+            "date_modified": "0",
+            "id": "11",
+            "name": "Space Agencies",
+            "type": "folder"
+         }, {
+            "date_added": "12976595751000000",
+            "id": "18",
+            "name": "APOD ",
+            "type": "url",
+            "url": "http://apod.nasa.gov/"
+         } ],
+         "date_added": "13076314262465644",
+         "date_modified": "0",
+         "id": "1",
+         "name": "Bookmarks Bar",
+         "type": "folder"
+      },
+      "custom_root": {
+         "shared": {
+            "children": [  ],
+            "date_added": "13076324116618109",
+            "date_modified": "0",
+            "id": "21",
+            "name": "Shared Bookmarks",
+            "type": "folder"
+         },
+         "speedDial": {
+            "children": [ {
+               "children": [ {
+                  "date_added": "13076324150065710",
+                  "id": "40",
+                  "meta_info": {
+                     "custom_keywords": "[]",
+                     "guid": "85B723D9-860D-434F-B2DF-D8B7610B044B",
+                     "partner_id": "",
+                     "partner_url": "",
+                     "redirect": "0"
+                  },
+                  "name": "More Software",
+                  "type": "url",
+                  "url": "http://www.distroastro.org/software/"
+               }, {
+                  "date_added": "13076324151448869",
+                  "id": "41",
+                  "meta_info": {
+                     "custom_keywords": "[]",
+                     "guid": "3F920A18-0F48-44F5-BA83-CABD26F6F007",
+                     "partner_id": "",
+                     "partner_url": "",
+                     "redirect": "0"
+                  },
+                  "name": "My Location",
+                  "type": "url",
+                  "url": "file:///usr/share/distroastro/location/map.html"
+               }, {
+                  "children": [ {
+                     "date_added": "13076324153194410",
+                     "id": "43",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "95BB4D12-302C-4A76-9048-C66B6C43970E",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "Sky & Telescope ",
+                     "type": "url",
+                     "url": "http://www.skyandtelescope.com/"
+                  }, {
+                     "date_added": "13076324153195040",
+                     "id": "44",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "ABE28C82-E4C1-4C67-9CF4-D043425498C3",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "Astronomy.com ",
+                     "type": "url",
+                     "url": "http://www.astronomy.com/"
+                  } ],
+                  "date_added": "13076324153193998",
+                  "date_modified": "13076324153195040",
+                  "id": "42",
+                  "meta_info": {
+                     "custom_keywords": "[]",
+                     "guid": "9E20040E-0E08-45AA-8811-67DF6AE4914D",
+                     "partner_id": "",
+                     "partner_url": "",
+                     "redirect": "0"
+                  },
+                  "name": "Magazines",
+                  "type": "folder"
+               }, {
+                  "children": [ {
+                     "date_added": "13076324154456862",
+                     "id": "46",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "4220DA9C-CD40-4293-8F89-7633EA420D29",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "NASA",
+                     "type": "url",
+                     "url": "http://www.nasa.gov/"
+                  }, {
+                     "date_added": "13076324154457111",
+                     "id": "47",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "E44517BF-6FD3-4708-A1D9-02A8EEBF946A",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "ESA ",
+                     "type": "url",
+                     "url": "http://www.esa.int/ESA"
+                  }, {
+                     "date_added": "13076324154457289",
+                     "id": "48",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "04E44710-CAE8-4B6C-9B29-D1923C010259",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "Roskosmos ",
+                     "type": "url",
+                     "url": "http://www.federalspace.ru/"
+                  }, {
+                     "date_added": "13076324154457477",
+                     "id": "49",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "B047DED4-287C-4086-B15D-6DE1DB617993",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "JAXA ",
+                     "type": "url",
+                     "url": "http://global.jaxa.jp/"
+                  }, {
+                     "date_added": "13076324154457650",
+                     "id": "50",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "FC3A41FE-374B-4438-AF6F-A4B8CD332160",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "ASC | CSA",
+                     "type": "url",
+                     "url": "http://www.asc-csa.gc.ca/index.html"
+                  }, {
+                     "date_added": "13076324154457845",
+                     "id": "51",
+                     "meta_info": {
+                        "custom_keywords": "[]",
+                        "guid": "0FA1B01B-8BB2-4504-A5FB-E14F60DA5F2E",
+                        "partner_id": "",
+                        "partner_url": "",
+                        "redirect": "0"
+                     },
+                     "name": "ISRO ",
+                     "type": "url",
+                     "url": "http://www.isro.org/"
+                  } ],
+                  "date_added": "13076324154456694",
+                  "date_modified": "13076324154457845",
+                  "id": "45",
+                  "meta_info": {
+                     "custom_keywords": "[]",
+                     "guid": "9A953DEE-AFBD-48D3-9AE8-7CC3A64EBAAF",
+                     "partner_id": "",
+                     "partner_url": "",
+                     "redirect": "0"
+                  },
+                  "name": "Space Agencies",
+                  "type": "folder"
+               }, {
+                  "date_added": "13076324155713450",
+                  "id": "52",
+                  "meta_info": {
+                     "custom_keywords": "[]",
+                     "guid": "243911C7-880F-4AF1-B88E-4D8BB95EC023",
+                     "partner_id": "",
+                     "partner_url": "",
+                     "redirect": "0"
+                  },
+                  "name": "APOD ",
+                  "type": "url",
+                  "url": "http://apod.nasa.gov/"
+               } ],
+               "date_added": "13076324116618155",
+               "date_modified": "13076324155713450",
+               "id": "24",
+               "meta_info": {
+                  "speed_dial_root_folder_guid": "784EEC4B-4B53-470D-8529-81D4DBEB9CCE"
+               },
+               "name": "distrobook",
+               "type": "folder"
+            } ],
+            "date_added": "13076324116618110",
+            "date_modified": "0",
+            "id": "22",
+            "name": "Speed Dial",
+            "type": "folder"
+         },
+         "trash": {
+            "children": [  ],
+            "date_added": "13076324116618111",
+            "date_modified": "0",
+            "id": "23",
+            "name": "",
+            "type": "folder"
+         },
+         "unsorted": {
+            "children": [  ],
+            "date_added": "13076324116618108",
+            "date_modified": "0",
+            "id": "19",
+            "name": "Unsorted Bookmarks",
+            "type": "folder"
+         },
+         "userRoot": {
+            "children": [ {
+               "children": [  ],
+               "date_added": "13076324117007504",
+               "date_modified": "13076324117007504",
+               "id": "25",
+               "name": "_reading_list_",
+               "type": "folder"
+            }, {
+               "children": [  ],
+               "date_added": "13076324117012577",
+               "date_modified": "13076324117012577",
+               "id": "26",
+               "name": "_videos_",
+               "type": "folder"
+            }, {
+               "children": [  ],
+               "date_added": "13076324117015387",
+               "date_modified": "13076324117015387",
+               "id": "27",
+               "name": "_shopping_",
+               "type": "folder"
+            }, {
+               "children": [  ],
+               "date_added": "13076324117017611",
+               "date_modified": "13076324117017612",
+               "id": "28",
+               "name": "_travel_",
+               "type": "folder"
+            } ],
+            "date_added": "13076324116618109",
+            "date_modified": "0",
+            "id": "20",
+            "name": "My Folders",
+            "type": "folder"
+         }
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13076314262465656",
+         "date_modified": "0",
+         "id": "2",
+         "name": "Other Bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13076314262465657",
+         "date_modified": "0",
+         "id": "3",
+         "name": "Mobile Bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

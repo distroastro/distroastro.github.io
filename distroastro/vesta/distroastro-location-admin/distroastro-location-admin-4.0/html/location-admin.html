@@ -1,0 +1,67 @@
+<!DOCTYPE html><!--
+
+################################################################################
+#                                                                              #
+# Distro Astro Location Admin                                                  #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2016 Bamm Gabriana.                                            #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Location Settings</title>
+<meta charset="UTF-8" />
+<meta name="window" content="width=432, height=560" />
+<link type="text/css" rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<div class="messagearea">
+<p><strong>
+Current Location:
+</strong></p>
+</div>
+<div id="showmapbutton" style="display:none;"><button id="showmap" onclick="showmap();">Show Map</button></div>
+<div id="editlocbutton" style="display:none;"><button id="editloc" onclick="editloc();">Edit Location Manually</button></div>
+<div class="outputbox"></div>
+<div class="settingsarea">
+<p><strong>Location Settings:</strong></p>
+<table>
+<tr>
+<td><input id="updateappsauto" type="checkbox" checked="true" onclick="updateAppsAuto(this)" /></td>
+<td>Automatically update application location settings</td>
+<td><button id="updateappsnow" onclick="updateAppsNow()">Update Now</button></td>
+</tr>
+<tr>
+<td><input id="updatesysauto" type="checkbox" checked="true" onclick="updateSysAuto(this)" /></td>
+<td>Automatically update system location settings</td>
+<td><button id="updatesysnow" onclick="updateSysNow();">Update Now</button></td>
+</tr>
+</table>
+</div>
+<div class="buttonbar">
+<button id="showhelp" onclick="showhelp()"><u>H</u>elp</button>
+<button id="close" onclick="window.close()"><u>C</u>lose</button>
+</div>
+</body>
+</html>

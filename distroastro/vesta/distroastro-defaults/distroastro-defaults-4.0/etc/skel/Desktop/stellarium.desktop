@@ -1,0 +1,22 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Explore the Night Sky
+Name[es]=Explora el Cielo Nocturno
+Name[it]=Esplora il Cielo Notturno
+Name[fr]=Explorez le Ciel Nocturne
+Exec=stellarium
+Icon=desktop-stellarium
+Categories=Education;Science;Astronomy
+GenericName=Desktop Planetarium
+GenericName[es]=Planetario para el escritorio
+GenericName[it]=Planetario per il desktop
+GenericName[fr]=Planétarium
+Comment=Desktop Planetarium
+Comment[es]=Planetario para el escritorio
+Comment[it]=Planetario per il desktop
+Comment[fr]=Planétarium
+StartupNotify=false
+Terminal=false
+Path=
+

@@ -1,0 +1,16 @@
+Source: plymouth-theme-distroastro
+Section: x11
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: plymouth-theme-distroastro
+Architecture: all
+Depends: ${misc:Depends}, plymouth-x11
+Provides: plymouth-theme
+Description: Distro Astro Plymouth Theme
+ A graphical animation for the Distro Astro boot process using the Ultra Deep
+ Field image taken by Hubble Space Telescope.

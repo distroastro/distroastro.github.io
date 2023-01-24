@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Network
+Name[es]=Red
+Name[it]=Rete
+Name[fr]=Réseau
+Comment=Manage your network connections
+Comment[es]=Gestiona tus conexiones de red
+Comment[it]=Gestisci le connessioni di rete
+Comment[fr]=Gestionnaire de connexions réseau
+Icon=nm-device-wireless
+Exec=nm-applet
+Terminal=false
+Type=Application
+NoDisplay=true
+NotShowIn=KDE;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=NetworkManager
+X-GNOME-Bugzilla-Component=nm-applet
+X-GNOME-UsesNotifications=true
+X-Ubuntu-Gettext-Domain=nm-applet

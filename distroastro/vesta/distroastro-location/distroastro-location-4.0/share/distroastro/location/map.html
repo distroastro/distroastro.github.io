@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Location Map</title>
+	<link rel="shortcut icon" href="map.ico" type="image/x-icon" title="Google Map" />
+	<style type="text/css">
+	html {
+		background: window;
+	}
+	body {
+		margin: 0;
+		font-family: "Lucida Grande", sans-serif;
+		font-size: 10pt;
+		background-color: #ededed;
+	}
+	h1 {
+		font-family: "AquaBase", sans-serif;
+	}
+	kbd {
+		font-family: "Lucida Console", monospace;
+		font-size: 10pt;
+		line-height: 1.2em;
+		display: inline-block;
+		padding: 5px 10px;
+		border: 1px solid #bdbdbd;
+	}
+	kbd.bash:before {
+		content: "$ ";
+	}
+	kbd::selection {
+		background: #212121;
+		color: #ededed;
+	}
+	kbd::-moz-selection {
+		background: #212121;
+		color: #ededed;
+	}
+	</style>
+	<script type="text/javascript" src="/etc/distroastro/location/map/url"></script>
+</head>
+<body>
+<h1>Location Not Set</h1>
+<p>
+Your system location has not yet been set. To update your system location, please type the following at the command line:
+</p>
+<kbd class="bash">
+sudo update-location
+</kbd>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[Desktop Entry]
+Name=Character Map
+Name[es]=Mapa de caracteres
+Name[it]=Mappa dei caratteri
+Name[fr]=Table de caractères
+Comment=Insert special characters into documents
+Comment[es]=Inserta caracteres especiales en los documentos
+Comment[it]=Inserisci caratteri speciali nei documenti
+Comment[fr]=Insérer des caractères spéciaux dans les documents
+Keywords=font;unicode;
+Exec=gucharmap
+Icon=accessories-character-map
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gucharmap
+X-GNOME-Bugzilla-Component=general
+X-GNOME-Bugzilla-Version=3.10.1
+StartupNotify=true
+X-Ubuntu-Gettext-Domain=gucharmap

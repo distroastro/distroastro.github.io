@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=OpenRocket
+GenericName=Rocket Design and Simulation
+GenericName[es]=Diseño Rocket y Simulación
+GenericName[it]=Creazione e simulazione di razzi
+GenericName[fr]=Conception et simulation de fusée
+Comment=Design and simulate model rockets
+Comment[es]=Diseña y simula cohetes de aeromodelismo
+Comment[it]=Crea e simula razzi da aeromodellismo
+Comment[fr]=Conception et simulation de modèle de fusée
+Icon=/usr/share/pixmaps/openrocket.xpm
+Exec=/usr/bin/openrocket %f
+Terminal=false
+Categories=Education;Science;Astronomy

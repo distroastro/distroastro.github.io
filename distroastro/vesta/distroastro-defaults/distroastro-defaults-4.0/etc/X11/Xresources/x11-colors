@@ -1,0 +1,163 @@
+! -----------------------------------------------------------------------------
+! This file is part of Distro Astro - Linux for Astronomers
+!
+! Copyright 2017-2018 Bamm Gabriana <bamm@distroastro.org>
+! All Rights Reserved
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a
+! copy of this software and associated documentation files (the
+! "Software"), to deal in the Software without restriction, including
+! without limitation the rights to use, copy, modify, merge, publish,
+! distribute, sublicense, and/or sell copies of the Software, and to
+! permit persons to whom the Software is furnished to do so, subject to
+! the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included
+! in all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+! OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+! MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+! IN NO EVENT SHALL THE ABOVE LISTED COPYRIGHT HOLDER(S) BE LIABLE FOR ANY
+! CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+! TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+! SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+! 
+! Except as contained in this notice, the name(s) of the above copyright
+! holders shall not be used in advertising or otherwise to promote the
+! sale, use or other dealings in this Software without prior written
+! authorization.
+! -----------------------------------------------------------------------------
+
+! Set the general text font name and size.
+*renderFont: true
+*faceName: Lucida Console
+*faceSize: 10
+
+! Set general background and foreground colors.
+*background:	#D6D6D6
+*foreground:	#212121
+
+! Use dynamic colors.
+*VT100*colorMode: on
+*VT100*dynamicColors: on
+
+! Allow bold colors.
+*VT100*boldColors: on
+*VT100*colorBDMode: off
+
+! Use italics for underline.
+*VT100*underLine: off
+*VT100*colorULMode: off
+*VT100*italicULMode: on
+
+! Set the terminal background and foreground colors.
+*VT100*background:	#EDEDED
+*VT100*foreground:	#212121
+
+! Define the terminal colors.
+*VT100*color0:	#2E3436
+*VT100*color1:	#CC0000
+*VT100*color2:	#4E9A06
+*VT100*color3:	#C4A000
+*VT100*color4:	#3465A4
+*VT100*color5:	#75507B
+*VT100*color6:	#06989A
+*VT100*color7:	#D3D7CF
+*VT100*color8:	#555753
+*VT100*color9:	#EF2929
+*VT100*color10:	#8AE234
+*VT100*color11:	#FCE94F
+*VT100*color12:	#729FCF
+*VT100*color13:	#AD7FA8
+*VT100*color14:	#34E2E2
+*VT100*color15:	#EEEEEC
+*VT100*colorBD:	#212121
+*VT100*colorUL:	#212121
+
+! Scrollbar properties for VT100 terminals.
+*VT100*ScrollBar: true
+*VT100*Scrollbar*background:	#EDEDED
+*VT100*Scrollbar*foreground:	#ADADAD
+*VT100*Scrollbar*width: 		16
+*VT100*Scrollbar*height:		16
+*VT100*Scrollbar*borderWidth:	1
+*VT100*Scrollbar*shadowWidth:	1
+*VT100*rightScrollBar: true
+*VT100*multiScroll: on
+*VT100*jumpScroll: on
+*VT100*Scrollbar.thumb: hlines2
+*VT100*Scrollbar.displayList: foreground #ADADAD; lines 0,-1,-1,-1,-1,0; foreground #EDEDED; lines 0,0,0,0,0,0
+
+! Scrollbar properties for XTerm.
+XTerm*VT100*ScrollBar: true
+XTerm*VT100*Scrollbar*background:	#EDEDED
+XTerm*VT100*Scrollbar*foreground:	#ADADAD
+XTerm*VT100*Scrollbar*width:		16
+XTerm*VT100*Scrollbar*height:		16
+XTerm*VT100*Scrollbar*borderWidth:	1
+XTerm*VT100*Scrollbar*shadowWidth:	1
+XTerm*VT100*rightScrollBar: true
+XTerm*VT100*multiScroll: on
+XTerm*VT100*jumpScroll: on
+
+! Scrollbar properties for XGterm.
+XGterm*VT100*ScrollBar: true
+XGterm*VT100*Scrollbar*background:	#D6D6D6
+XGterm*VT100*Scrollbar*foreground:	#ADADAD
+XGterm*VT100*Scrollbar*width:		16
+XGterm*VT100*Scrollbar*height:		16
+XGterm*VT100*Scrollbar*borderWidth:	1
+XGterm*VT100*Scrollbar*shadowWidth:	1
+XGterm*VT100*rightScrollBar: true
+XGterm*VT100*multiScroll: on
+XGterm*VT100*jumpScroll: on
+
+! Set the Gterm colors.
+*Xgterm*gterm*color0:	#EDEDED
+*Xgterm*gterm*color1:	#1A1A1A
+*Xgterm*gterm*color2:	#EF2929
+*Xgterm*gterm*color3:	#8AE234
+*Xgterm*gterm*color4:	#729FCF
+*Xgterm*gterm*color5:	#34E2E2
+*Xgterm*gterm*color6:	#FCE94F
+*Xgterm*gterm*color7:	#AD7FA8
+*Xgterm*gterm*color8:	#555753
+*Xgterm*gterm*color9:	#75507B
+*Xgterm*gterm.crosshairCursorColor:	#06989A
+
+! Set general form colors.
+*Form.background:			#D6D6D6
+*Form.foreground:			#212121
+*Form.thickness:			0
+*Form.menubar.background:	#D6D6D6
+*Form.menubar*background:	#D6D6D6
+*Form.menubar.foreground:	#212121
+*Form.menubar*foreground:	#212121
+*Form.menubar.borderWidth:	0
+
+! Set general menu colors.
+*mainMenu*background:		#E8E8E8
+*mainMenu*foreground:		#212121
+*fontMenu*background:		#E8E8E8
+*fontMenu*foreground:		#212121
+*vtMenu*background: 		#E8E8E8
+*vtMenu*foreground: 		#212121
+*tekMenu*background:		#E8E8E8
+*tekMenu*foreground:		#212121
+
+! Set SimpleMenu properties.
+*SimpleMenu*background:		#E8E8E8
+*SimpleMenu*foreground:		#212121
+*SimpleMenu*borderColor:	#212121
+*SimpleMenu*borderWidth:	1
+*SimpleMenu*menuLabel*background:	#E8E8E8
+*SimpleMenu*menuLabel*foreground:	#212121
+*SimpleMenu*menuLabel*font:			-misc-fixed-medium-r-normal--13-120-75-75-c-80-iso10646-1
+*SimpleMenu*menuLabel*vertSpace:	16
+*SimpleMenu*HorizontalMargins:		16
+*SimpleMenu*Sme*height:				16
+*SimpleMenu*Cursor:					left_ptr
+*SimpleMenu*BackingStore:			NotUseful
+*SimpleMenu*backgroundPixmap: gradient:horizontal?dimension=360&start=#EDEDED&end=#D6D6D6
+

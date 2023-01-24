@@ -1,0 +1,118 @@
+.TH G95 "1" "November 2019" "G95" "User Commands"
+.SH NAME
+G95 \- stable fortran compiler.
+.SH SYNOPSIS
+.B g95
+[\fI\,options\/\fR] \fI\,file\/\fR...
+.SH OPTIONS
+.TP
+\fB\-pass\-exit\-codes\fR
+Exit with highest error code from a phase
+.TP
+\fB\-\-help\fR
+Display this information
+.TP
+\fB\-\-target\-help\fR
+Display target specific command line options
+.IP
+(Use '\-v \fB\-\-help\fR' to display command line options of sub\-processes)
+\fB\-dumpspecs\fR               Display all of the built in spec strings
+\fB\-dumpversion\fR             Display the version of the compiler
+\fB\-dumpmachine\fR             Display the compiler's target processor
+\fB\-print\-search\-dirs\fR       Display the directories in the compiler's search path
+\fB\-print\-libgcc\-file\-name\fR  Display the name of the compiler's companion library
+\fB\-print\-file\-name=\fR<lib>   Display the full path to library <lib>
+\fB\-print\-prog\-name=\fR<prog>  Display the full path to compiler component <prog>
+\fB\-print\-multi\-directory\fR   Display the root directory for versions of libgcc
+\fB\-print\-multi\-lib\fR         Display the mapping between command line options and
+.IP
+multiple library search directories
+.HP
+\fB\-print\-multi\-os\-directory\fR Display the relative path to OS libraries
+.TP
+\fB\-Wa\fR,<options>
+Pass comma\-separated <options> on to the assembler
+.TP
+\fB\-Wp\fR,<options>
+Pass comma\-separated <options> on to the preprocessor
+.TP
+\fB\-Wl\fR,<options>
+Pass comma\-separated <options> on to the linker
+.TP
+\fB\-Xassembler\fR <arg>
+Pass <arg> on to the assembler
+.TP
+\fB\-Xpreprocessor\fR <arg>
+Pass <arg> on to the preprocessor
+.TP
+\fB\-Xlinker\fR <arg>
+Pass <arg> on to the linker
+.TP
+\fB\-combine\fR
+Pass multiple source files to compiler at once
+.TP
+\fB\-save\-temps\fR
+Do not delete intermediate files
+.TP
+\fB\-pipe\fR
+Use pipes rather than intermediate files
+.TP
+\fB\-time\fR
+Time the execution of each subprocess
+.TP
+\fB\-specs=\fR<file>
+Override built\-in specs with the contents of <file>
+.TP
+\fB\-std=\fR<standard>
+Assume that the input sources are for <standard>
+.TP
+\fB\-B\fR <directory>
+Add <directory> to the compiler's search paths
+.TP
+\fB\-b\fR <machine>
+Run gcc for target <machine>, if installed
+.TP
+\fB\-V\fR <version>
+Run gcc version number <version>, if installed
+.TP
+\fB\-v\fR
+Display the programs invoked by the compiler
+.TP
+\-###
+Like \fB\-v\fR but options quoted and commands not executed
+.TP
+\fB\-E\fR
+Preprocess only; do not compile, assemble or link
+.TP
+\fB\-S\fR
+Compile only; do not assemble or link
+.TP
+\fB\-c\fR
+Compile and assemble, but do not link
+.TP
+\fB\-o\fR <file>
+Place the output into <file>
+.TP
+\fB\-x\fR <language>
+Specify the language of the following input files
+Permissible languages include: c c++ assembler none
+\&'none' means revert to the default behavior of
+guessing the language based on the file's extension
+.PP
+Options starting with \fB\-g\fR, \fB\-f\fR, \fB\-m\fR, \fB\-O\fR, \fB\-W\fR, or \fB\-\-param\fR are automatically
+.TP
+passed on to the various sub\-processes invoked by g95.
+In order to pass
+.IP
+other options on to these processes the \fB\-W\fR<letter> options must be used.
+.PP
+For bug reporting instructions, please see:
+http://www.g95.org or mail andy@g95.org.
+.SH COPYRIGHT
+Copyright \(co 2002\-2008 Free Software Foundation, Inc.
+.PP
+G95 comes with NO WARRANTY, to the extent permitted by law.
+You may redistribute copies of G95
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING
+

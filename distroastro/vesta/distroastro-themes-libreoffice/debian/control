@@ -1,0 +1,24 @@
+Source: distroastro-themes-libreoffice
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-themes-libreoffice
+Architecture: all
+Conflicts: libreoffice-style-human
+Replaces: libreoffice-style-human, mint-themes, distroastro-themes, libreoffice-style-mint
+Provides: libreoffice-style, libreoffice-style-default
+Depends: ${misc:Depends}
+Suggests: libreoffice
+Description: LibreOffice Theme for Distro Astro
+ A LibreOffice style made to make LibreOffice look and feel the same as the
+ rest of Distro Astro. It is based on Distro Astro's default desktop theme
+ Clearskies. Clearskies is based on Linux Mint's Mint-X theme which in turn
+ is based on Faenza.
+ .
+ This theme has reused many graphics from Mint-X and Faenza desktop themes and
+ also has original graphics made to look like Mint-X and Faenza.

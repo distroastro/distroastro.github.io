@@ -1,0 +1,5 @@
+desktop-command-not-in-package usr/share/applications/screensavers/distroastro-floaters-gnome.desktop usr/lib/gnome-screensaver/gnome-screensaver/floaters
+desktop-command-not-in-package usr/share/applications/screensavers/distroastro-floaters-mate.desktop usr/lib/mate-screensaver/floaters
+desktop-command-not-in-package usr/share/applications/screensavers/astrotux-floaters-gnome.desktop usr/lib/gnome-screensaver/gnome-screensaver/floaters
+desktop-command-not-in-package usr/share/applications/screensavers/astrotux-floaters-mate.desktop usr/lib/mate-screensaver/floaters
+

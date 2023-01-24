@@ -1,0 +1,12 @@
+#!/bin/sh
+
+start=2021
+end=2050
+true > "$0.out"
+for i in $(seq $start $end); do
+	output="${i}.0 $(delta_t ${i}0101) $(dut1r ${i}0101) $(dut1s ${i}0101)"
+	percent=$(echo "100*($i - $start)/($end - $start)" | bc)
+	echo "$output $percent%"
+	echo "$output" >> "$0.out"
+done
+

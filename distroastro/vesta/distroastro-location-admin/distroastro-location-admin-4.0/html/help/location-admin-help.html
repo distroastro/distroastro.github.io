@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Location Settings Help</title>
+<meta charset="UTF-8" />
+<meta name="window" content="width=450, height=650" />
+<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1>Location Settings Help</h1>
+<h2>Current Location</h2>
+<p>
+This section tells you your current system location. This information is read from the file <cite>/etc/location</cite>.
+</p>
+<h3>Location Box</h3>
+<p>
+This box displays the following information about your location:
+</p>
+<ul>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>Elevation</li>
+<li>Street</li>
+<li>Area</li>
+<li>City</li>
+<li>Region</li>
+<li>Country</li>
+<li>Country Code</li>
+<li>Timezone ID</li>
+<li>Timezone Name</li>
+<li>Timezone Abbr</li>
+<li>UTC Offset</li>
+<li>DST Offset</li>
+</ul>
+<p>
+This same information can be found by running '<code>location -a</code>' on the command line.
+</p>
+<h3>Show Map</h3>
+<p>
+To see a map of your system location, click the button called <button onclick="alert('This is just a Help file. Please click it on the actual applet.')">Show Map</button>.
+</p>
+<p>
+This will open Google Maps and will require an Internet connection.
+</p>
+<h2>Location Settings</h2>
+<p>
+This sections lets you control if the system and application location information is updated automatically.
+</p>
+<h3>Automatically update application location settings</h3>
+<p>
+If this is checked, the location settings of each supported application is automatically updated upon user login. For example, upon opening a supported program such as Stellarium, its home location will be your system location.
+</p>
+<p>
+If it is unchecked, the location settings of supported applications remain unchanged from the last known value.
+</p>
+<p>
+To update them immediately, click the button called <button onclick="alert('This is just a Help file. Please click it on the actual applet.')">Update Now</button>.
+</p>
+<p>
+This can also be done by running '<code>autolocation set</code>' on the command line.
+</p>
+<h3>Automatically update system location settings</h3>
+<p>
+If this is checked, the location settings found in <cite>/etc/location</cite> is updated automatically when the computer is connected to the Internet.
+</p>
+<p>
+If it is unchecked, the location settings remain unchanged from the last known value.
+</p>
+<p>
+To update it immediately, click the button called <button onclick="alert('This is just a Help file. Please click it on the actual applet.')">Update Now</button>.
+</p>
+<p>
+This can also be done by running '<code>sudo update-location</code>' on the command line.
+</p>
+<h3>Manually set system location settings</h3>
+<p>
+The current GUI does not have a way to manually set system location. To set it, run the following on the command line:
+</p>
+<p>
+<code class="bash">sudo update-location LAT LONG</code>
+</p>
+<p>
+where LAT and LONG are given in decimal degrees. For example, use the decimal 14.5 to represent 14° 30'.
+</p>
+</body>
+</html>
+

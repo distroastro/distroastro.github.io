@@ -1,0 +1,39 @@
+.TH UPDATE-TIME "1" "May 2015" "Distro Astro Location" "User Commands"
+.SH NAME
+update-time \- update the system time
+.SH SYNOPSIS
+.B update-time
+[\fIOPTION\fR]...
+.SH DESCRIPTION
+Update the system time from NTP or GPS. It will use GPS if a stream of NMEA
+strings are detected from either a serial, USB, or RFComm port. It will use
+NTP if an Internet connection is found and a GPS is not detected. It will then
+update the system time using ntpd or ntpdate depending on which is available on
+the system. If the ntp daemon is running, turns it off temporarily and turns it
+on again after time is updated. This is because either the ntpd \fB\-gq\fR or ntpdate
+commands will not run if the ntp daemon is running.
+.SH OPTIONS
+.TP
+\fB\-q\fR, \fB\-\-quiet\fR
+don't display any output
+.TP
+\fB\-v\fR, \fB\-\-verbose\fR
+verbose mode
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+display this help and exit
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+output version information and exit
+.SH AUTHOR
+Written by Bamm Gabriana.
+.SH "REPORTING BUGS"
+Report update\-time bugs to Bamm Gabriana <bamm@distroastro.org>
+.br
+Distro Astro home page: <http://www.distroastro.org/>
+.SH COPYRIGHT
+Copyright \(co 2014\-2015 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl\-2.0.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.

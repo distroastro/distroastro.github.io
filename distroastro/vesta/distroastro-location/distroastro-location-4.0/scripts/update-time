@@ -1,0 +1,253 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "4.0";
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+sub main {
+
+	print STDERR "$exec: error: requested operation requires superuser privilege.\n" and exit 2 if $>;
+
+	system "date" if $debug;
+	print "Updating system time...\n" if !$quiet;
+
+	my $retcode;
+	my ($YMD, $HMS) = GetDateTimeGPS();
+
+	if ($YMD and $HMS) {
+		print "Date $YMD\n" if $debug;
+		print "Time $HMS\n" if $debug;
+		$retcode = system "date -s '$YMD $HMS' --utc > /dev/null";
+		exit $retcode if $retcode;
+	}
+	else {
+		$retcode = SetDateTimeNTP();
+		exit $retcode if $retcode;
+	}
+
+	print "Done.\n" if !$quiet and !$verbose;
+	system "date" if $debug;
+}
+
+sub SetDateTimeNTP {
+
+	print "Acquiring time from NTP...\n" if $verbose;
+	my $retcode;
+	my $server = $ARGV[0] || "";
+	my $ntpdstatus = system("service ntp status > /dev/null") if (`which ntpd`);
+	if (! defined $ntpdstatus) {
+		print "NTP server is not installed. Using ntpdate instead.\n" if $verbose;
+		$retcode = AcquireNTPTime("$server");
+	}
+	elsif ($ntpdstatus != 0) {
+		print "NTP server is not running.\n" if $verbose;
+		$retcode = AcquireNTPTime("$server");
+	}
+	else {
+		print "NTP server is running. Stopping it temporarily.\n" if $verbose;
+		`service ntp stop`;
+		$retcode = AcquireNTPTime("$server");
+		print "Restarting NTP server.\n" if $verbose;
+		`service ntp start`;
+	}
+	return $retcode;
+}
+
+sub GetDateTimeGPS {
+
+	print "Acquiring time from GPS...\n" if $verbose;
+	my ($success, @timegps) = AcquireGPSTime();
+
+	if ($success) {
+		return (NMEA2YMD($timegps[-1]), NMEA2HMS($timegps[0]));
+	}
+	else {
+		print "GPS not available.\n" if $verbose;
+		return;
+	}
+}
+
+sub AcquireNTPTime {
+
+	my $server = $_[0];
+	my $serverstatus;
+
+	if ($server) {
+		if (`which ntpd`) {
+			print "Looking up the time...\n" if $verbose;
+			print "Using server $server...\n" if $debug;
+			$serverstatus = system("sntp $server >/dev/null 2>&1");
+			return 0 if ($serverstatus == 0);
+		}
+		elsif (`which ntpdate`) {
+			print "Looking up the time...\n" if $verbose;
+			print "Using server $server...\n" if $debug;
+			$serverstatus = system("ntpdate $server >/dev/null 2>&1");
+			return 0 if ($serverstatus == 0);
+		}
+		else {
+			return 255;
+		}
+	}
+	else {
+		if (`which ntpd`) {
+			print "Looking up the time...\n" if $verbose;
+			$serverstatus = system("ntpd -gq >/dev/null 2>&1");
+			return 0 if ($serverstatus == 0);
+		}
+		elsif (`which ntpdate`) {
+			print "Looking up the time...\n" if $verbose;
+			my $ntpconf = "/etc/ntp.conf";
+			my @servers;
+			if (-e $ntpconf) {
+				open FILE, "$ntpconf";
+				my @ntpconf = <FILE>;
+				close FILE;
+				my @serverlines = grep(/^server /, @ntpconf);
+				for my $serverline (@serverlines) {
+					$server = (split /\s+/, $serverline)[1];
+					push @servers, $server;
+				}
+			}
+			else {
+				@servers = ("0.pool.ntp.org", "1.pool.ntp.org", "2.pool.ntp.org", "3.pool.ntp.org");
+			}
+			for $server (@servers) {
+				print "Using server $server...\n" if $debug;
+				$serverstatus = system("ntpdate $server >/dev/null 2>&1");
+				return 0 if ($serverstatus == 0);
+			}
+		}
+		else {
+			return 255;
+		}
+	}
+
+	print STDERR "Network not available.\n";
+	return 64 + 4;
+}
+
+sub AcquireGPSTime {
+
+	my @ttyS = map("/dev/ttyS$_", 0..31);
+	my @ttyUSB = map("/dev/ttyUSB$_", 0..31);
+	my @rfcomm = map("/dev/rfcomm$_", 0..31);
+	my @devices = (@ttyS, @ttyUSB, @rfcomm);
+
+	my ($Fix, $AV, $Lat, $NS, $Long, $EW, $SoG, $TMG, $Date);
+
+	for my $device (@devices) {
+		if ( -e $device) {
+			open FILE, "$device" or next;
+			select((select(FILE), $|=1)[0]);
+			<FILE>;
+			while (<FILE>) {
+				last if ($_ !~ m/^\$GP/);
+				my ($sentence, $checksum) = split /\*/, $_;
+				my ($id, @words) = split /,/, $sentence;
+				if ("$id" eq "\$GPRMC") {
+					print "Using GPS data at $device\n" if !$Fix and $debug;
+					($Fix, $AV, $Lat, $NS, $Long, $EW, $SoG, $TMG, $Date) = @words;
+					last if $AV eq "A";
+				}
+			}
+			close FILE;
+		}
+		last if $Fix;
+	}
+	return (1, $Fix, $AV, $Lat, $NS, $Long, $EW, $SoG, $TMG, $Date) if $Fix;
+}
+
+sub NMEA2HMS {
+	my @c = split //, $_[0];
+	my $hh = "$c[0]$c[1]";
+	my $mm = "$c[2]$c[3]";
+	my $ss = "$c[4]$c[5]";
+	return "$hh:$mm:$ss";
+}
+
+sub NMEA2YMD {
+	my @c = split //, $_[0];
+	my $dd = "$c[0]$c[1]";
+	my $mm = "$c[2]$c[3]";
+	my $yy = "$c[4]$c[5]";
+	return "$yy$mm$dd";
+}
+
+sub showhelp {print <<DOC;
+Usage: $exec [OPTION]...
+
+Update the system time from NTP or GPS. It will use GPS if a stream of NMEA
+strings are detected from either a serial, USB, or RFComm port. It will use
+NTP if an Internet connection is found and a GPS is not detected. It will then
+update the system time using ntpd or ntpdate depending on which is available on
+the system. If the ntp daemon is running, turns it off temporarily and turns it
+on again after time is updated. This is because either the ntpd -gq or ntpdate
+commands will not run if the ntp daemon is running.
+
+  -q, --quiet		don't display any output
+  -v, --verbose		verbose mode
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2014-2015 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp and exit if ($help);
+showversion and exit if ($version);
+main;
+

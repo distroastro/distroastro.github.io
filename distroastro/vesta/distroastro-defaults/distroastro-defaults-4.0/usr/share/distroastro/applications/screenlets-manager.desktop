@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Categories=Settings;DesktopSettings;
+Name=Screenlets
+Comment=A graphical tool to manage your Screenlets.
+Comment[es]=Herramienta gráfica para gestionar tus Screenlets (widgets de escritorio)
+Comment[it]=Un tool grafico per gestire i tuoi Screenlets
+Comment[fr]=Application graphique qui permet de gérer vos screenlets
+Icon=screenlets
+Exec=screenlets-manager > /dev/null
+StartupNotify=true

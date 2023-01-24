@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NS1="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:fz="urn:forumzilla:" xmlns:NC="http://home.netscape.com/NC-rdf#" xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<RDF:Description RDF:about="urn:forumzilla:root">
+		<fz:feeds RDF:resource="rdf:#$0ixWh1" />
+	</RDF:Description>
+	<RDF:Seq RDF:about="rdf:#$0ixWh1">
+		<RDF:li RDF:resource="https://www.nasa.gov/rss/dyn/breaking_news.rss" />
+		<RDF:li RDF:resource="https://www.esa.int/rss/TopNews.xml" />
+		<RDF:li RDF:resource="https://news.google.com/rss/topics/CAAqBwgKMLn3jQsw7M6gAw" />
+		<RDF:li RDF:resource="https://news.google.com/rss/search?q=astronomy" />
+		<RDF:li RDF:resource="https://www.skyandtelescope.com/feed/" />
+		<RDF:li RDF:resource="http://www.astronomy.com/rss/news/" />
+		<RDF:li RDF:resource="https://feeds.feedburner.com/spaceheadlines" />
+		<RDF:li RDF:resource="https://feeds.feedburner.com/universetoday" />
+		<RDF:li RDF:resource="https://www.sciencedaily.com/rss/space_time/astronomy.xml" />
+		<RDF:li RDF:resource="https://www.syfy.com/tags/bad-astronomy/feed" />
+	</RDF:Seq>
+	<fz:feed RDF:about="https://www.nasa.gov/rss/dyn/breaking_news.rss" dc:title="NASA Breaking News" NS1:link="https://www.nasa.gov/news/releases/latest/" dc:identifier="https://www.nasa.gov/rss/dyn/breaking_news.rss">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/NASA%20Breaking%20News" />
+	</fz:feed>
+	<fz:feed RDF:about="https://www.esa.int/rss/TopNews.xml" dc:title="ESA Top News" NS1:link="https://www.esa.int/Our_Activities/Space_News" dc:identifier="https://www.esa.int/rss/TopNews.xml">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/ESA%20Top%20News" />
+	</fz:feed>
+	<fz:feed RDF:about="https://news.google.com/rss/topics/CAAqBwgKMLn3jQsw7M6gAw" dc:title="Google News Topics" NS1:link="https://news.google.com/topics/CAAqBwgKMLn3jQsw7M6gAw" dc:identifier="https://news.google.com/rss/topics/CAAqBwgKMLn3jQsw7M6gAw">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Google%20News%20Topics" />
+	</fz:feed>
+	<fz:feed RDF:about="https://news.google.com/rss/search?q=astronomy" dc:title="Google News Search" NS1:link="https://news.google.com/search?q=astronomy" dc:identifier="https://news.google.com/rss/search?q=astronomy">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Google%20News%20Search" />
+	</fz:feed>
+	<fz:feed RDF:about="https://www.skyandtelescope.com/feed/" dc:title="Sky &amp; Telescope" NS1:link="https://www.skyandtelescope.com" dc:identifier="https://www.skyandtelescope.com/feed/">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Sky%20%26%20Telescope" />
+	</fz:feed>
+	<fz:feed RDF:about="http://www.astronomy.com/rss/news/" dc:title="Astronomy.com" NS1:link="http://www.astronomy.com/news" dc:identifier="http://www.astronomy.com/rss/news/">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Astronomy.com" />
+	</fz:feed>
+	<fz:feed RDF:about="https://feeds.feedburner.com/spaceheadlines" dc:title="Space.com" NS1:link="https://www.space.com/news" dc:identifier="https://feeds.feedburner.com/spaceheadlines">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Space.com" />
+	</fz:feed>
+	<fz:feed RDF:about="https://feeds.feedburner.com/universetoday" dc:title="Universe Today" NS1:link="https://www.universetoday.com" dc:identifier="https://feeds.feedburner.com/universetoday">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Universe%20Today" />
+	</fz:feed>
+	<fz:feed RDF:about="https://www.sciencedaily.com/rss/space_time/astronomy.xml" dc:title="ScienceDaily" NS1:link="https://www.sciencedaily.com/news/space_time/astronomy/" dc:identifier="https://www.sciencedaily.com/rss/space_time/astronomy.xml">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/ScienceDaily" />
+	</fz:feed>
+	<fz:feed RDF:about="https://www.syfy.com/tags/bad-astronomy/feed" dc:title="Bad Astronomy" NS1:link="https://www.syfy.com/tags/bad-astronomy" dc:identifier="https://www.syfy.com/tags/bad-astronomy/feed">
+		<fz:destFolder RDF:resource="mailbox://nobody@Astronomy%20News/Bad%20Astronomy" />
+	</fz:feed>
+</RDF:RDF>
+

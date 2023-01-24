@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Planets
+Exec=planets
+Icon=planets
+Categories=Education;Science;Astronomy;Physics;
+Comment=A simple interactive program for playing with simulations of planetary systems
+Comment[es]=Un programa sencillo para simular sistemas planetarios
+Comment[it]=Un semplice programma per simulare il sistema planetario
+Comment[fr]=Un simple programme intéractif pour jouer avec des simulations de systèmes planétaires
+Comment[da]=Et simpelt interaktivt program til at lege med simulering af planetsystemer
+StartupNotify=true
+Terminal=false
+

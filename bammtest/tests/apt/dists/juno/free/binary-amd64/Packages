@@ -1,0 +1,33 @@
+Package: test1
+Version: 1.3-1distroastro2
+Architecture: amd64
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Installed-Size: 30
+Homepage: http://www.distroastro.org/
+Priority: optional
+Section: science
+Filename: pool/free/t/test1/test1_1.3-1distroastro2_amd64.deb
+Size: 1722
+SHA256: 0f05a40e30b8ca683131863f9c68d95b4faac79d68ca003e9887dbd1078d3963
+SHA1: 3078b20b2a4b7d588b93bb4f631aa5af3033f78e
+MD5sum: fa170028cb370533ba211ab5c103a95e
+Description: Test package
+ This is a test package for source packages.
+
+Package: testpatch
+Version: 1.0-1distroastro2
+Architecture: amd64
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Installed-Size: 29
+Replaces: test1
+Homepage: http://www.distroastro.org/
+Priority: optional
+Section: science
+Filename: pool/free/t/testpatch/testpatch_1.0-1distroastro2_amd64.deb
+Size: 1668
+SHA256: 6d79e8418866b71c0c2c52ef1e4f9c5091a3cd9080979dae328c532c95d3aeab
+SHA1: 5ee3cd9cca8cc5463d8cca2e952efcf9da4471c5
+MD5sum: 3271f171a49ab038166c1aef7cc6fc71
+Description: Test patch
+ This is a test package for source packages.
+

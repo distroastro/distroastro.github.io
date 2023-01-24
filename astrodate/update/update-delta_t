@@ -1,0 +1,27 @@
+#!/bin/sh
+
+configdir="$HOME/.config/astrodate"; mkdir -p "$configdir"
+basedir="$HOME/.cache/astrodate/iers/rapid"
+mkdir -p "$basedir"
+cd "$basedir"
+
+modern="modern.delta_t"
+datatable=$(zcat "merged.dut1.zdat")
+N=$(echo "$datatable" | wc -l)
+printf "%s" "Creating ΔT table... "
+{
+	echo "YYYYMMDD  MJD    TT-UT1  "
+	zcat "fixed.delta_t.zdat"
+	for i in $(seq 48622 $((48622 + N - 1))); do
+		datestamp=$(date -u --date="@$(echo "86400 * ($i - 40587)" | bc)" +%Y%m%d)
+		ut1_tt=$(echo "32.184 + $(DATAEXTEND=1 numleap MJD "$i") - $(echo "$datatable" | grep " $i " | cut -d' ' -f3 | sed s/^+//)" | bc)
+		echo "$datestamp $i $ut1_tt"
+	done
+} > "$modern"
+echo "Done."
+printf "%s" "Creating delta_t.zdat... "
+gzip -9 "$modern"
+mv "$modern.gz" "delta_t.modern.zdat"
+echo "Done."
+cp "delta_t.modern.zdat" "$configdir"
+

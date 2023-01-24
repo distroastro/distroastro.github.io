@@ -1,0 +1,14 @@
+Source: fits-support
+Section: science
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 9.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: fits-support
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Distro Astro FITS support
+ FITS icons and MIME type support for Distro Astro.

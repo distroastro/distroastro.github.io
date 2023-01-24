@@ -1,0 +1,161 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Distro Astro Location                                                        #
+# Version 4.0                                                                  #
+#                                                                              #
+# Copyright (C) 2014-2017 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+my $exec = $0; $exec =~ s#^.*/##;
+my $ver = "4.0";
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose, $debug, $help, $version, $all, $list, $info);
+
+GetOptions(
+	'q|quiet'	=> \$quiet,
+	'v|verbose'	=> \$verbose,
+	'd|debug'	=> \$debug,
+	'h|help'	=> \$help,
+	'V|version'	=> \$version,
+	'a|all' 	=> \$all,
+	'l|list'	=> \$list,
+	'i|info'	=> \$info,
+) or print STDERR "Try `$exec --help' for more information.\n" and exit 2;
+
+$quiet = $quiet ? "-q" : "";
+$verbose = $verbose ? "-v" : "";
+$debug = $debug ? "-d" : "";
+
+sub main {
+
+	my $location = "/etc/location";
+
+	open FILE, "$location" or print STDERR "No location data found.\nTry running `sudo update-location' first.\n" and exit 64 + 8;
+	my %loc;
+	for (<FILE>) {
+		chomp $_;
+		if ($_ =~ m/=/) {
+			my ($var, $val) = split /=/, $_;
+			$loc{"$var"} = "$val";
+		}
+	}
+	close FILE;
+
+	my @locdat;
+	for ("LATITUDE", "LONGITUDE", "ELEVATION", "CITY", "REGION", "COUNTRY", "COUNTRYCODE", "TIMEZONE", "TZABBR", "TZOFFSET", "TZDSTOFFSET", "ICAO") {
+		push @locdat, defined $loc{$_} ? "\"$loc{$_}\"" : "\"\"";
+	}
+
+	my $appsdir = "/etc/distroastro/location/apps";
+	my $appsdiruser = "$ENV{'HOME'}/.config/distroastro/location/apps";
+
+	my $count = 0;
+	my $locstring = defined $loc{'REGION'} ? "$loc{'CITY'}, $loc{'REGION'}, $loc{'COUNTRY'}" : "$loc{'CITY'}, $loc{'COUNTRY'}";
+	my $tzstring = defined $loc{'TZNAME'} ? "$loc{'TIMEZONE'} ($loc{'TZNAME'})" : "$loc{'TIMEZONE'}";
+	if ($list or grep(/^list$/i, @ARGV)) {
+		my @proglist = map { s/$appsdir\///g; $_; } <$appsdir/*>;
+		my @proglistuser = map { s/$appsdiruser\///g; $_; } <$appsdiruser/*>;
+		for my $prog (@proglist, @proglistuser) {
+			if (`which $prog`) {
+				print "$prog\n";
+			}
+		}
+	}
+	elsif ($all or grep(/^all$/i, @ARGV)) {
+		my @proglist = <$appsdir/*>;
+		my @proglistuser = <$appsdiruser/*>;
+		print "Configuring selected programs...\n" if !$quiet;
+		print "Latitude: $loc{'LATITUDE'}\n" if $info;
+		print "Longitude: $loc{'LONGITUDE'}\n" if $info;
+		print "Location: $locstring\n" if $info;
+		print "Timezone: $tzstring\n" if $info;
+		for my $prog (@proglist, @proglistuser) {
+			if (-x $prog) {
+				print "$prog $quiet $verbose $debug -- @locdat\n" if $debug;
+				system "$prog $quiet $verbose $debug -- @locdat";
+			}
+		}
+		print "Done.\n" if !$quiet;
+	}
+	elsif (@ARGV) {
+		my @proglist = map "$appsdir/$_", @ARGV;
+		my @proglistuser = map "$appsdiruser/$_", @ARGV;
+		print "Configuring selected programs...\n" if !$quiet;
+		print "Latitude: $loc{'LATITUDE'}\n" if $info;
+		print "Longitude: $loc{'LONGITUDE'}\n" if $info;
+		print "Location: $locstring\n" if $info;
+		print "Timezone: $tzstring\n" if $info;
+		for my $prog (@proglist, @proglistuser) {
+			if (-x $prog) {
+				print "$prog $quiet $verbose $debug -- @locdat\n" if $debug;
+				system "$prog $quiet $verbose $debug -- @locdat";
+				$count++;
+			}
+		}
+		print STDERR "No programs to set.\nTry `$exec --list' for a list of programs that can be set.\n" and exit 2 if (!$count);
+		print "Done.\n" if !$quiet;
+	}
+	else {
+		print STDERR "$exec: missing operand\nTry `$exec --help' for more information.\n" and exit 2;
+	}
+}
+
+sub showhelp {print <<DOC;
+Usage: $exec [OPTION]... [PROG]...
+
+Configure the location and timezone information of selected astronomy programs
+using the system location stored in /etc/location.
+
+  -l, --list		show list of programs that can be set
+  -a, --all		set location on all programs in list
+  -q, --quiet		don't display any output
+  -v, --verbose		verbose mode
+  -h, --help		display this help and exit
+  -V, --version		output version information and exit
+
+Report $exec bugs to Bamm Gabriana <bamm\@distroastro.org>
+Distro Astro home page: <http://www.distroastro.org/>
+DOC
+}
+
+sub showversion {print <<DOC;
+$exec $ver
+Copyright (C) 2014-2015 Bamm Gabriana.
+License GPLv2+: GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Bamm Gabriana.
+DOC
+}
+
+showhelp and exit if ($help);
+showversion and exit if ($version);
+main;
+

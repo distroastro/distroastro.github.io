@@ -1,0 +1,29 @@
+#!/bin/sh
+
+export PRECISION="7"
+true > "$0.out"
+for i in $(seq 2000 2200); do
+	result="$(delta_t Y $i)"
+	output="$i $result"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+for i in $(seq 2200 100 4300); do
+	result="$(delta_t Y $i)"
+	output="$i $result"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+for i in $(seq 4301 4400); do
+	result="$(delta_t Y $i)"
+	output="$i $result"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+for i in $(seq 4500 100 5000); do
+	result="$(delta_t Y $i)"
+	output="$i $result"
+	echo "$output"
+	echo "$output" >> "$0.out"
+done
+

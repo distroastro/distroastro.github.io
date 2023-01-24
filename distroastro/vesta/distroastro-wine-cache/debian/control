@@ -1,0 +1,16 @@
+Source: distroastro-wine-cache
+Section: non-free/otherosfs
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-wine-cache
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: wine, winetricks
+Description: Distro Astro Winetricks Cache
+ This package contains Wine Gecko and Wine Mono to allow for offline
+ installation.

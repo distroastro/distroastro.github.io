@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Autolocation
+Name[es]=Autolocalización
+Comment=Set location on selected programs
+Comment[es]=Configurar localización en los programas elegidos
+Exec=autolocation set
+Terminal=false
+StartupNotify=false
+Hidden=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=false
+X-MATE-Autostart-enabled=false

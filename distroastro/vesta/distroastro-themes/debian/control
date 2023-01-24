@@ -1,0 +1,22 @@
+Source: distroastro-themes
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-themes
+Architecture: all
+Replaces: mint-themes
+Provides: mdm-themes
+Depends: ${misc:Depends}
+Recommends: toggle-nightvision, backgrounds-clearskies, backgrounds-nightvision, backgrounds-hubble, backgrounds-apod, backgrounds-iss, screensavers-hubble-slideshow, screensavers-nightvision-slideshow, distroastro-themes-libreoffice
+Description: Distro Astro Default Themes
+ Clearskies is a theme featuring easy to read text on a light background.
+ .
+ Nightvision is a theme featuring a dark background and red text for use in the
+ dark, particularly during astronomical observation.
+ .
+ Classic is the Windows Classic theme.

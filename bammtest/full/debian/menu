@@ -1,0 +1,7 @@
+?package(bammtest): \
+    needs="X11" \
+    section="Applications/Science/Astronomy" \
+    title="Bamm Test" \
+    icon32x32="/usr/share/pixmaps/bammtest.xpm" \
+    icon16x16="/usr/share/pixmaps/bammtest-16.xpm" \
+    command="/usr/bin/bammtest"

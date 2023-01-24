@@ -1,0 +1,3 @@
+global pds9
+array set pds9 { nan,msg White dialog motif text,font helvetica samp 1 font,msg Helvetica threads 8 font,weight normal automarker 1 bg,msg White language locale text,font,weight normal dialog,all 0 nan white font,slant roman confirm 1 backup 1 language,dir {} font helvetica language,name English bg white xpa 1 theme native text,font,msg Helvetica tcl 0 dialog,center 0 font,size 8 text,font,slant roman text,font,size 8 }
+

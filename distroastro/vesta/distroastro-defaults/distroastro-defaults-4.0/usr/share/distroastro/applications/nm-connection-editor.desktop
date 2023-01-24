@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Network Connections
+Name[es]=Conexiones de red
+Name[it]=Connessioni di rete
+Name[fr]=Connexions Réseau
+Comment=Manage and change your network connection settings
+Comment[es]=Gestiona y modifica tus configuraciones de conexiones de red
+Comment[it]=Gestisci e modifica le configurazioni delle connessioni di rete
+Comment[fr]=Gérer et changer les réglages de votre connexion réseau
+Icon=preferences-system-network
+Exec=nm-connection-editor
+Terminal=false
+StartupNotify=true
+Type=Application
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=NetworkManager
+X-GNOME-Bugzilla-Component=nm-connection-editor
+Categories=MATE;GTK;Settings;X-MATE-NetworkSettings;
+NotShowIn=KDE;
+X-Ubuntu-Gettext-Domain=nm-applet

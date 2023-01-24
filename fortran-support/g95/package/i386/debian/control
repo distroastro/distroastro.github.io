@@ -1,0 +1,18 @@
+Source: g95
+Section: devel
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 9.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: g95
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}, libc6-dev (>= 2.3)
+Provides: fortran-compiler
+Description: Stable G95 Fortran 95 compiler
+ G95 is a stable, production Fortran 95 compiler available for multiple cpu
+ architectures and operating systems. Innovations and optimizations continue
+ to be worked on. Parts of the F2003 and F2008 standards have been implemented
+ in g95.

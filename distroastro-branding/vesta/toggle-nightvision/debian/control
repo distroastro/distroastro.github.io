@@ -1,0 +1,22 @@
+Source: toggle-nightvision
+Section: utils
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: toggle-nightvision
+Architecture: all
+Depends: ${misc:Depends}, dconf-cli | mate-conf | gconf2
+Recommends: winecolors, distroastro-themes, backgrounds-hubble, backgrounds-nightvision
+Description: Toggle Nightvision
+ Clearskies is a cool mint/metal theme based on Mint-X-Metal which in turn is
+ based on mintified versions of Clearlooks Revamp, Elementary and Faenza.
+ .
+ Nightvision is a theme featuring a dark background and red text for use in the
+ dark, particularly during astronomical observation.
+ .
+ This package provides a simple way to toggle between the two default themes in
+ Distro Astro.

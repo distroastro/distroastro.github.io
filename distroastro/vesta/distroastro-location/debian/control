@@ -1,0 +1,23 @@
+Source: distroastro-location
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-location
+Architecture: all
+Depends: ${misc:Depends}, perl, libwww-perl, libdatetime-perl, ntp | ntpdate
+Description: Distro Astro Location Tools
+ A set of scripts to keep the Distro Astro system and selected programs location
+ aware. By default, it uses a Geo IP lookup to find the location and connects
+ to NTP servers to update time. It can use a GPS to acquire location and time if
+ one is detected. Place names, elevation, and time zones are found from reverse
+ geocoding using Google APIs. The location can be user-set. Autolocation can be
+ turned on or off on a per-user basis.
+ .
+ The Distro Astro project does not collect or track the location of its users,
+ and this package does not contain any code that allows user locations to be
+ collected or tracked by the Distro Astro project.

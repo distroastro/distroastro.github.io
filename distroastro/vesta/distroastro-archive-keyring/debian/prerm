@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+case "$1" in
+    remove|purge)
+	if [ -x /usr/bin/apt-key ]; then
+		apt-key del D31535E2
+	fi
+	;;
+esac
+# End manually added section

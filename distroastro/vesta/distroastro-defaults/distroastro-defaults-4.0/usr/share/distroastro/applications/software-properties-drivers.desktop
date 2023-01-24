@@ -1,0 +1,21 @@
+[Desktop Entry]
+Type=Application
+Name=Additional Drivers
+Name[es]=Controladores adicionales
+Name[it]=Drivers aggiuntivi
+Name[fr]=Pilotes additionnels
+GenericName=Additional Drivers
+GenericName[es]=Controladores adicionales
+GenericName[it]=Drivers aggiuntivi
+GenericName[fr]=Pilotes additionnels
+Comment=Configure third-party and proprietary drivers
+Comment[es]=Configurar controladore de terceros y/o propietarios
+Comment[it]=Configura drivers aggiuntivi di terze parti
+Comment[fr]=Configurer des pilotes tiers et propriétaires
+Exec=/usr/bin/software-properties-gtk --open-tab=4
+Icon=jockey
+Categories=X-XFCE;GTK;Settings;HardwareSettings
+Terminal=false
+NotShownIn=GNOME;Unity;KDE;
+Keywords=Drivers;
+X-Ubuntu-Gettext-Domain=software-properties

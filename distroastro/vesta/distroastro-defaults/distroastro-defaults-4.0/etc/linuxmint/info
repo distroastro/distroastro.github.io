@@ -1,0 +1,11 @@
+DISTRIB_ID=DistroAstro
+RELEASE=4.0
+CODENAME=vesta
+EDITION="Professional"
+DESCRIPTION="Distro Astro - Linux for Astronomers"
+DESKTOP=Mate
+TOOLKIT=GTK
+NEW_FEATURES_URL=http://www.distroastro.org/features
+RELEASE_NOTES_URL=http://www.distroastro.org/releases/4.0
+USER_GUIDE_URL=http://www.distroastro.org/help
+GRUB_TITLE=Distro Astro - Linux for Astronomers

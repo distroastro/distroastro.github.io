@@ -1,0 +1,78 @@
+backgrounds-apod (4.0-1distroastro3) unstable; urgency=low
+
+  * Package update.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Tue, 26 Mar 2019 00:00:00 +0800
+
+backgrounds-apod (4.0-1distroastro2) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Tue, 11 Apr 2017 00:00:00 +0800
+
+backgrounds-apod (3.0.3-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 04 Jul 2016 00:00:00 +0800
+
+backgrounds-apod (3.0.2-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 09 May 2015 00:00:00 +0800
+
+backgrounds-apod (3.0.1-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Dec 2014 00:00:00 +0800
+
+backgrounds-apod (3.0-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Sep 2014 00:00:00 +0800
+
+backgrounds-apod (2.0-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sun, 08 Sep 2013 00:00:00 +0800
+
+backgrounds-apod (1.0.2-1) unstable; urgency=low
+
+  * Version bump.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 18 Jul 2013 00:00:00 +0800
+
+backgrounds-apod (1.0.1-1) unstable; urgency=low
+
+  * Version bump.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Fri, 25 Jan 2013 00:00:00 +0800
+
+backgrounds-apod (1.0-1) unstable; urgency=low
+
+  * New release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 08 Dec 2012 00:00:00 +0800
+
+apod (0.8-1) unstable; urgency=low
+
+  * New update.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Fri, 30 Nov 2012 00:00:00 +0800
+
+apod (0.5-1) unstable; urgency=low
+
+  * New update.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 17 Nov 2012 00:00:00 +0800
+
+apod (0.1-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 01 Nov 2012 00:00:00 +0800
+

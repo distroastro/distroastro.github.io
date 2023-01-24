@@ -1,0 +1,16 @@
+Source: distroastro-defaults
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: distroastro-defaults
+Architecture: all
+Depends: ${misc:Depends}, python, unattended-upgrades
+Replaces: base-files, x11-common, unattended-upgrades, mintupdate, mate-panel, mint-info-mate, mint-artwork-gnome, mint-artwork-common, nautilus, bash, tcsh, xterm
+Description: Distro Astro Default Configurations
+ The default user and system configurations of Distro Astro are maintained in
+ this package, possibly replacing files from other packages.

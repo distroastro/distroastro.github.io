@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+#DEBHELPER## Manually added by packager
+update-alternatives --remove f77 /usr/bin/g95
+update-alternatives --remove f95 /usr/bin/g95
+# End manually added section

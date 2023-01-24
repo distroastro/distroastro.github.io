@@ -1,0 +1,19 @@
+{
+   "chrome://browser/content/browser.xul":{
+      "navigator-toolbox":{
+         "iconsize":"small"
+      },
+      "main-window":{
+         "sizemode":"maximized"
+      },
+      "PersonalToolbar":{
+         "collapsed":"false"
+      },
+      "toolbar-menubar":{
+         "autohide":"false"
+      },
+      "sidebar-title":{
+         "value":""
+      }
+   }
+}

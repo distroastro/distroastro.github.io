@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Dictionary
+Comment=Check word definitions and spellings in an online dictionary
+Comment[es]=Comprueba las definiciones y la ortografía de las palabras en un diccionario en línea
+Comment[it]=Controlla le definizioni e la ortografia delle parole in un dizionario online
+Comment[fr]=Vérfie la définition d'un mot et son orthographe dans un dictionnaire en ligne
+Exec=mate-dictionary
+Terminal=false
+Type=Application
+Icon=accessories-dictionary
+StartupNotify=true
+Categories=MATE;GTK;Office;Dictionary;
+OnlyShowIn=MATE;
+NoDisplay=true
+X-MATE-DocPath=mate-dictionary/mate-dictionary.xml
+X-MATE-Bugzilla-Bugzilla=MATE
+X-MATE-Bugzilla-Product=mate-utils
+X-MATE-Bugzilla-Component=gdict
+X-MATE-Bugzilla-Version=1.2.0

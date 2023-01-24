@@ -1,0 +1,14 @@
+Source: aptgrade
+Section: admin
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: aptgrade
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Test package
+ This empty package is a test package for source packages.

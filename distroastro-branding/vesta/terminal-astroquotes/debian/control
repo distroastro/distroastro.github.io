@@ -1,0 +1,14 @@
+Source: terminal-astroquote
+Section: utils
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: terminal-astroquote
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, cowsay, fortune-mod, fortunes-astronomy
+Description: Terminal Astronomy Quote
+ This package displays an astronomy quote whenever a terminal starts.

@@ -1,0 +1,117 @@
+#!/bin/sh
+
+################################################################################
+#                                                                              #
+# Toggle Nightvision                                                           #
+# Version 1.0.1                                                                #
+#                                                                              #
+# Quickly switch between normal and nightvision mode.                          #
+#                                                                              #
+# Copyright (C) 2012 Bamm Gabriana.                                            #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+normaltheme="Clearskies"
+nighttheme="Nightvision"
+nightbackground="/usr/share/backgrounds/Nightvision/Nightvision"
+defaultbackground="/usr/share/backgrounds/Hubble/Hubble"
+
+if [ -n "$GNOME_DESKTOP_SESSION_ID" ]; then
+
+	gtktheme=`gconftool-2 --get /desktop/gnome/interface/gtk_theme`
+	gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme
+
+	if [ $gtktheme = $nighttheme ]; then
+		gconftool-2 --set /apps/metacity/general/theme --type string "$normaltheme"
+		gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string "$normaltheme"
+		gconftool-2 --set /desktop/gnome/interface/icon_theme --type string "$normaltheme"
+		gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_theme --type string "$normaltheme"
+
+		normalbackground=`gconftool-2 --get /desktop/gnome/background/picture_filename_normal` > /dev/null 2>&1
+		if [ -z "$normalbackground" ]; then
+			normalbackground=$defaultbackground
+		fi
+		gconftool-2 --set /desktop/gnome/background/picture_filename --type string "$normalbackground"
+		gconftool-2 --unset /desktop/gnome/background/picture_filename_normal
+
+		if [ -d /etc/toggle-nightvision ]; then
+			run-parts /etc/toggle-nightvision --arg $normaltheme --arg -q
+		fi
+
+		echo Switched to `gconftool-2 --get /desktop/gnome/interface/gtk_theme`
+	else
+		gconftool-2 --set /apps/metacity/general/theme --type string "$nighttheme"
+		gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string "$nighttheme"
+		gconftool-2 --set /desktop/gnome/interface/icon_theme --type string "$nighttheme"
+		gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_theme --type string "$nighttheme"
+
+		normalbackground=`gconftool-2 --get /desktop/gnome/background/picture_filename`
+		gconftool-2 --set /desktop/gnome/background/picture_filename --type string "$nightbackground"
+		gconftool-2 --set /desktop/gnome/background/picture_filename_normal --type string "$normalbackground"
+
+		if [ -d /etc/toggle-nightvision ]; then
+			run-parts /etc/toggle-nightvision --arg $nighttheme --arg -q
+		fi
+
+		echo Switched to `gconftool-2 --get /desktop/gnome/interface/gtk_theme`
+	fi
+fi
+
+if [ -n "$MATE_DESKTOP_SESSION_ID" ]; then
+
+	gtktheme=`mateconftool-2 --get /desktop/mate/interface/gtk_theme`
+	mateconftool-2 --unset /desktop/mate/interface/gtk_color_scheme
+
+	if [ $gtktheme = $nighttheme ]; then
+		mateconftool-2 --set /apps/marco/general/theme --type string "$normaltheme"
+		mateconftool-2 --set /desktop/mate/interface/gtk_theme --type string "$normaltheme"
+		mateconftool-2 --set /desktop/mate/interface/icon_theme --type string "$normaltheme"
+		mateconftool-2 --set /desktop/mate/peripherals/mouse/cursor_theme --type string "$normaltheme"
+
+		normalbackground=`mateconftool-2 --get /desktop/mate/background/picture_filename_normal` > /dev/null 2>&1
+		if [ -z "$normalbackground" ]; then
+			normalbackground=$defaultbackground
+		fi
+		mateconftool-2 --set /desktop/mate/background/picture_filename --type string "$normalbackground"
+		mateconftool-2 --unset /desktop/mate/background/picture_filename_normal
+
+		if [ -d /etc/toggle-nightvision ]; then
+			run-parts /etc/toggle-nightvision --arg $normaltheme --arg -q
+		fi
+
+		echo Switched to `mateconftool-2 --get /desktop/mate/interface/gtk_theme`
+	else
+		mateconftool-2 --set /apps/marco/general/theme --type string "$nighttheme"
+		mateconftool-2 --set /desktop/mate/interface/gtk_theme --type string "$nighttheme"
+		mateconftool-2 --set /desktop/mate/interface/icon_theme --type string "$nighttheme"
+		mateconftool-2 --set /desktop/mate/peripherals/mouse/cursor_theme --type string "$nighttheme"
+
+		normalbackground=`mateconftool-2 --get /desktop/mate/background/picture_filename`
+		mateconftool-2 --set /desktop/mate/background/picture_filename --type string "$nightbackground"
+		mateconftool-2 --set /desktop/mate/background/picture_filename_normal --type string "$normalbackground"
+
+		if [ -d /etc/toggle-nightvision ]; then
+			run-parts /etc/toggle-nightvision --arg $nighttheme --arg -q
+		fi
+
+		echo Switched to `mateconftool-2 --get /desktop/mate/interface/gtk_theme`
+	fi
+fi
+

@@ -1,0 +1,15 @@
+Source: backgrounds-apod
+Section: misc
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 9.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: backgrounds-apod
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends}, libwww-perl, dconf-cli | mate-conf | gconf2, libnotify-bin
+Description: Astronomy Picture of the Day (APOD) Wallpaper
+ A wallpaper that changes daily based on the Astronomy Picture of the Day (APOD)
+ from http://apod.nasa.gov. Requires Internet access to download the pictures.

@@ -1,0 +1,35 @@
+## Binary Packages
+# deb http://packages.distroastro.com/distroastro vesta free non-free #Distro Astro Repository
+# deb http://packages.distroastro.com/distroastro-updates vesta free non-free #Distro Astro Updates
+# deb http://archive.ubuntu.com/ubuntu xenial main restricted universe multiverse
+# deb http://archive.ubuntu.com/ubuntu xenial-updates main restricted universe multiverse
+# deb http://security.ubuntu.com/ubuntu xenial-security main restricted universe multiverse
+# deb http://packages.linuxmint.com sonya main upstream import #Linux Mint Repository
+# deb http://extra.linuxmint.com sonya main #Linux Mint Extra Repository
+# deb http://ppa.launchpad.net/libreoffice/libreoffice-5-1/ubuntu xenial main #LibreOffice 5.1 PPA Repository
+# deb http://ppa.launchpad.net/mutlaqja/ppa/ubuntu xenial main #INDI Library PPA Repository
+
+## Source Packages
+# deb-src http://packages.distroastro.com/distroastro vesta free non-free #Distro Astro Repository
+# deb-src http://packages.distroastro.com/distroastro-updates vesta free non-free #Distro Astro Updates
+# deb-src http://archive.ubuntu.com/ubuntu xenial main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu xenial-updates main restricted universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu xenial-security main restricted universe multiverse
+# deb-src http://packages.linuxmint.com sonya main upstream import #Linux Mint Repository
+# deb-src http://extra.linuxmint.com sonya main #Linux Mint Extra Repository
+# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-4-3/ubuntu xenial main #LibreOffice 4.3 PPA Repository
+# deb-src http://ppa.launchpad.net/mutlaqja/ppa/ubuntu xenial main #INDI Library PPA Repository
+# deb-src http://ppa.launchpad.net/mutlaqja/astrometry.net/ubuntu xenial main #astrometry.net PPA Repository
+
+## Extra Repositories
+# deb http://extras.ubuntu.com/ubuntu xenial main
+# deb http://archive.canonical.com/ubuntu xenial partner
+# deb http://archive.getdeb.net/ubuntu xenial-getdeb apps #GetDeb Apps
+# deb http://archive.getdeb.net/ubuntu xenial-getdeb games #GetDeb Games
+# deb-src http://extras.ubuntu.com/ubuntu xenial main
+# deb-src http://archive.canonical.com/ubuntu xenial partner
+# deb-src http://archive.getdeb.net/ubuntu xenial-getdeb apps #GetDeb Apps
+# deb-src http://archive.getdeb.net/ubuntu xenial-getdeb games #GetDeb Games
+
+## User-Added Repositories
+

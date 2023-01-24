@@ -1,0 +1,122 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+exit if (! `which skychart`);
+exit if (! @ARGV);
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose);
+
+exit unless GetOptions(
+	'q|quiet'   => \$quiet,
+	'v|verbose' => \$verbose,
+);
+
+my $skychart_conf = "$ENV{HOME}/.skychart/skychart.ini";
+
+if (! -e $skychart_conf) {
+	die "Error: $skychart_conf not found.\n" if $verbose;
+}
+
+open FILE, "$skychart_conf";
+my @lines = <FILE>;
+close FILE;
+
+if ($ARGV[0] eq "Nightvision") {
+	for my $line (@lines) {
+		$line =~ s/NightVision=.*/NightVision=1/;
+		$line =~ s/color0=.*/color0=0/;
+		$line =~ s/color1=.*/color1=16711935/;
+		$line =~ s/color2=.*/color2=10510591/;
+		$line =~ s/color3=.*/color3=8421631/;
+		$line =~ s/color4=.*/color4=6332671/;
+		$line =~ s/color5=.*/color5=4227327/;
+		$line =~ s/color6=.*/color6=6316287/;
+		$line =~ s/color7=.*/color7=255/;
+		$line =~ s/color8=.*/color8=255/;
+		$line =~ s/color9=.*/color9=16711935/;
+		$line =~ s/color10=.*/color10=8421631/;
+		$line =~ s/color11=.*/color11=255/;
+		$line =~ s/color12=.*/color12=64/;
+		$line =~ s/color13=.*/color13=64/;
+		$line =~ s/color14=.*/color14=128/;
+		$line =~ s/color15=.*/color15=64/;
+		$line =~ s/color16=.*/color16=64/;
+		$line =~ s/color17=.*/color17=160/;
+		$line =~ s/color18=.*/color18=128/;
+		$line =~ s/color19=.*/color19=64/;
+		$line =~ s/color20=.*/color20=65535/;
+		$line =~ s/color21=.*/color21=160/;
+		$line =~ s/color22=.*/color22=32/;
+		$line =~ s/color23=.*/color23=160/;
+		$line =~ s/color24=.*/color24=160/;
+		$line =~ s/color25=.*/color25=160/;
+		$line =~ s/color26=.*/color26=160/;
+		$line =~ s/color27=.*/color27=160/;
+		$line =~ s/color28=.*/color28=160/;
+		$line =~ s/color29=.*/color29=160/;
+		$line =~ s/color30=.*/color30=160/;
+		$line =~ s/color31=.*/color31=160/;
+		$line =~ s/color32=.*/color32=160/;
+		$line =~ s/color33=.*/color33=160/;
+		$line =~ s/color34=.*/color34=160/;
+		$line =~ s/color35=.*/color35=160/;
+		$line =~ s/LabelColor(.*)=.*/LabelColor$1=160/;
+	}
+	print "Skychart Nightvision ON.\n" if !$quiet;
+}
+
+else {
+	for my $line (@lines) {
+		$line =~ s/NightVision=.*/NightVision=0/;
+		$line =~ s/color0=.*/color0=0/;
+		$line =~ s/color1=.*/color1=16711680/;
+		$line =~ s/color2=.*/color2=16744448/;
+		$line =~ s/color3=.*/color3=16777215/;
+		$line =~ s/color4=.*/color4=8454143/;
+		$line =~ s/color5=.*/color5=65535/;
+		$line =~ s/color6=.*/color6=33023/;
+		$line =~ s/color7=.*/color7=255/;
+		$line =~ s/color8=.*/color8=255/;
+		$line =~ s/color9=.*/color9=16776960/;
+		$line =~ s/color10=.*/color10=65280/;
+		$line =~ s/color11=.*/color11=16777215/;
+		$line =~ s/color12=.*/color12=4210752/;
+		$line =~ s/color13=.*/color13=4210752/;
+		$line =~ s/color14=.*/color14=32896/;
+		$line =~ s/color15=.*/color15=8421504/;
+		$line =~ s/color16=.*/color16=8388608/;
+		$line =~ s/color17=.*/color17=8388736/;
+		$line =~ s/color18=.*/color18=255/;
+		$line =~ s/color19=.*/color19=2105392/;
+		$line =~ s/color20=.*/color20=65535/;
+		$line =~ s/color21=.*/color21=16760832/;
+		$line =~ s/color22=.*/color22=2105376/;
+		$line =~ s/color23=.*/color23=45311/;
+		$line =~ s/color24=.*/color24=45311/;
+		$line =~ s/color25=.*/color25=16777088/;
+		$line =~ s/color26=.*/color26=8453888/;
+		$line =~ s/color27=.*/color27=4210752/;
+		$line =~ s/color28=.*/color28=255/;
+		$line =~ s/color29=.*/color29=16744448/;
+		$line =~ s/color30=.*/color30=0/;
+		$line =~ s/color31=.*/color31=255/;
+		$line =~ s/color32=.*/color32=255/;
+		$line =~ s/color33=.*/color33=8421631/;
+		$line =~ s/color34=.*/color34=16711808/;
+		$line =~ s/color35=.*/color35=16777215/;
+		$line =~ s/LabelColor(.*)=.*/LabelColor$1=16777215/;
+		$line =~ s/LabelColor6=.*/LabelColor6=65535/;
+		$line =~ s/LabelColor7=.*/LabelColor7=12632256/;
+	}
+	print "Skychart Nightvision OFF.\n" if !$quiet;
+}
+
+open FILE, ">$skychart_conf";
+print FILE @lines;
+close FILE;
+

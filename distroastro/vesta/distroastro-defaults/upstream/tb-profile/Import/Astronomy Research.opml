@@ -1,0 +1,29 @@
+<opml version="1.0" xmlns:fz="urn:forumzilla:">
+	<head>
+		<title>Astronomy Research</title>
+	</head>
+	<body>
+		<outline title="arXiv &gt; astro-ph">
+			<outline type="rss" version="RSS" title="arXiv.org &gt; astro-ph" text="arXiv.org &gt; astro-ph" xmlUrl="https://export.arxiv.org/rss/astro-ph" htmlUrl="https://arxiv.org/archive/astro-ph" />
+		</outline>
+		<outline title="Nature">
+			<outline type="rss" version="RSS" title="Nature: Astronomy and astrophysics" text="Nature: Astronomy and astrophysics" xmlUrl="https://www.nature.com/subjects/astronomy-and-astrophysics.rss" htmlUrl="https://www.nature.com/subjects/astronomy-and-astrophysics" />
+		</outline>
+		<outline title="A&amp;A">
+			<outline type="rss" version="RSS" title="Astronomy &amp; Astrophysics (A&amp;A)" text="Astronomy &amp; Astrophysics (A&amp;A)" xmlUrl="https://feeds.feedburner.com/aa_highlights" htmlUrl="https://www.aanda.org/highlights" />
+		</outline>
+		<outline title="MNRAS">
+			<outline type="rss" version="RSS" title="Monthly Notices of the Royal Astronomical Society" text="Monthly Notices of the Royal Astronomical Society" xmlUrl="https://academic.oup.com/rss/site_5326/3192.xml" htmlUrl="https://academic.oup.com/mnras" />
+		</outline>
+		<outline title="IOP PASP">
+			<outline type="rss" version="RSS" title="Publications of the Astronomical Society of the Pacific" text="Publications of the Astronomical Society of the Pacific" xmlUrl="https://iopscience.iop.org/journal/rss/1538-3873" htmlUrl="https://iopscience.iop.org/journal/1538-3873" />
+		</outline>
+		<outline title="IOP AJ">
+			<outline type="rss" version="RSS" title="The Astronomical Journal" text="The Astronomical Journal" xmlUrl="https://iopscience.iop.org/journal/rss/1538-3881" htmlUrl="https://iopscience.iop.org/journal/1538-3881" />
+		</outline>
+		<outline title="IOP ApJ">
+			<outline type="rss" version="RSS" title="The Astrophysical Journal" text="The Astrophysical Journal" xmlUrl="https://iopscience.iop.org/journal/rss/0004-637X" htmlUrl="https://iopscience.iop.org/journal/0004-637X" />
+		</outline>
+	</body>
+</opml>
+

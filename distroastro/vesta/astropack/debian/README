@@ -1,0 +1,27 @@
+AstroPack
+
+AstroPack is an astronomy metapackage that converts your linux computer into
+an astronomy enthusiast's haven. A single install of AstroPack pulls in all
+the goodies for amateur astronomers and/or astronomy enthusiasts.
+
+Here are the features of AstroPack:
+
+1. Desktop planetarium - software that displays star positions (carte du ciel, kstars, stellarium)
+
+2. Telescope control - drivers that allows planetarium software to move the telescope (libindi)
+
+3. Observatory dome control - drivers that allow planetarium software to move an observatory dome (libindi)
+
+4. Dome planetarium - software that runs digital planetariums (nightshade, stellarium)
+
+5. Event prediction - astronomical calculation and prediction software (xephem, gpredict, xtide, meteoracle)
+
+6. Astrophotography - software that runs ccd cams and stack/manipulate astronomical images (wxastrocapture, registax, gcx, iris)
+
+7. Map creation - software to create professional-looking starmaps like those in magazines (pp3)
+
+8. Scientific analysis - software for scientific simulation, modelling and data analysis (orsa, planets, iraf)
+
+9. Exploration - software that simulates motion through space (celestia, openuniverse)
+
+10. Other popular astronomy software (virtualmoon, whereism13, etc)

@@ -1,0 +1,87 @@
+#!/usr/bin/perl -w
+
+################################################################################
+#                                                                              #
+# Toggle Nightvision                                                           #
+# Version 3.0                                                                  #
+#                                                                              #
+# Copyright (C) 2011-2014 Bamm Gabriana.                                       #
+#                                                                              #
+# This program is free software; you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation; either version 2 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program. If not, see <http://www.gnu.org/licenses/>          #
+#                                                                              #
+# On Debian systems, the complete text of the GNU General Public License       #
+# version 2 and 3 can be found in                                              #
+# "/usr/share/common-licenses/GPL-2" and "/usr/share/common-licenses/GPL-3".   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+
+exit if (! `which xgterm`);
+exit if (! @ARGV);
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+
+my ($quiet, $verbose);
+
+exit unless GetOptions(
+	'q|quiet'   => \$quiet,
+	'v|verbose' => \$verbose,
+);
+
+my $conffile = "$ENV{HOME}/.config/X11/app-defaults/XGterm";
+my $defconffile = "/etc/X11/app-defaults/XGterm";
+if (! -e $conffile) {
+	if (! -e $defconffile) {
+		print STDERR "Error: $conffile not found.\n";
+		exit 1;
+	}
+	else {
+		system "mkdir -p `dirname $conffile`";
+		system "cp $defconffile $conffile";
+	}
+}
+
+open FILE, "$conffile";
+my @lines = <FILE>;
+close FILE;
+
+if ($ARGV[0] eq "Nightvision") {
+	for my $line (@lines) {
+		$line =~ s/\*VT100\*background:\t.*/\*VT100\*background:\t#1A1A1A/;
+		$line =~ s/\*VT100\*foreground:\t.*/\*VT100\*foreground:\t#D62121/;
+		$line =~ s/(XGterm|)\*VT100\*Scrollbar\*background:\t.*/XGterm\*VT100\*Scrollbar\*background:\t#AD2121/;
+		$line =~ s/(XGterm|)\*VT100\*Scrollbar\*foreground:\t.*/XGterm\*VT100\*Scrollbar\*foreground:\t#D62121/;
+	}
+	print "XGterm Nightvision ON.\n" if $verbose;
+}
+
+else {
+	for my $line (@lines) {
+		$line =~ s/\*VT100\*background:\t.*/\*VT100\*background:\t#EDEDED/;
+		$line =~ s/\*VT100\*foreground:\t.*/\*VT100\*foreground:\t#212121/;
+		$line =~ s/(XGterm|)\*VT100\*Scrollbar\*background:\t.*/XGterm\*VT100\*Scrollbar\*background:\t#D6D6D6/;
+		$line =~ s/(XGterm|)\*VT100\*Scrollbar\*foreground:\t.*/XGterm\*VT100\*Scrollbar\*foreground:\t#ADADAD/;
+	}
+	print "XGterm Nightvision OFF.\n" if $verbose;
+}
+
+open FILE, ">$conffile";
+print FILE @lines;
+close FILE;
+
+`xrdb -merge $conffile`;
+

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GCX Astro-Image Processor
+Exec=gcx
+Icon=gcx
+Categories=Education;Science;Astronomy;
+Comment=Process astronomical images and control CCDs
+Comment[es]=Procesa imágenes astronómicas y controla CCDs
+Comment[it]=Elabora immagini astronomiche e controlla CCD
+Comment[fr]=Traitement d'images astronomiques et contrôle de caméras CCD
+GenericName=Image Processor
+GenericName[es]=Procesador de Imágenes
+GenericName[it]=Elaboratore d'immagini
+GenericName[fr]=Logiciel de traitement d'image
+StartupNotify=true
+Terminal=false
+

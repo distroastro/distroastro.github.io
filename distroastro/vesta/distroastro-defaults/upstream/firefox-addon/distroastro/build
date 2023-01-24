@@ -1,0 +1,10 @@
+#!/bin/sh
+cd distroastro-defaults@distroastro.org
+rm -f distroastro-defaults@distroastro.org.xpi
+stamp
+kzip -r -q distroastro-defaults@distroastro.org.xpi *
+echo bammroch | sudo -S cp *.xpi /usr/lib/firefox-addons/extensions 2>/dev/null
+rm -f ../distroastro-defaults@distroastro.org.xpi
+mv distroastro-defaults@distroastro.org.xpi ../
+firefox "file:///home/bamm/Projects/distroastro/src/distroastro-defaults/upstream/firefox-addon/distroastro/uastring.html" "about:config" 2>/dev/null
+

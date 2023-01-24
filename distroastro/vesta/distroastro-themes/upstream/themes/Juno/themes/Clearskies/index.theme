@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Clearskies
+Comment=Distro Astro default theme that feels like a clear daytime sky.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Clearskies
+MetacityTheme=Clearskies
+IconTheme=Clearskies
+CursorTheme=Clearskies

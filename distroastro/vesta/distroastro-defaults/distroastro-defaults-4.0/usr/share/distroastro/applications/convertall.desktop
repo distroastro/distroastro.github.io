@@ -1,0 +1,20 @@
+[Desktop Entry]
+Version=1.0
+Name=Unit Converter
+Name[es]=Conversor de unidades
+Name[it]=Convertitore di unità
+Name[fr]=Convertisseur d'unité de mesure
+GenericName=Unit Converter
+GenericName[es]=Conversor de unidades
+GenericName[it]=Convertitore di unità
+GenericName[fr]=Convertisseur d'unité de mesure
+Comment=Convert between many different units
+Comment[es]=Convertir entre muchas distintas unidades
+Comment[it]=Conversione fra differenti unità
+Comment[fr]=Conversion de plusieurs unités de mesure
+Icon=convertall
+Exec=convertall
+Terminal=false
+Type=Application
+Categories=Qt;Utility;
+Keywords=Pound;Euro;Dollar;Yen;Meter;Metre;Mile;Convert;Gram;Inch;Litre

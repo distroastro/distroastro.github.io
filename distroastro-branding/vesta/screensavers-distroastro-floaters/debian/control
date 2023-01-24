@@ -1,0 +1,14 @@
+Source: screensavers-distroastro-floaters
+Section: misc
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: screensavers-distroastro-floaters
+Architecture: all
+Depends: ${misc:Depends}, gnome-screensaver | mate-screensaver
+Description: Floating Distro Astro Logo Screensaver
+ A screensaver showing the Distro Astro logo.

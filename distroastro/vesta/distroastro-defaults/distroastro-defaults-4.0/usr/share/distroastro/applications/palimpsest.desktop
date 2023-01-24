@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=Disk Utility
+Name[es]=Herramienta de disco
+Name[it]=Utilità disco
+Name[fr]=Utilitaire de disque
+Comment=Manage Drives and Media
+Comment[es]=Gestiona unidades y dispositivos
+Comment[it]=Gestione dispositivi
+Comment[fr]=Gérer des disques et des médias
+Exec=palimpsest
+Icon=palimpsest
+Terminal=false
+Type=Application
+StartupNotify=true
+X-GNOME-DocPath=palimpsest/palimpsest.xml
+Categories=GNOME;GTK;Settings;HardwareSettings;
+X-Ubuntu-Gettext-Domain=gnome-disk-utility

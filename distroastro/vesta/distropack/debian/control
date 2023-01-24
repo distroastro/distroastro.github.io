@@ -1,0 +1,36 @@
+Source: distropack
+Section: science
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.7
+Homepage: http://www.distroastro.org/
+
+Package: distropack
+Architecture: all
+Depends: ${misc:Depends}, distropack-appearance, distropack-system, distropack-debian
+Suggests: distroastro-defaults, astropack
+Description: Distro Astro Distribution Pack
+ This metapackage brings in the packages for the Distro Astro project.
+
+Package: distropack-appearance
+Architecture: all
+Depends: ${misc:Depends}, plymouth-theme-distroastro, screensavers-distroastro-floaters, distroastro-themes, toggle-nightvision, winecolors, fortunes-astronomy, fonts-non-free, fonts-lucida
+Description: Distro Astro Appearance Pack
+ This metapackage provides packages for the Distro Astro look and feel.
+
+Package: distropack-system
+Architecture: all
+Depends: ${misc:Depends}, distroastro-location, distroastro-planetarium, distroastro-winetricks-cache
+Recommends: usb-creator-gtk
+Suggests: distroastro-compiz-support, mate-disk-utility
+Description: Distro Astro System Pack
+ This metapackage provides packages for the Distro Astro system
+
+Package: distropack-debian
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: software-properties-gtk, software-properties-common, ntp, cups-pdf, dconf-cli, dconf-editor, hardinfo, gucharmap, blueman, convertall, clementine
+Description: Distro Astro Debian Pack
+ This metapackage provides selected packages from the Debian repositories.

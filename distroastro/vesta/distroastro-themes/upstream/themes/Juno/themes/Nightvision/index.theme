@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Nightvision
+Comment=Distro Astro default theme that preserves night vision for astronomy.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Nightvision
+MetacityTheme=Nightvision
+IconTheme=Nightvision
+CursorTheme=Nightvision
+BackgroundImage=/usr/share/backgrounds/Nightvision/Nightvision
+

@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "mate-wp-list.dtd">
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>No Desktop Background</name>
+    <filename>(none)</filename>
+    <options>wallpaper</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#adad38384141</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Above The Clouds (Root).jpg</name>
+    <filename>/usr/share/backgrounds/Clearskies/Above The Clouds (Root).jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Kennon Road (Root).jpg</name>
+    <filename>/usr/share/backgrounds/Clearskies/Kennon Road (Root).jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Above The Clouds</name>
+    <filename>/usr/share/backgrounds/Clearskies/Above The Clouds.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#94949494b4b4</pcolor>
+    <scolor>#94949494b4b4</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Kennon Road</name>
+    <filename>/usr/share/backgrounds/Clearskies/Kennon Road.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#ececf4f4ffff</pcolor>
+    <scolor>#ececf4f4ffff</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Tropical Rainforest</name>
+    <filename>/usr/share/backgrounds/Clearskies/Tropical Rainforest.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#3a3a56564040</pcolor>
+    <scolor>#3a3a56564040</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Bosscha Observatory</name>
+    <filename>/usr/share/backgrounds/Clearskies/Bosscha Observatory.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#8c8caaaac8c8</pcolor>
+    <scolor>#8c8caaaac8c8</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Astronomy Picture of the Day</name>
+    <filename>/usr/share/backgrounds/APOD/APOD</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Nightvision Slideshow</name>
+    <filename>/usr/share/backgrounds/Nightvision/Nightvision</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Nightvision Ultra Deep</name>
+    <filename>/usr/share/backgrounds/Nightvision/Nightvision Ultra Deep.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Slideshow</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Mystic Mountain</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Mystic Mountain.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble NGC 2841</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble NGC 2841.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Orion Nebula</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Orion Nebula.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Ultra Deep</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Ultra Deep.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble NGC 1275</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble NGC 1275.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble M74</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble M74.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Ghost Head Nebula</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Ghost Head Nebula.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Crab Nebula</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Crab Nebula.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Light Echo</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Light Echo.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Tarantula Nebula</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Tarantula Nebula.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble NGC 3603</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble NGC 3603.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Hubble Stephan's Quintet</name>
+    <filename>/usr/share/backgrounds/Hubble/Hubble Stephan's Quintet.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Typhoon Maysak from ISS</name>
+    <filename>/usr/share/backgrounds/ISS/Typhoon Maysak from ISS.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>Rising Moon from Space</name>
+    <filename>/usr/share/backgrounds/ISS/Rising Moon from Space.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>ISS Upgrade</name>
+    <filename>/usr/share/backgrounds/ISS/ISS Upgrade.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+  <wallpaper deleted="true">
+    <name>ISS Over Earth</name>
+    <filename>/usr/share/backgrounds/ISS/ISS Over Earth.jpg</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#000000000000</pcolor>
+    <scolor>#000000000000</scolor>
+    <artist>(none)</artist>
+  </wallpaper>
+</wallpapers>

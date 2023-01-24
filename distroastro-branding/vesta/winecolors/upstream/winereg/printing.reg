@@ -1,0 +1,67 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Wine\Printing]
+
+[HKEY_CURRENT_USER\Software\Wine\Printing\Spooler]
+"KDE:"="|kprinter --stdin"
+"LPT1:"="|lpr"
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print]
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments]
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments\Windows NT x86]
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments\Windows NT x86\Drivers]
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments\Windows NT x86\Drivers\Version-3]
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments\Windows NT x86\Drivers\Version-3\KDE Print System]
+"Configuration File"="wineps.drv"
+"Data File"="wineps.drv"
+"Dependent Files"=hex(7):77,69,6e,65,70,73,2e,64,72,76,00,00
+"Driver"="wineps.drv"
+"Manufacturer"="Wine"
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments\Windows NT x86\Drivers\Version-3\Wine PostScript Driver]
+"Configuration File"="wineps.drv"
+"Data File"="wineps.drv"
+"Dependent Files"=hex(7):77,69,6e,65,70,73,2e,64,72,76,00,00
+"Driver"="wineps.drv"
+"Manufacturer"="Wine"
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Printers]
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Printers\KDE Print System]
+"Attributes"=dword:00000000
+"Default Devmode"=""
+"Name"="KDE Print System"
+"Port"="KDE:"
+"Print Processor"="WinPrint"
+"Printer Driver"="KDE Print System"
+"Priority"=dword:00000000
+"Start Time"=dword:00000000
+"Status"=dword:00000000
+"Until Time"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Printers\Wine PostScript Driver]
+"Attributes"=dword:00000000
+"Default Devmode"=""
+"Name"="Wine PostScript Driver"
+"Port"="LPT1:"
+"Print Processor"="WinPrint"
+"Printer Driver"="Wine PostScript Driver"
+"Priority"=dword:00000000
+"Start Time"=dword:00000000
+"Status"=dword:00000000
+"Until Time"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Ports]
+"COM1:"="9600,n,8,1"
+"COM2:"="9600,n,8,1"
+"COM3:"="9600,n,8,1"
+"COM4:"="9600,n,8,1"
+"FILE:"="9600,n,8,1"
+"LPT1:"="9600,n,8,1"
+"LPT2:"="9600,n,8,1"
+"LPT3:"="9600,n,8,1"

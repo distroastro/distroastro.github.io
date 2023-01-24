@@ -1,0 +1,15 @@
+Source: backgrounds-iss
+Section: misc
+Priority: optional
+Maintainer: Distro Astro Developers <devel@distroastro.org>
+Uploaders: Bamm Gabriana <bamm@distroastro.org>
+Build-Depends: debhelper (>= 8.0)
+Standards-Version: 3.9.5
+Homepage: http://www.distroastro.org/
+
+Package: backgrounds-iss
+Architecture: all
+Depends: ${misc:Depends}
+Description: Pictures from ISS
+ These are some of the most amazing photographs taken from the International
+ Space Station (ISS).

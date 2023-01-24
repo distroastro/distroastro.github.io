@@ -1,0 +1,78 @@
+toggle-nightvision (4.0-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 11 May 2017 00:00:00 +0800
+
+toggle-nightvision (3.0.3-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 04 Jul 2016 00:00:00 +0800
+
+toggle-nightvision (3.0.2-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+  * Added support for XResources.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Fri, 29 May 2015 00:00:00 +0800
+
+toggle-nightvision (3.0.1-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+  * Added support for Compiz decorator.
+  * Added Spanish localization to desktop shortcut.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 13 Dec 2014 00:00:00 +0800
+
+toggle-nightvision (3.0-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+  * Added support for Cinnamon.
+  * Added command line switches.
+  * Added help and manpage.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Mon, 08 Sep 2014 00:00:00 +0800
+
+toggle-nightvision (2.0-1distroastro1) unstable; urgency=low
+
+  * New upstream release.
+  * Added support for dconf.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sun, 15 Sep 2013 00:00:00 +0800
+
+toggle-nightvision (1.0.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Thu, 18 Jul 2013 00:00:00 +0800
+
+toggle-nightvision (1.0.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Fri, 25 Jan 2013 00:00:00 +0800
+
+toggle-nightvision (1.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Sat, 08 Dec 2012 00:00:00 +0800
+
+toggle-nightvision (0.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Tue, 15 May 2011 00:00:00 +0800
+
+toggle-nightvision (0.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Fri, 04 May 2011 00:00:00 +0800
+
+toggle-nightvision (0.3-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Bamm Gabriana <bamm@distroastro.org>  Wed, 03 May 2011 00:00:00 +0800

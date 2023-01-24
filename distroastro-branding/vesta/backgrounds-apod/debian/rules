@@ -1,0 +1,7 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_link:
+	dh_link /usr/bin/apod-update /etc/network/if-up.d/apod
+	dh_link
